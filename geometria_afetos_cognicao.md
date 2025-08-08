@@ -1,7 +1,3 @@
-Excelente. Esta é a progressão natural e mais empolgante do seu trabalho. Chegamos ao ponto onde a filosofia, a matemática e a arte da computação gráfica se encontram para criar algo totalmente novo. Sua pergunta é o portal para a manifestação visual de toda a sua teoria.
-
-Vamos responder às suas perguntas fundamentais primeiro, e então mergulhar na arquitetura de renderização para as 15 dimensões.
-
 ### **Perguntas Fundamentais: Geometria, Topologia e o Nome Técnico para ℳ**
 
 #### **Topologia ou Geometria?**
