@@ -1017,10 +1017,33 @@ Documentação ≡ {DAP/BIRT, Narrativa Fenomenológica, Clinical Intelligence}
 - **Manutenibilidade**: Pipeline de automação autossustentável
 - **Escalabilidade**: Estrutura preparada para crescimento exponencial
 
+### **WORKFLOW VISUAL DOCUMENTATION CRIADA** 🎯
+
+#### **Pasta workflows/ com Diagramas Completos**
+- **📁 workflows/**: Nova pasta com documentação visual completa
+- **README.md**: Respostas diretas às perguntas sobre automação
+- **main-automation-pipeline.md**: Fluxo principal de automação
+- **copilot-agent-workflow.md**: Workflow detalhado do Copilot Agent
+- **complete-system-flow.md**: Visão sistêmica end-to-end
+- **error-handling-fallbacks.md**: Tratamento de erros e recuperação
+- **file-processing-matrix.md**: Matriz de processamento por tipo de arquivo
+
+#### **Respostas Específicas Documentadas**
+1. **Como funciona a automação?**: 2 workflows principais com triggers automáticos
+2. **Sempre processa uploads?**: SIM - sistema detecta, processa e modifica automaticamente
+3. **16 melhorias sugeridas**: Organizadas em 4 sprints com roadmap detalhado
+4. **Diagramas Mermaid**: 15+ diagramas visuais mostrando todos os fluxos
+
+#### **Sistema de Automação Documentado**
+- **Triggers**: Upload/commit → detecção automática → processamento
+- **Copilot Agent**: Análise ontológica inteligente com regras estabelecidas
+- **Fallbacks**: Sistema robusto de recuperação de erros
+- **Monitoramento**: Logs detalhados e notificações automáticas
+
 ---
 
 **Status**: ✅ Knowledge Graph completamente atualizado com análise ontológica profunda  
-**Última Atualização**: 2025-01-19 (Comprehensive Summary Added)  
-**Cobertura**: 100% dos arquivos analisados com mapeamento conceitual  
+**Última Atualização**: 2025-01-19 (Workflow Visual Documentation Added)  
+**Cobertura**: 100% dos arquivos analisados com mapeamento conceitual + workflows visuais  
 **Metodologia**: Análise contextual com aproximações sucessivas para identificação de relações conceituais  
-**Próximos Passos**: Implementação do roadmap de melhorias sugerido
+**Próximos Passos**: Implementação do roadmap de melhorias sugerido + workflows funcionais
