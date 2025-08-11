@@ -7,102 +7,102 @@
 ### 🏛️ **Core Architecture** (Essential Reading)
 | Priority | Document | Size | Description | Audience |
 |----------|----------|------|-------------|----------|
-| 🔴 High | [System Architecture](voither_system_architecture.md) | 596 lines | Complete technical architecture | Developers, Architects |
+| 🔴 High | [System Architecture](../architecture/voither_system_architecture.md) | 596 lines | Complete technical architecture | Developers, Architects |
 | 🔴 High | [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) | 482 lines | Complete system overview | All Users |
-| 🟡 Medium | [Implementation Plan](voither_implementation_plan.md) | 510 lines | Development roadmap | Project Managers |
-| 🟡 Medium | [Technical Pipeline](voither_technical_pipeline.md) | 390 lines | Data flow and processing | Technical Teams |
+| 🟡 Medium | [Implementation Plan](../voither-system/voither_implementation_plan.md) | 510 lines | Development roadmap | Project Managers |
+| 🟡 Medium | [Technical Pipeline](../architecture/voither_technical_pipeline.md) | 390 lines | Data flow and processing | Technical Teams |
 
 ### 🧩 **Core Components** (Implementation Details)
 | Priority | Document | Size | Status | Description |
 |----------|----------|------|--------|-------------|
-| 🔴 High | [MED Core](med_core.md) | 1,011 lines | ✅ Implemented | 15-dimensional extraction engine |
-| 🟡 Medium | [MED Implementation](voither_med_implementation.md) | 407 lines | ✅ Implemented | Technical implementation details |
-| 🟡 Medium | [Framework Integration](med_frameworks.md) | 1,108 lines | ✅ Implemented | RDoC, HiTOP, Big Five integration |
-| 🟠 Low | [Apothecary Engine](apothecary_engine.md) | 1,171 lines | 🔄 Development | Automated medication analysis |
+| 🔴 High | [MED Core](../core-concepts/med_core.md) | 1,011 lines | ✅ Implemented | 15-dimensional extraction engine |
+| 🟡 Medium | [MED Implementation](../voither-system/voither_med_implementation.md) | 407 lines | ✅ Implemented | Technical implementation details |
+| 🟡 Medium | [Framework Integration](../core-concepts/med_frameworks.md) | 1,108 lines | ✅ Implemented | RDoC, HiTOP, Big Five integration |
+| 🟠 Low | [Apothecary Engine](../core-concepts/apothecary_engine.md) | 1,171 lines | 🔄 Development | Automated medication analysis |
 
 ### 🤖 **AI & Automation** (Advanced Features)
 | Priority | Document | Size | Status | Description |
 |----------|----------|------|--------|-------------|
-| 🟡 Medium | [AutoAgency](autoagency.md) | 1,656 lines | 📋 Planned | Clinical automation system |
-| 🟡 Medium | [Orchestrator](voither_orchestrator_doc.md) | 1,643 lines | 🔄 Development | System orchestration |
-| 🟠 Low | [Narrative Agent](voither_narrative_agent.md) | 370 lines | 🔄 Development | AI narrative generation |
-| 🟠 Low | [Navigation](voither_navigate.md) | 292 lines | 🔄 Development | System navigation |
+| 🟡 Medium | [AutoAgency](../core-concepts/autoagency.md) | 1,656 lines | 📋 Planned | Clinical automation system |
+| 🟡 Medium | [Orchestrator](../voither-system/voither_orchestrator_doc.md) | 1,643 lines | 🔄 Development | System orchestration |
+| 🟠 Low | [Narrative Agent](../voither-system/voither_narrative_agent.md) | 370 lines | 🔄 Development | AI narrative generation |
+| 🟠 Low | [Navigation](../voither-system/voither_navigate.md) | 292 lines | 🔄 Development | System navigation |
 
 ### 🎨 **Visualization & Interface** (User Experience)
 | Priority | Document | Size | Status | Description |
 |----------|----------|------|--------|-------------|
-| 🟡 Medium | [Holofractor](voither_dimensional_holofractor.md) | 358 lines | 🔄 Development | 3D mental space visualization |
-| 🟠 Low | [VOITHER for Narrative](VOITHER_for_Narrative.md) | 220 lines | 📋 Planned | Narrative interface |
+| 🟡 Medium | [Holofractor](../voither-system/voither_dimensional_holofractor.md) | 358 lines | 🔄 Development | 3D mental space visualization |
+| 🟠 Low | [VOITHER for Narrative](../voither-system/VOITHER_for_Narrative.md) | 220 lines | 📋 Planned | Narrative interface |
 
 ### 🔬 **Research & Theory** (Academic Foundation)
 | Priority | Document | Size | Type | Description |
 |----------|----------|------|------|-------------|
-| 🟡 Medium | [Mental Geometry](geometria_afetos_cognicao.md) | 156 lines | Research | Theoretical foundation |
-| 🟡 Medium | [Mental Space](espaco_mental_paper.md) | 167 lines | Research | Psychological space theory |
-| 🟠 Low | [Emergence Systems](emergence_enabled_ee.md) | 2,152 lines | Technical | AI-native architecture |
+| 🟡 Medium | [Mental Geometry](../research/geometria_afetos_cognicao.md) | 156 lines | Research | Theoretical foundation |
+| 🟡 Medium | [Mental Space](../core-concepts/espaco_mental_paper.md) | 167 lines | Research | Psychological space theory |
+| 🟠 Low | [Emergence Systems](../core-concepts/emergence_enabled_ee.md) | 2,152 lines | Technical | AI-native architecture |
 
 ### ⚙️ **Technical Infrastructure** (System Design)
 | Priority | Document | Size | Complexity | Description |
 |----------|----------|------|------------|-------------|
-| 🔴 High | [Files Pipeline](VOITHER_files_pipeline.md) | 1,489 lines | Advanced | Complete data pipeline |
-| 🟡 Medium | [ISER Pipelines](iser_pipelines.md) | 338 lines | Intermediate | Processing pipelines |
-| 🟠 Low | [Database Ideas](DB_ideas.md) | 409 lines | Intermediate | Database design concepts |
+| 🔴 High | [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) | 1,489 lines | Advanced | Complete data pipeline |
+| 🟡 Medium | [ISER Pipelines](../pipelines/iser_pipelines.md) | 338 lines | Intermediate | Processing pipelines |
+| 🟠 Low | [Database Ideas](../database/DB_ideas.md) | 409 lines | Intermediate | Database design concepts |
 
 ### 🔧 **ReEngine Framework** (Advanced Reasoning)
 | Priority | Document | Size | Complexity | Description |
 |----------|----------|------|------------|-------------|
-| 🟠 Low | [ReEngine Sec 01](ReEngine_Sec_01.md) | 1,261 lines | Advanced | Foundational concepts |
-| 🟠 Low | [ReEngine Sec 02](ReEngine_Sec_02.md) | 1,753 lines | Advanced | Implementation details |
-| 🟠 Low | [ReEngine Sec 03](ReEngine_Sec_03.md) | 2,555 lines | Advanced | Advanced features |
-| 🟠 Low | [ReEngine Sec 04](ReEngine_Sec_04.md) | 3,251 lines | Expert | Complete specification |
+| 🟠 Low | [ReEngine Sec 01](../reengine/ReEngine_Sec_01.md) | 1,261 lines | Advanced | Foundational concepts |
+| 🟠 Low | [ReEngine Sec 02](../reengine/ReEngine_Sec_02.md) | 1,753 lines | Advanced | Implementation details |
+| 🟠 Low | [ReEngine Sec 03](../reengine/ReEngine_Sec_03.md) | 2,555 lines | Advanced | Advanced features |
+| 🟠 Low | [ReEngine Sec 04](../reengine/ReEngine_Sec_04.md) | 3,251 lines | Expert | Complete specification |
 
 ## 🎯 **Reading Paths by Role**
 
 ### 👩‍⚕️ **For Clinicians**
 **Essential Path** (30 min read):
-1. [README](README.md) - System overview
+1. [README](../README.md) - System overview
 2. [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) - Complete picture
-3. [System Architecture](voither_system_architecture.md) - How it works
+3. [System Architecture](../architecture/voither_system_architecture.md) - How it works
 
 **Deep Dive** (2 hours):
-4. [MED Core](med_core.md) - Understanding the 15 dimensions
-5. [Implementation Plan](voither_implementation_plan.md) - Development roadmap
-6. [Templates](voither_primeira_consulta_template.py) - Practical usage
+4. [MED Core](../core-concepts/med_core.md) - Understanding the 15 dimensions
+5. [Implementation Plan](../voither-system/voither_implementation_plan.md) - Development roadmap
+6. [Templates](../templates/voither_primeira_consulta_template.py) - Practical usage
 
 ### 👨‍💻 **For Developers**
 **Quick Start** (45 min read):
-1. [README](README.md) - Project overview
-2. [System Architecture](voither_system_architecture.md) - Technical foundation
-3. [Technical Pipeline](voither_technical_pipeline.md) - Implementation details
+1. [README](../README.md) - Project overview
+2. [System Architecture](../architecture/voither_system_architecture.md) - Technical foundation
+3. [Technical Pipeline](../architecture/voither_technical_pipeline.md) - Implementation details
 
 **Complete Implementation** (1 day):
-4. [MED Implementation](voither_med_implementation.md) - Core engine
-5. [Files Pipeline](VOITHER_files_pipeline.md) - Data processing
-6. [Framework Integration](med_frameworks.md) - External systems
-7. [Orchestrator](voither_orchestrator_doc.md) - System coordination
+4. [MED Implementation](../voither-system/voither_med_implementation.md) - Core engine
+5. [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) - Data processing
+6. [Framework Integration](../core-concepts/med_frameworks.md) - External systems
+7. [Orchestrator](../voither-system/voither_orchestrator_doc.md) - System coordination
 
 ### 🔬 **For Researchers**
 **Theoretical Foundation** (1 hour):
 1. [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) - System overview
-2. [Mental Geometry](geometria_afetos_cognicao.md) - Theoretical basis
-3. [Mental Space](espaco_mental_paper.md) - Psychological theory
+2. [Mental Geometry](../research/geometria_afetos_cognicao.md) - Theoretical basis
+3. [Mental Space](../core-concepts/espaco_mental_paper.md) - Psychological theory
 
 **Technical Deep Dive** (4+ hours):
-4. [Emergence Systems](emergence_enabled_ee.md) - AI architecture
-5. [ReEngine Sec 01-04](ReEngine_Sec_01.md) - Advanced reasoning framework
-6. [MED Core](med_core.md) - Dimensional analysis
+4. [Emergence Systems](../core-concepts/emergence_enabled_ee.md) - AI architecture
+5. [ReEngine Sec 01-04](../reengine/ReEngine_Sec_01.md) - Advanced reasoning framework
+6. [MED Core](../core-concepts/med_core.md) - Dimensional analysis
 
 ### 🏗️ **For System Architects**
 **Architecture Overview** (2 hours):
-1. [System Architecture](voither_system_architecture.md) - High-level design
-2. [Files Pipeline](VOITHER_files_pipeline.md) - Data architecture
-3. [Orchestrator](voither_orchestrator_doc.md) - System integration
+1. [System Architecture](../architecture/voither_system_architecture.md) - High-level design
+2. [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) - Data architecture
+3. [Orchestrator](../voither-system/voither_orchestrator_doc.md) - System integration
 
 **Detailed Design** (Full day):
-4. [Technical Pipeline](voither_technical_pipeline.md) - Implementation
-5. [Database Ideas](DB_ideas.md) - Storage design
-6. [Framework Integration](med_frameworks.md) - External systems
-7. [AutoAgency](autoagency.md) - Automation layer
+4. [Technical Pipeline](../architecture/voither_technical_pipeline.md) - Implementation
+5. [Database Ideas](../database/DB_ideas.md) - Storage design
+6. [Framework Integration](../core-concepts/med_frameworks.md) - External systems
+7. [AutoAgency](../core-concepts/autoagency.md) - Automation layer
 
 ## 📊 **Document Statistics**
 

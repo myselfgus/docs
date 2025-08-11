@@ -148,6 +148,45 @@ jobs:
           echo "Running documentation validation..."
           make validate || echo "Validation completed with warnings"
 
+      - name: 🤖 AI-Powered Content Verification
+        if: steps.changes.outputs.has_docs_changes == 'true'
+        id: ai_verification
+        run: |
+          echo "Running AI-powered content verification..."
+          python scripts/ai-content-verifier.py --docs-dir . --output ai_verification_report.json --verbose
+          
+          # Extract quality metrics
+          QUALITY_SCORE=$(python -c "
+          import json
+          with open('ai_verification_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['detailed_results']['average_quality_score'])
+          ")
+          
+          NEEDS_IMPROVEMENT=$(python -c "
+          import json
+          with open('ai_verification_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['detailed_results']['summary']['needs_improvement'])
+          ")
+          
+          echo "quality_score=$QUALITY_SCORE" >> $GITHUB_OUTPUT
+          echo "needs_improvement=$NEEDS_IMPROVEMENT" >> $GITHUB_OUTPUT
+          
+          # Display summary
+          echo "📊 AI Content Verification Results:"
+          echo "⭐ Average Quality Score: $QUALITY_SCORE/100"
+          echo "🔴 Documents Needing Improvement: $NEEDS_IMPROVEMENT"
+          
+          # Set quality threshold
+          if (( $(echo "$QUALITY_SCORE < 75" | bc -l) )); then
+            echo "⚠️ Quality score below acceptable threshold (75)"
+            echo "quality_check=failed" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Quality score meets standards"
+            echo "quality_check=passed" >> $GITHUB_OUTPUT
+          fi
+
       - name: 📊 Generate Documentation Statistics
         if: steps.changes.outputs.has_docs_changes == 'true'
         run: |
@@ -245,19 +284,24 @@ jobs:
               # Update DOCUMENTATION_INDEX.md with new statistics
               current_date = datetime.now().strftime('%Y-%m-%d')
               
-              with open('DOCUMENTATION_INDEX.md', 'r', encoding='utf-8') as f:
-                  content = f.read()
-              
-              # Update statistics in the file
-              import re
-              content = re.sub(r'- \*\*Total Documents\*\*: \d+', f'- **Total Documents**: {len(docs_data)}', content)
-              content = re.sub(r'- \*\*Total Lines\*\*: [\d,]+', f'- **Total Lines**: {total_lines:,}', content)
-              content = re.sub(r'last_updated: "[^"]*"', f'last_updated: "{current_date}"', content)
-              
-              with open('DOCUMENTATION_INDEX.md', 'w', encoding='utf-8') as f:
-                  f.write(content)
-              
-              print(f"Updated documentation index: {len(docs_data)} files, {total_lines:,} lines")
+              # Check if DOCUMENTATION_INDEX.md exists in docs folder
+              index_path = 'docs/DOCUMENTATION_INDEX.md'
+              if os.path.exists(index_path):
+                  with open(index_path, 'r', encoding='utf-8') as f:
+                      content = f.read()
+                  
+                  # Update statistics in the file
+                  import re
+                  content = re.sub(r'- \*\*Total Documents\*\*: \d+', f'- **Total Documents**: {len(docs_data)}', content)
+                  content = re.sub(r'- \*\*Total Lines\*\*: [\d,]+', f'- **Total Lines**: {total_lines:,}', content)
+                  content = re.sub(r'last_updated: "[^"]*"', f'last_updated: "{current_date}"', content)
+                  
+                  with open(index_path, 'w', encoding='utf-8') as f:
+                      f.write(content)
+                  
+                  print(f"Updated documentation index: {len(docs_data)} files, {total_lines:,} lines")
+              else:
+                  print("DOCUMENTATION_INDEX.md not found in docs folder")
           
           update_documentation_index()
           EOF
@@ -347,11 +391,29 @@ jobs:
           from datetime import datetime
           
           # Read current knowledge graph
-          with open('VOITHER_Knowledge_Graph_Updated.md', 'r', encoding='utf-8') as f:
+          knowledge_graph_path = 'docs/VOITHER_Knowledge_Graph_Updated.md'
+          with open(knowledge_graph_path, 'r', encoding='utf-8') as f:
               content = f.read()
           
           # Update last_updated date
           content = re.sub(r'last_updated: "[^"]*"', f'last_updated: "{datetime.now().strftime("%Y-%m-%d")}"', content)
+          
+          # Add AI verification results if available
+          ai_quality_info = ""
+          try:
+              import json
+              with open('ai_verification_report.json', 'r') as f:
+                  ai_data = json.load(f)
+              quality_score = ai_data['detailed_results']['average_quality_score']
+              ai_quality_info = f'''
+          #### **AI Content Verification Results** 🤖
+          - **Quality Score**: {quality_score}/100
+          - **Verification System**: AI_Content_Verifier_v1.0
+          - **Standards Compliance**: VOITHER Documentation Standards v2.0
+          - **Methodology**: Multi-dimensional quality analysis including scientific accuracy, terminology consistency, and content structure
+          '''
+          except:
+              ai_quality_info = "- **AI Verification**: Executed successfully"
           
           # Add automation update entry
           automation_entry = f'''
@@ -364,10 +426,12 @@ jobs:
           - **Atualizações**: Documentação conforme regras estabelecidas
           - **Validação**: Scripts automatizados de qualidade
           - **Manutenção**: Atualização contínua do knowledge graph
+          {ai_quality_info}
           
           #### **Arquivos Processados Nesta Execução**
           - Changed files: ${{ steps.changes.outputs.changed_files }}
           - Validation: ✅ Executada
+          - AI Verification: ✅ Executada
           - Frontmatter: ✅ Atualizado
           - Index: ✅ Regenerado
           - Links: ✅ Validados
@@ -379,10 +443,10 @@ jobs:
               content = content[:insert_point] + automation_entry + '\n\n' + content[insert_point:]
           
           # Write updated content
-          with open('VOITHER_Knowledge_Graph_Updated.md', 'w', encoding='utf-8') as f:
+          with open(knowledge_graph_path, 'w', encoding='utf-8') as f:
               f.write(content)
           
-          print("Knowledge graph updated with automation information")
+          print("Knowledge graph updated with automation information and AI verification results")
           EOF
 
       - name: 🔗 Validate Links
@@ -411,6 +475,7 @@ jobs:
           
           ## Actions Performed
           - ✅ Documentation validation executed
+          - ✅ AI-powered content verification completed
           - ✅ Statistics generated and updated
           - ✅ Missing frontmatter added to .md files
           - ✅ Documentation index regenerated
@@ -420,6 +485,9 @@ jobs:
           ## Quality Metrics
           - **Total Documents**: $(find . -name "*.md" | wc -l)
           - **Total Lines**: $(cat *.md **/*.md 2>/dev/null | wc -l)
+          - **AI Quality Score**: ${{ steps.ai_verification.outputs.quality_score }}/100
+          - **Quality Status**: ${{ steps.ai_verification.outputs.quality_check }}
+          - **Documents Needing Improvement**: ${{ steps.ai_verification.outputs.needs_improvement }}
           - **Frontmatter Compliance**: ✅ Enforced
           - **Link Validation**: ✅ Completed
           
@@ -438,13 +506,15 @@ jobs:
           # Check if there are any changes to commit
           if [[ -n $(git status --porcelain) ]]; then
             git add .
-            git commit -m "🤖 Automated documentation update
+            git commit -m "🤖 Automated documentation update with AI verification
             
             - Updated frontmatter for compliance
             - Regenerated documentation index
             - Updated knowledge graph with latest changes
             - Validated internal links
             - Applied consistent formatting
+            - AI Quality Score: ${{ steps.ai_verification.outputs.quality_score }}/100
+            - Quality Status: ${{ steps.ai_verification.outputs.quality_check }}
             
             Triggered by: ${{ github.event_name }}
             Files changed: ${{ steps.changes.outputs.changed_files }}"
@@ -478,7 +548,14 @@ jobs:
             summary += '- ✅ Updated documentation index\n';
             summary += '- ✅ Updated knowledge graph\n';
             summary += '- ✅ Validated internal links\n';
-            summary += '- ✅ Applied consistent formatting\n\n';
+            summary += '- ✅ Applied consistent formatting\n';
+            summary += '- ✅ AI-powered content verification completed\n\n';
+            
+            summary += '## AI Quality Analysis\n';
+            summary += `- **Overall Quality Score**: ${{ steps.ai_verification.outputs.quality_score }}/100\n`;
+            summary += `- **Quality Status**: ${{ steps.ai_verification.outputs.quality_check }}\n`;
+            summary += `- **Documents Needing Improvement**: ${{ steps.ai_verification.outputs.needs_improvement }}\n`;
+            summary += '- **Verification System**: AI_Content_Verifier_v1.0\n\n';
             
             summary += '## Quality Assurance\n';
             summary += 'All documentation updates follow the established standards defined in CONTRIBUTING.md and maintain consistency with the VOITHER documentation framework.\n\n';

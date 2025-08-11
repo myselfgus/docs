@@ -124,10 +124,10 @@ def validate_documentation_links(directory):
 def check_required_files(directory):
     """Check if required documentation files exist"""
     required_files = [
-        'README.md',
-        'TABLE_OF_CONTENTS.md',
-        'DOCUMENTATION_INDEX.md',
-        'CONTRIBUTING.md'
+        'README.md',  # Root level
+        'docs/TABLE_OF_CONTENTS.md',  # In docs folder
+        'docs/DOCUMENTATION_INDEX.md',  # In docs folder
+        'docs/CONTRIBUTING.md'  # In docs folder
     ]
     
     missing_files = []

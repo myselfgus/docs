@@ -20,7 +20,7 @@ Choose your path based on your role and immediate needs:
 ### 👩‍⚕️ **I'm a Clinician**
 *"I want to understand how VOITHER can improve my practice"*
 
-**Start Here:** [Clinician Quick Start](guides/clinician-quickstart.md) (30 min)
+**Start Here:** [Clinician Quick Start](../guides/clinician-quickstart.md) (30 min)
 - Learn the 15-dimensional analysis framework
 - See real clinical applications
 - Understand the AI co-pilot approach
@@ -28,22 +28,22 @@ Choose your path based on your role and immediate needs:
 
 **Then Explore:**
 - [System Overview](VOITHER_Knowledge_Graph_Updated.md) - Complete picture
-- [15 Dimensions Deep Dive](med_core.md) - Understanding the science
-- [Clinical Templates](voither_primeira_consulta_template.py) - Practical examples
+- [15 Dimensions Deep Dive](../core-concepts/med_core.md) - Understanding the science
+- [Clinical Templates](../templates/voither_primeira_consulta_template.py) - Practical examples
 
 ### 👨‍💻 **I'm a Developer**
 *"I need to implement, integrate, or extend VOITHER"*
 
-**Start Here:** [Developer Guide](guides/developer-guide.md) (45 min)
+**Start Here:** [Developer Guide](../guides/developer-guide.md) (45 min)
 - Complete implementation walkthrough
 - Code examples and patterns
 - Testing and deployment strategies
 - API references and integrations
 
 **Then Explore:**
-- [System Architecture](voither_system_architecture.md) - Technical foundation
-- [MED Engine Implementation](voither_med_implementation.md) - Core AI system
-- [Technical Pipeline](voither_technical_pipeline.md) - Data flow details
+- [System Architecture](../architecture/voither_system_architecture.md) - Technical foundation
+- [MED Engine Implementation](../voither-system/voither_med_implementation.md) - Core AI system
+- [Technical Pipeline](../architecture/voither_technical_pipeline.md) - Data flow details
 
 ### 🔬 **I'm a Researcher**
 *"I want to understand the science and methodology behind VOITHER"*
@@ -55,28 +55,28 @@ Choose your path based on your role and immediate needs:
 - Academic applications
 
 **Then Explore:**
-- [Mental Geometry](geometria_afetos_cognicao.md) - Theoretical foundation
-- [Framework Integration](med_frameworks.md) - RDoC, HiTOP, Big Five
-- [ReEngine Framework](ReEngine_Sec_01.md) - Advanced AI reasoning
+- [Mental Geometry](../research/geometria_afetos_cognicao.md) - Theoretical foundation
+- [Framework Integration](../core-concepts/med_frameworks.md) - RDoC, HiTOP, Big Five
+- [ReEngine Framework](../reengine/ReEngine_Sec_01.md) - Advanced AI reasoning
 
 ### 🏗️ **I'm a System Architect**
 *"I need to plan infrastructure and integration strategy"*
 
-**Start Here:** [System Architecture](voither_system_architecture.md) (30 min)
+**Start Here:** [System Architecture](../architecture/voither_system_architecture.md) (30 min)
 - Complete technical architecture
 - Hybrid data storage approach
 - Scalability and security design
 - Azure integration patterns
 
 **Then Explore:**
-- [Files Pipeline](VOITHER_files_pipeline.md) - Data architecture
-- [Orchestrator](voither_orchestrator_doc.md) - System coordination
-- [Database Design](DB_ideas.md) - Storage strategy
+- [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) - Data architecture
+- [Orchestrator](../voither-system/voither_orchestrator_doc.md) - System coordination
+- [Database Design](../database/DB_ideas.md) - Storage strategy
 
 ### 📊 **I'm a Project Manager**
 *"I need to understand scope, timeline, and resource requirements"*
 
-**Start Here:** [README](README.md) + [Implementation Plan](voither_implementation_plan.md) (30 min)
+**Start Here:** [README](../README.md) + [Implementation Plan](../voither-system/voither_implementation_plan.md) (30 min)
 - Project vision and scope
 - Development roadmap
 - Resource requirements
@@ -85,20 +85,20 @@ Choose your path based on your role and immediate needs:
 **Then Explore:**
 - [Documentation Index](DOCUMENTATION_INDEX.md) - Complete scope
 - [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) - System complexity
-- [Developer Guide](guides/developer-guide.md) - Technical requirements
+- [Developer Guide](../guides/developer-guide.md) - Technical requirements
 
 ## 🚀 Quick Start Paths
 
 ### ⚡ **5-Minute Overview**
 Just need the basics?
-1. [README](README.md) - Project overview
+1. [README](../README.md) - Project overview
 2. [Knowledge Graph Summary](VOITHER_Knowledge_Graph_Updated.md#entidades-principais) - Key components
 
 ### 📚 **30-Minute Deep Dive**
 Ready to understand the full system?
-1. [README](README.md) (10 min)
+1. [README](../README.md) (10 min)
 2. [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) (15 min)
-3. [System Architecture Overview](voither_system_architecture.md#1-princípios-fundamentais-da-arquitetura-voither) (5 min)
+3. [System Architecture Overview](../architecture/voither_system_architecture.md#1-princípios-fundamentais-da-arquitetura-voither) (5 min)
 
 ### 🎓 **2-Hour Comprehensive Study**
 Want to become a VOITHER expert?
@@ -186,21 +186,21 @@ After exploring VOITHER documentation, you should be able to:
 ## 🆘 When You Get Stuck
 
 ### **Common Questions**
-- **"Where do I start coding?"** → [Developer Guide](guides/developer-guide.md)
-- **"How does the AI work?"** → [MED Core](med_core.md)
-- **"What about data privacy?"** → [System Architecture - Security](voither_system_architecture.md#13-segurança-e-conformidade-por-design)
-- **"Can this integrate with our EHR?"** → [FHIR Integration](voither_orchestrator_doc.md)
+- **"Where do I start coding?"** → [Developer Guide](../guides/developer-guide.md)
+- **"How does the AI work?"** → [MED Core](../core-concepts/med_core.md)
+- **"What about data privacy?"** → [System Architecture - Security](../architecture/voither_system_architecture.md#13-segurança-e-conformidade-por-design)
+- **"Can this integrate with our EHR?"** → [FHIR Integration](../voither-system/voither_orchestrator_doc.md)
 
 ### **Finding Specific Information**
 - **Complete document list**: [Documentation Index](DOCUMENTATION_INDEX.md)
 - **Navigation guide**: [Table of Contents](TABLE_OF_CONTENTS.md)
-- **Technical specifications**: [System Architecture](voither_system_architecture.md)
+- **Technical specifications**: [System Architecture](../architecture/voither_system_architecture.md)
 - **Research foundations**: [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md)
 
 ### **Getting Help**
 - **Documentation issues**: Create GitHub issue
-- **Technical questions**: Check [Developer Guide](guides/developer-guide.md)
-- **Clinical questions**: See [Clinician Quick Start](guides/clinician-quickstart.md)
+- **Technical questions**: Check [Developer Guide](../guides/developer-guide.md)
+- **Clinical questions**: See [Clinician Quick Start](../guides/clinician-quickstart.md)
 - **General discussion**: GitHub Discussions
 
 ## 🌟 Ready to Begin?
@@ -209,7 +209,7 @@ Choose your adventure:
 
 | Time Available | Recommended Path |
 |----------------|------------------|
-| **5 minutes** | [README](README.md) → Quick overview |
+| **5 minutes** | [README](../README.md) → Quick overview |
 | **30 minutes** | [Your role-specific quick start](#what-brings-you-here) |
 | **2+ hours** | [Comprehensive study path](#2-hour-comprehensive-study) |
 | **I'm lost** | [Table of Contents](TABLE_OF_CONTENTS.md) → Find your way |
