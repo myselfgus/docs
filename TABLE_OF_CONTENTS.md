@@ -48,7 +48,7 @@
 ### 🤖 **AI & Automation**
 | Document | Audience | Priority | Lines | Status | Description |
 |----------|----------|----------|-------|--------|-------------|
-| [AutoAgency](autoagency(mustbeupdated).md) | Technical | 🟡 Important | 1,656 | ⚠️ Needs Update | Clinical automation system |
+| [AutoAgency](autoagency.md) | Technical | 🟡 Important | 1,656 | ⚠️ Needs Update | Clinical automation system |
 | [Apothecary Engine](apothecary_engine.md) | Clinical/Tech | 🟠 Advanced | 1,171 | 🔄 Development | Automated medication analysis |
 | [Orchestrator](voither_orchestrator_doc.md) | Architects | 🟠 Advanced | 1,643 | 🔄 Development | System orchestration |
 | [Narrative Agent](voither_narrative_agent.md) | Developers | 🔵 Specialized | 370 | 🔄 Development | AI narrative generation |
@@ -95,8 +95,8 @@
 | [Icon ICO](icon.ico) | ICO | 59KB | Windows icon format |
 | [Demo Video](Logo_Montado_em_Vídeo_Animado.mp4) | MP4 | 651KB | Animated logo/demo |
 | [Gemini Video](gemini_generated_video_49FF70E7.mov) | MOV | 994KB | AI-generated demonstration |
-| [Screenshot 1](Screenshot%202025-07-19%20095235.png) | PNG | 218KB | System interface |
-| [Screenshot 2](Screenshot%202025-07-19%20095429.png) | PNG | 168KB | System interface |
+| [Screenshot 1](assets/Screenshot 2025-07-19 095235.png) | PNG | 218KB | System interface |
+| [Screenshot 2](assets/Screenshot 2025-07-19 095429.png) | PNG | 168KB | System interface |
 | [DSL Specification](.ee) | Text | 61KB | Domain-specific language definition |
 
 ## 📖 Reading Paths by Role
@@ -113,7 +113,7 @@
 6. [Templates](voither_primeira_consulta_template.py) (30 min) - Practical examples
 
 **Advanced Features** (Additional 2-4 hours):
-7. [AutoAgency](autoagency(mustbeupdated).md) - Clinical automation
+7. [AutoAgency](autoagency.md) - Clinical automation
 8. [Apothecary Engine](apothecary_engine.md) - Medication analysis
 9. [Mental Geometry](geometria_afetos_cognicao.md) - Theoretical foundation
 
@@ -132,7 +132,7 @@
 **Advanced Features** (Additional 6-8 hours):
 8. [Orchestrator](voither_orchestrator_doc.md) - System coordination
 9. [Holofractor](voither_dimensional_holofractor.md) - 3D visualization
-10. [AutoAgency](autoagency(mustbeupdated).md) - Automation features
+10. [AutoAgency](autoagency.md) - Automation features
 11. [Emergence Systems](emergence_enabled_ee.md) - AI architecture
 
 ### 🔬 **For Researchers** (Academic/Clinical Research)
@@ -165,7 +165,7 @@
 7. [ISER Pipelines](iser_pipelines.md) (1 hour) - Processing architecture
 
 **Advanced Architecture** (Additional 6-8 hours):
-8. [AutoAgency](autoagency(mustbeupdated).md) - Automation layer
+8. [AutoAgency](autoagency.md) - Automation layer
 9. [Emergence Systems](emergence_enabled_ee.md) - AI architecture
 10. [ReEngine Framework](ReEngine_Sec_01.md) - Advanced reasoning systems
 
@@ -183,7 +183,7 @@
 **Stakeholder Communication** (Additional 2-4 hours):
 7. [Clinician Quick Start](guides/clinician-quickstart.md) - User experience
 8. [MED Core](med_core.md) - Core functionality
-9. [AutoAgency](autoagency(mustbeupdated).md) - Future features
+9. [AutoAgency](autoagency.md) - Future features
 
 ## 🔍 Search & Discovery
 

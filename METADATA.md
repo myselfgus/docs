@@ -50,7 +50,7 @@ documentation_structure:
       audience: ["developers", "architects"]
       status: mixed
       documents:
-        - autoagency(mustbeupdated).md
+        - autoagency.md
         - apothecary_engine.md
         - voither_orchestrator_doc.md
         - voither_narrative_agent.md
@@ -139,7 +139,7 @@ implementation_status:
     - VOITHER_for_Narrative.md
     
   needs_update:
-    - autoagency(mustbeupdated).md
+    - autoagency.md
     
   newly_created:
     - guides/clinician-quickstart.md
@@ -216,7 +216,7 @@ tags:
     transcription: [voither_system_architecture.md, guides/developer-guide.md]
     dimensional_analysis: [med_core.md, voither_med_implementation.md]
     visualization: [voither_dimensional_holofractor.md]
-    automation: [autoagency(mustbeupdated).md, apothecary_engine.md]
+    automation: [autoagency.md, apothecary_engine.md]
     documentation: [voither_narrative_agent.md]
     
   domain:
@@ -256,7 +256,7 @@ dependencies:
       - VOITHER_files_pipeline.md
       - med_core.md
     
-  autoagency(mustbeupdated).md:
+  autoagency.md:
     dependencies:
       - med_core.md
       - voither_orchestrator_doc.md
@@ -279,7 +279,7 @@ search_terms:
   dimensions: [med_core.md, voither_med_implementation.md]
   architecture: [voither_system_architecture.md, VOITHER_files_pipeline.md]
   visualization: [voither_dimensional_holofractor.md]
-  automation: [autoagency(mustbeupdated).md, apothecary_engine.md]
+  automation: [autoagency.md, apothecary_engine.md]
   transcription: [voither_system_architecture.md, guides/developer-guide.md]
   azure: [voither_system_architecture.md, guides/developer-guide.md]
   fhir: [voither_system_architecture.md, voither_orchestrator_doc.md]
@@ -309,7 +309,7 @@ documentation_quality:
   maintenance:
     last_updated: "2024-01-15"
     outdated_documents: 1
-    maintenance_needed: ["autoagency(mustbeupdated).md"]
+    maintenance_needed: ["autoagency.md"]
     
   coverage:
     user_guides: 2

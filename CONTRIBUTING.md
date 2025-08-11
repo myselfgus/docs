@@ -236,7 +236,7 @@ key: value
 ```
 
 #### Links
-- **Internal links**: `[Text](./relative-path.md)`
+- **Internal links**: `[Text](#relative-path)`
 - **External links**: `[Text](https://example.com)`
 - **Section links**: `[Text](#section-header)`
 
@@ -283,7 +283,7 @@ graph TD
 - Include alt text
 
 ```markdown
-![VOITHER Dashboard showing patient analysis](./assets/images/dashboard-example.png)
+![VOITHER Dashboard showing patient analysis](#dashboard-example)
 *Figure 1: Main dashboard with dimensional analysis visualization*
 ```
 

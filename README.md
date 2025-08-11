@@ -57,7 +57,7 @@ VOITHER is a cutting-edge AI platform that transforms mental health practice thr
 |-----------|-------------|--------|
 | [MED Core](med_core.md) | Motor de Extração Dimensional (15 dimensions) | ✅ Implemented |
 | [Apothecary Engine](apothecary_engine.md) | Automated medication analysis | 🔄 Development |
-| [AutoAgency](autoagency(mustbeupdated).md) | Clinical automation system | 📋 Planned |
+| [AutoAgency](autoagency.md) | Clinical automation system | 📋 Planned |
 | [Holofractor](voither_dimensional_holofractor.md) | 3D mental space visualization | 🔄 Development |
 
 ### 🔧 **Technical Implementation**

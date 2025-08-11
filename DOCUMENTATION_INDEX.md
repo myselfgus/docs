@@ -23,7 +23,7 @@
 ### 🤖 **AI & Automation** (Advanced Features)
 | Priority | Document | Size | Status | Description |
 |----------|----------|------|--------|-------------|
-| 🟡 Medium | [AutoAgency](autoagency(mustbeupdated).md) | 1,656 lines | 📋 Planned | Clinical automation system |
+| 🟡 Medium | [AutoAgency](autoagency.md) | 1,656 lines | 📋 Planned | Clinical automation system |
 | 🟡 Medium | [Orchestrator](voither_orchestrator_doc.md) | 1,643 lines | 🔄 Development | System orchestration |
 | 🟠 Low | [Narrative Agent](voither_narrative_agent.md) | 370 lines | 🔄 Development | AI narrative generation |
 | 🟠 Low | [Navigation](voither_navigate.md) | 292 lines | 🔄 Development | System navigation |
@@ -102,7 +102,7 @@
 4. [Technical Pipeline](voither_technical_pipeline.md) - Implementation
 5. [Database Ideas](DB_ideas.md) - Storage design
 6. [Framework Integration](med_frameworks.md) - External systems
-7. [AutoAgency](autoagency(mustbeupdated).md) - Automation layer
+7. [AutoAgency](autoagency.md) - Automation layer
 
 ## 📊 **Document Statistics**
 
