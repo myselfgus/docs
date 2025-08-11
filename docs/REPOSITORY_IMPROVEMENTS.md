@@ -142,8 +142,8 @@ class DocumentationValidator:
 
 > **🔄 Prerequisites**
 > Before reading this section, review:
-> - [System Architecture Basics](link)
-> - [15-Dimensional Framework](link)
+> - [System Architecture Basics](../architecture/voither_system_architecture.md)
+> - [15-Dimensional Framework](../core-concepts/15-dimensions.md)
 ```
 
 #### 8. **Status Tracking Enhancement**
