@@ -134,7 +134,7 @@ VOITHER_DEPENDENCY_GRAPH := {
 
 ### APLICAÇÃO DE TRANSCRIÇÃO (TemplateVoither)
 - **Localização**: S:\templatevoither
-- **Tecnologia**: React TypeScript + Azure Speech Services
+- **Tecnologia**: React TypeScript + Azure Speech Services / Google Cloud Speech-to-Text
 - **Funcionalidades Avançadas**: 
   - Transcrição em tempo real com diarização
   - Identificação automática Médico/Paciente
@@ -142,7 +142,7 @@ VOITHER_DEPENDENCY_GRAPH := {
   - Geração de documentos SOAP/DAP/BIRT
   - Widget flutuante draggable
   - **NOVO**: Integração com análise dimensional em tempo real
-- **Serviços**: Azure Speech (principal), Google Gemini (fallback)
+- **Serviços**: Azure Speech / Google Cloud Speech-to-Text (principal), Google Gemini (fallback)
 - **Status**: Implementado e funcional com upgrade dimensional
 
 ## MAPEAMENTO DE RELAÇÕES CONCEITUAIS
@@ -168,7 +168,7 @@ VOITHER_DEPENDENCY_GRAPH := {
 
 #### **Pipeline de Processamento Real-Time**
 ```
-Áudio → [Azure Speech] → Transcrição → [MED] → Ψ(t) → [Holofractor] → Visualização 3D
+Áudio → [Azure Speech / Google Cloud Speech-to-Text] → Transcrição → [MED] → Ψ(t) → [Holofractor] → Visualização 3D
    ↓
    [Armazenamento] → [DSL .aje] → Eventos clínicos → [Análise longitudinal]
 ```
@@ -206,7 +206,7 @@ Narrativa DAP → FHIR DocumentReference(content: "narrative")
 
 #### **v1.0**: Transcrição Básica
 - Foco: Áudio → Texto
-- Tecnologia: Azure Speech + React
+- Tecnologia: Azure Speech / Google Cloud Speech-to-Text + React
 
 #### **v2.0**: Análise Dimensional  
 - Foco: Texto → 15 Dimensões → Visualização
@@ -222,7 +222,7 @@ Narrativa DAP → FHIR DocumentReference(content: "narrative")
 
 ### ARQUITETURA HÍBRIDA v2.0 - Sistema Completo de Emergenability
 - **MongoDB Atlas**: Dados dimensionais, transcrições, narrativas
-- **Azure PostgreSQL**: Recursos FHIR estruturados
+- **Azure PostgreSQL / Google Cloud SQL**: Recursos FHIR estruturados
 - **FHIR Service Layer**: Mapeamento e validação de recursos
 - **Interoperabilidade**: Total compatibilidade com EHRs
 
@@ -264,7 +264,7 @@ Narrativa DAP → FHIR DocumentReference(content: "narrative")
 
 ### **v1.0 - VOITHER MedicalScribe**
 - **Foco**: Plataforma clínica completa
-- **Arquitetura**: Azure Static Web App + Azure Functions + MongoDB Atlas
+- **Arquitetura**: Azure Static Web App / Google App Engine + Azure Functions / Google Cloud Functions + MongoDB Atlas
 - **Funcionalidades**:
   - Transcrição em tempo real
   - Análise dimensional automática
@@ -295,9 +295,9 @@ Narrativa DAP → FHIR DocumentReference(content: "narrative")
 
 ### STACK TECNOLÓGICO v1.0
 - **Frontend**: React/Next.js + Three.js para MentalRender
-- **Backend**: Node.js/Python com Azure Functions
-- **Real-Time**: Azure SignalR Service (WebSockets)
-- **IA**: Azure AI Studio + Azure OpenAI + Grok-3/Claude-4
+- **Backend**: Node.js/Python com Azure Functions / Google Cloud Functions
+- **Real-Time**: Azure SignalR Service / Google Cloud Pub/Sub (WebSockets)
+- **IA**: Azure AI Studio + Azure OpenAI / Google Cloud AI Platform + Vertex AI + Grok-3/Claude-4
 - **Banco Dados**: MongoDB Atlas (insight) + Azure PostgreSQL (FHIR)
 - **Armazenamento**: Azure Blob Storage (áudios)
 - **Hospedagem**: Azure App Service + Azure Functions

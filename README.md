@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VOITHER Logo](icon.png)
+![VOITHER Logo](assets/icon.png)
 
 **Geometry of Mental Spaces Through Dimensional AI Analysis**
 
@@ -40,44 +40,65 @@ VOITHER is a cutting-edge AI platform that transforms mental health practice thr
 
 ### For Researchers
 - **Research Background**: [Dimensional Psychology](research/geometria_afetos_cognicao.md)
-- **Knowledge Graph**: [Complete System Overview](VOITHER_Knowledge_Graph_Updated.md)
+- **Knowledge Graph**: [Complete System Overview](docs/VOITHER_Knowledge_Graph_Updated.md)
 - **Academic Papers**: [Publications](research/)
 
 ## 📚 Documentation Structure
 
+### 📁 **Repository Organization**
+```
+docs/
+├── 📁 architecture/         # System design & technical architecture
+├── 📁 assets/              # Media files, icons, videos
+├── 📁 core-concepts/       # Core AI concepts & frameworks
+├── 📁 database/            # Database design & ideas  
+├── 📁 docs/                # Main documentation files
+├── 📁 dsl/                 # Domain-specific language files
+├── 📁 guides/              # User guides & tutorials
+├── 📁 pipelines/           # Data processing pipelines
+├── 📁 raw/                 # Unprocessed backup archive
+├── 📁 reengine/            # ReEngine framework sections
+├── 📁 research/            # Academic papers & research
+├── 📁 scripts/             # Automation & utility scripts
+├── 📁 templates/           # Clinical templates & forms
+├── 📁 voither-system/      # VOITHER system components
+├── 📁 workflows/           # Automation workflow diagrams
+└── 📄 README.md            # Main documentation entry
+```
+
 ### 🏗️ **Architecture & System Design**
 | Document | Description | Audience |
 |----------|-------------|----------|
-| [System Architecture](voither_system_architecture.md) | Complete technical architecture overview | Developers, Architects |
-| [Implementation Plan](voither_implementation_plan.md) | Development roadmap and milestones | Project Managers, Developers |
-| [Technical Pipeline](voither_technical_pipeline.md) | Data flow and processing pipeline | Technical Teams |
+| [System Architecture](architecture/voither_system_architecture.md) | Complete technical architecture overview | Developers, Architects |
+| [Implementation Plan](voither-system/voither_implementation_plan.md) | Development roadmap and milestones | Project Managers, Developers |
+| [Technical Pipeline](architecture/voither_technical_pipeline.md) | Data flow and processing pipeline | Technical Teams |
 
 ### 🧩 **Core Components**
 | Component | Description | Status |
 |-----------|-------------|--------|
-| [MED Core](med_core.md) | Motor de Extração Dimensional (15 dimensions) | ✅ Implemented |
-| [Apothecary Engine](apothecary_engine.md) | Automated medication analysis | 🔄 Development |
-| [AutoAgency](autoagency.md) | Clinical automation system | 📋 Planned |
-| [Holofractor](voither_dimensional_holofractor.md) | 3D mental space visualization | 🔄 Development |
+| [MED Core](core-concepts/med_core.md) | Motor de Extração Dimensional (15 dimensions) | ✅ Implemented |
+| [Apothecary Engine](core-concepts/apothecary_engine.md) | Automated medication analysis | 🔄 Development |
+| [AutoAgency](core-concepts/autoagency.md) | Clinical automation system | 📋 Planned |
+| [Holofractor](voither-system/voither_dimensional_holofractor.md) | 3D mental space visualization | 🔄 Development |
 
 ### 🔧 **Technical Implementation**
 | Document | Focus Area | Complexity |
 |----------|------------|------------|
-| [MED Implementation](voither_med_implementation.md) | Dimensional extraction engine | Advanced |
-| [Framework Integration](med_frameworks.md) | RDoC, HiTOP, Big Five integration | Intermediate |
-| [FHIR Integration](voither_orchestrator_doc.md) | Healthcare interoperability | Advanced |
+| [MED Implementation](voither-system/voither_med_implementation.md) | Dimensional extraction engine | Advanced |
+| [Framework Integration](core-concepts/med_frameworks.md) | RDoC, HiTOP, Big Five integration | Intermediate |
+| [FHIR Integration](voither-system/voither_orchestrator_doc.md) | Healthcare interoperability | Advanced |
 
 ### 🔬 **Research & Theory**
 | Document | Topic | Type |
 |----------|--------|------|
-| [Mental Space Geometry](geometria_afetos_cognicao.md) | Theoretical foundation | Research Paper |
-| [Emergence Enabled Systems](emergence_enabled_ee.md) | AI-native architecture | Technical Spec |
-| [ReEngine Framework](ReEngine_Sec_01.md) | Bergsonian-Rhizomatic reasoning | Philosophical-Technical |
+| [Mental Space Geometry](research/geometria_afetos_cognicao.md) | Theoretical foundation | Research Paper |
+| [Emergence Enabled Systems](core-concepts/emergence_enabled_ee.md) | AI-native architecture | Technical Spec |
+| [ReEngine Framework](reengine/ReEngine_Sec_01.md) | Bergsonian-Rhizomatic reasoning | Philosophical-Technical |
 
 ## 🌟 Key Features
 
 ### 🎯 **Real-Time Analysis**
-- Live transcription with Azure Speech Services
+- Live transcription with Azure Speech Services / Google Cloud Speech-to-Text
 - Instant dimensional analysis during sessions
 - Real-time 3D visualization of mental states
 - WebSocket-based streaming architecture
@@ -111,27 +132,27 @@ VOITHER analyzes mental states across 15 validated dimensions:
 
 | Version | Focus | Status | Key Features |
 |---------|--------|---------|---------------|
-| **v0.1** | [Geometry Visualization](voither_implementation_plan.md#v01) | ✅ Complete | Three.js 3D rendering, simulated data |
-| **v1.0** | [Medical Scribe](voither_implementation_plan.md#v10) | 🔄 Development | Real-time transcription, dimensional analysis |
-| **v1.5** | [AutoAgency](voither_implementation_plan.md#v15) | 📋 Planned | Clinical automation, trigger detection |
-| **v2.0** | [AI-Clinic](voither_implementation_plan.md#v20) | 📋 Planned | Patient portal, continuous care |
-| **v3.0** | [Holofractor Premium](voither_implementation_plan.md#v30) | 🔮 Future | NVIDIA Omniverse integration |
+| **v0.1** | [Geometry Visualization](voither-system/voither_implementation_plan.md#v01) | ✅ Complete | Three.js 3D rendering, simulated data |
+| **v1.0** | [Medical Scribe](voither-system/voither_implementation_plan.md#v10) | 🔄 Development | Real-time transcription, dimensional analysis |
+| **v1.5** | [AutoAgency](voither-system/voither_implementation_plan.md#v15) | 📋 Planned | Clinical automation, trigger detection |
+| **v2.0** | [AI-Clinic](voither-system/voither_implementation_plan.md#v20) | 📋 Planned | Patient portal, continuous care |
+| **v3.0** | [Holofractor Premium](voither-system/voither_implementation_plan.md#v30) | 🔮 Future | NVIDIA Omniverse integration |
 
 ## 🛠️ **Technology Stack**
 
 ### **Frontend**
 - React/Next.js with TypeScript
 - Three.js for 3D visualization
-- Azure SignalR for real-time communication
+- Azure SignalR / Google Cloud Pub/Sub for real-time communication
 
 ### **Backend**
-- Node.js/Python with Azure Functions
+- Node.js/Python with Azure Functions / Google Cloud Functions
 - MongoDB Atlas (dimensional data)
-- Azure PostgreSQL (FHIR resources)
-- Azure Blob Storage (audio files)
+- Azure PostgreSQL / Google Cloud SQL (FHIR resources)
+- Azure Blob Storage / Google Cloud Storage (audio files)
 
 ### **AI & Analytics**
-- Azure AI Studio + Azure OpenAI
+- Azure AI Studio + Azure OpenAI / Google Cloud AI Platform + Vertex AI
 - Custom dimensional extraction models
 - Integration with Grok-3 and Claude-4
 
@@ -153,8 +174,8 @@ graph TD
     
     subgraph "Data Storage"
         H[MongoDB Atlas]
-        I[Azure PostgreSQL]
-        J[Azure Blob Storage]
+        I[Azure PostgreSQL / Google Cloud SQL]
+        J[Azure Blob Storage / Google Cloud Storage]
     end
     
     C --> H
@@ -164,7 +185,7 @@ graph TD
 
 ## 🤝 **Contributing**
 
-We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.md) for:
+We welcome contributions! Please see our [Contribution Guidelines](docs/CONTRIBUTING.md) for:
 - Code standards and practices
 - Documentation guidelines
 - Pull request procedures
@@ -206,9 +227,9 @@ make install-hooks
 ## 🆘 **Support & Resources**
 
 ### **Documentation Index**
-- 📖 [Complete Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md)
-- 🎯 [Implementation Templates](voither_primeira_consulta_template.py)
-- 🔗 [Pipeline Documentation](VOITHER_files_pipeline.md)
+- 📖 [Complete Knowledge Graph](docs/VOITHER_Knowledge_Graph_Updated.md)
+- 🎯 [Implementation Templates](templates/voither_primeira_consulta_template.py)
+- 🔗 [Pipeline Documentation](voither-system/VOITHER_files_pipeline.md)
 
 ### **Quick Links**
 - [System Requirements](guides/system-requirements.md)
