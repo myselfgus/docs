@@ -188,11 +188,25 @@ quality_gates:
 
 # Automation
 automation:
+  # Copilot Agent Integration
+  copilot_agent:
+    enabled: true
+    auto_trigger_on_upload: true
+    update_knowledge_graph: true
+    validate_on_commit: true
+    
+  # GitHub Workflows
+  workflows:
+    auto_documentation_update: true
+    copilot_agent_integration: true
+    quality_validation: true
+  
   # Scheduled tasks
   schedule:
     link_check: "daily"
     content_review: "weekly"
     full_rebuild: "weekly"
+    knowledge_graph_update: "on_change"
     
   # Git hooks
   git_hooks:
@@ -200,17 +214,33 @@ automation:
       - "spell_check"
       - "markdown_lint"
       - "link_check_internal"
+      - "frontmatter_validation"
     
     pre_push:
       - "full_validation"
       - "generate_index"
       - "update_metadata"
+      - "update_knowledge_graph"
   
   # Notifications
   notifications:
     email: "docs-team@voither.com"
     slack_webhook: null
     github_issues: true
+    copilot_agent_updates: true
+    
+  # Documentation Rules for Copilot Agent
+  copilot_rules:
+    - "Every .md file must have YAML frontmatter"
+    - "Long documents need Quick Navigation sections"
+    - "Use consistent tagging for discoverability"
+    - "Maintain cross-references between related documents"
+    - "Update last_updated dates when content changes"
+    - "Follow writing standards in CONTRIBUTING.md"
+    - "Validate all internal links"
+    - "Apply consistent formatting and hierarchy"
+    - "Update knowledge graph with new information"
+    - "Regenerate documentation statistics"
 
 # Tools configuration
 tools:

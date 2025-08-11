@@ -1,0 +1,173 @@
+name: 🤖 Copilot Documentation Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      instruction:
+        description: 'Instruction for Copilot Agent'
+        required: true
+        default: 'Update documentation following established standards'
+        type: string
+      target_files:
+        description: 'Specific files to focus on (optional)'
+        required: false
+        type: string
+      update_scope:
+        description: 'Scope of update'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+        - comprehensive
+        - knowledge_graph_only
+        - frontmatter_only
+        - structure_only
+        - validation_only
+
+jobs:
+  invoke-copilot-agent:
+    name: 🚀 Invoke Copilot Documentation Agent
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 📋 Prepare Copilot Instructions
+        run: |
+          echo "Preparing detailed instructions for Copilot Agent..."
+          
+          cat > copilot_instructions.md << 'EOF'
+          # Copilot Agent Documentation Update Instructions
+          
+          ## Repository Context
+          - **Repository**: ${{ github.repository }}
+          - **Branch**: ${{ github.ref_name }}
+          - **Triggered by**: ${{ github.actor }}
+          - **Timestamp**: $(date '+%Y-%m-%d %H:%M:%S UTC')
+          
+          ## User Instruction
+          ${{ inputs.instruction }}
+          
+          ## Update Scope
+          ${{ inputs.update_scope }}
+          
+          ## Target Files
+          ${{ inputs.target_files || 'All documentation files' }}
+          
+          ## Established Documentation Standards
+          
+          ### Required YAML Frontmatter Structure
+          ```yaml
+          ---
+          title: "Clear, Descriptive Title"
+          description: "One-sentence summary of content"
+          version: "X.Y"
+          last_updated: "YYYY-MM-DD"
+          audience: ["primary_audience", "secondary_audience"]
+          priority: "essential|important|advanced|specialized"
+          reading_time: "X minutes"
+          tags: ["tag1", "tag2", "tag3"]
+          ---
+          ```
+          
+          ### Documentation Quality Requirements
+          1. **Every .md file must have proper YAML frontmatter**
+          2. **Long documents need "Quick Navigation" sections**
+          3. **Use consistent tagging and categorization**
+          4. **Maintain cross-references between related documents**
+          5. **Update last_updated dates when content changes**
+          6. **Follow writing standards in CONTRIBUTING.md**
+          7. **Validate all internal links**
+          8. **Apply consistent formatting and hierarchy**
+          
+          ### Key Files to Maintain
+          - `VOITHER_Knowledge_Graph_Updated.md` - Central knowledge repository
+          - `DOCUMENTATION_INDEX.md` - Complete file catalog with statistics
+          - `TABLE_OF_CONTENTS.md` - Navigation guide
+          - `README.md` - Project overview and entry point
+          - `GETTING_STARTED.md` - Role-based orientation
+          
+          ### Automation Integration Points
+          - Update knowledge graph with new information
+          - Regenerate documentation statistics
+          - Validate and fix broken links
+          - Ensure frontmatter compliance
+          - Maintain navigation consistency
+          
+          ## Success Criteria
+          After completion, the documentation should:
+          - ✅ Have consistent metadata across all files
+          - ✅ Include updated knowledge graph entries
+          - ✅ Pass all link validation checks
+          - ✅ Maintain clear navigation paths
+          - ✅ Follow established writing standards
+          - ✅ Be machine-readable and automation-friendly
+          
+          ## Please proceed with the documentation updates following these guidelines.
+          EOF
+          
+          echo "Instructions prepared for Copilot Agent"
+          cat copilot_instructions.md
+
+      - name: 🏷️ Create Issue for Copilot Agent
+        uses: actions/github-script@v7
+        id: create_issue
+        with:
+          script: |
+            const fs = require('fs');
+            
+            // Read the prepared instructions
+            const instructions = fs.readFileSync('copilot_instructions.md', 'utf8');
+            
+            // Create issue for Copilot Agent
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🤖 Documentation Update Request - ${new Date().toISOString().split('T')[0]}`,
+              body: instructions,
+              labels: ['documentation', 'copilot-agent', 'automation']
+            });
+            
+            // Tag Copilot in a comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.data.number,
+              body: `@copilot ${context.payload.inputs.instruction}\n\nScope: ${context.payload.inputs.update_scope}${context.payload.inputs.target_files ? `\nTarget files: ${context.payload.inputs.target_files}` : ''}`
+            });
+            
+            console.log(`Created issue #${issue.data.number} for Copilot Agent`);
+            return issue.data.number;
+
+      - name: 📊 Generate Current Documentation State
+        run: |
+          echo "Generating current documentation state for Copilot reference..."
+          
+          echo "## Current Documentation Statistics" > current_state.md
+          echo "- **Total .md files**: $(find . -name "*.md" | wc -l)" >> current_state.md
+          echo "- **Total lines**: $(cat *.md **/*.md 2>/dev/null | wc -l)" >> current_state.md
+          echo "- **Files with frontmatter**: $(grep -l "^---$" *.md **/*.md 2>/dev/null | wc -l)" >> current_state.md
+          echo "- **Last update**: $(date '+%Y-%m-%d %H:%M:%S UTC')" >> current_state.md
+          echo "" >> current_state.md
+          
+          echo "## Files Structure" >> current_state.md
+          find . -name "*.md" -type f | sort >> current_state.md
+          
+          cat current_state.md
+
+      - name: 🔔 Workflow Summary
+        run: |
+          echo "📚 Copilot Documentation Agent workflow completed"
+          echo "🎯 Issue created for Copilot Agent: #${{ steps.create_issue.outputs.result }}"
+          echo "📋 Instructions: ${{ inputs.instruction }}"
+          echo "🔧 Scope: ${{ inputs.update_scope }}"
+          echo "📁 Target files: ${{ inputs.target_files || 'All documentation files' }}"
+          echo "⏰ Timestamp: $(date '+%Y-%m-%d %H:%M:%S UTC')"
