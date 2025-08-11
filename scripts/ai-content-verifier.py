@@ -417,12 +417,21 @@ class AIContentVerifier:
                 "needs_improvement": 0   # <70
             },
             "common_issues": {},
-            "recommendations": []
+            "recommendations": [],
+            "excluded_folders": ["raw"]
         }
         
-        # Find all markdown files
-        md_files = list(self.docs_directory.rglob("*.md"))
+        # Find all markdown files, excluding raw folder
+        md_files = []
+        for md_file in self.docs_directory.rglob("*.md"):
+            # Skip files in the raw folder as they are unprocessed backups
+            if "raw" in md_file.parts:
+                logger.info(f"Skipping raw backup file: {md_file}")
+                continue
+            md_files.append(md_file)
+        
         results["total_documents"] = len(md_files)
+        logger.info(f"Found {len(md_files)} markdown files for verification (excluding raw folder)")
         
         total_quality = 0
         issue_counts = {}

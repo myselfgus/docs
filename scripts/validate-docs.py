@@ -15,8 +15,8 @@ def find_markdown_files(directory):
     """Find all markdown files in directory"""
     md_files = []
     for root, dirs, files in os.walk(directory):
-        # Skip hidden directories and build directories
-        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['build', 'dist', 'node_modules']]
+        # Skip hidden directories, build directories, and raw folder (unprocessed backups)
+        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['build', 'dist', 'node_modules', 'raw']]
         
         for file in files:
             if file.endswith('.md'):
