@@ -170,6 +170,32 @@ We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.
 - Pull request procedures
 - Issue reporting
 
+### **Documentation Maintenance**
+Use our built-in tools for maintaining documentation quality:
+
+```bash
+# Quick validation
+make validate-quick
+
+# Full link checking
+make validate
+
+# Statistics
+make stats
+
+# Spell checking (if tools installed)
+make spell-check
+```
+
+### **Development Setup**
+```bash
+# Install documentation tools
+make dev-setup
+
+# Install Git hooks for automatic validation
+make install-hooks
+```
+
 ## 📄 **License & Compliance**
 
 - **Healthcare Compliance**: HIPAA, GDPR, LGPD compliant
@@ -193,6 +219,12 @@ We welcome contributions! Please see our [Contribution Guidelines](CONTRIBUTING.
 ### **Community**
 - Issues: [GitHub Issues](https://github.com/myselfgus/docs/issues)
 - Discussions: [GitHub Discussions](https://github.com/myselfgus/docs/discussions)
+
+### **Documentation Tools**
+- **Validation**: `make validate` - Check links and structure
+- **Statistics**: `make stats` - Documentation metrics
+- **Local Server**: `make serve` - Preview documentation locally
+- **Help**: `make help` - See all available commands
 
 ---
 
