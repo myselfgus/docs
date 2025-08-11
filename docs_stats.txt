@@ -1,0 +1,14 @@
+📊 VOITHER Documentation Statistics
+==================================
+Markdown files: 127
+Total lines: 85689
+Python files: 8
+Image files: 6
+Video files: 4
+
+Largest files:
+3251 ./reengine/ReEngine_Sec_04.md
+3251 ./raw/reengine/ReEngine_Sec_04.md
+2856 ./raw/brre_healthcare_spec.md
+2856 ./brre_healthcare_spec.md
+2555 ./reengine/ReEngine_Sec_03.md
