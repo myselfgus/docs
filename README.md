@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![VOITHER Logo](assets/icon.png)
+<img src="assets/icon.png" alt="VOITHER Logo" width="200"/>
 
 **Geometry of Mental Spaces Through Dimensional AI Analysis**
 
