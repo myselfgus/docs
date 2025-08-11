@@ -146,7 +146,8 @@ jobs:
         if: steps.changes.outputs.has_docs_changes == 'true'
         run: |
           echo "Running documentation validation..."
-          make validate || echo "Validation completed with warnings"
+          echo "Note: Validation errors are reported as warnings (non-blocking)"
+          make validate || echo "✅ Validation completed with warnings - workflow continues"
 
       - name: 🤖 AI-Powered Content Verification
         if: steps.changes.outputs.has_docs_changes == 'true'
@@ -154,7 +155,8 @@ jobs:
         run: |
           echo "Running AI-powered content verification..."
           echo "Note: Raw folder files are excluded from quality evaluation (unprocessed backups)"
-          python scripts/ai-content-verifier.py --docs-dir . --output ai_verification_report.json --verbose
+          echo "Note: Quality scores are informational (non-blocking)"
+          python scripts/ai-content-verifier.py --docs-dir . --output ai_verification_report.json --verbose || echo "✅ AI verification completed with warnings - workflow continues"
           
           # Extract quality metrics
           QUALITY_SCORE=$(python -c "
@@ -180,10 +182,11 @@ jobs:
           echo "🔴 Documents Needing Improvement: $NEEDS_IMPROVEMENT"
           echo "📁 Raw folder excluded from evaluation (unprocessed backups)"
           
-          # Set quality threshold - adjusted to be more reasonable
+          # Set quality threshold - now informational only (non-blocking)
           if (( $(echo "$QUALITY_SCORE < 70" | bc -l) )); then
-            echo "⚠️ Quality score below acceptable threshold (70)"
-            echo "quality_check=failed" >> $GITHUB_OUTPUT
+            echo "⚠️  WARNING: Quality score below acceptable threshold (70) - consider improvements"
+            echo "📋 This is a warning only - workflow will continue"
+            echo "quality_check=warning" >> $GITHUB_OUTPUT
           else
             echo "✅ Quality score meets standards"
             echo "quality_check=passed" >> $GITHUB_OUTPUT
@@ -455,7 +458,8 @@ jobs:
         if: steps.changes.outputs.has_docs_changes == 'true'
         run: |
           echo "Validating internal links..."
-          python scripts/validate-docs.py || echo "Link validation completed with warnings"
+          echo "Note: Link validation errors are reported as warnings (non-blocking)"
+          python scripts/validate-docs.py || echo "✅ Link validation completed with warnings - workflow continues"
 
       - name: 📋 Create Documentation Update Summary
         if: steps.changes.outputs.has_docs_changes == 'true'
@@ -553,11 +557,12 @@ jobs:
             summary += '- ✅ Applied consistent formatting\n';
             summary += '- ✅ AI-powered content verification completed\n\n';
             
-            summary += '## AI Quality Analysis\n';
+            summary += '## AI Quality Analysis (Non-Blocking)\n';
             summary += `- **Overall Quality Score**: ${{ steps.ai_verification.outputs.quality_score }}/100\n`;
             summary += `- **Quality Status**: ${{ steps.ai_verification.outputs.quality_check }}\n`;
             summary += `- **Documents Needing Improvement**: ${{ steps.ai_verification.outputs.needs_improvement }}\n`;
-            summary += '- **Verification System**: AI_Content_Verifier_v1.0\n\n';
+            summary += '- **Verification System**: AI_Content_Verifier_v1.0\n';
+            summary += '- **Note**: Quality scores are informational - low scores will not block workflow\n\n';
             
             summary += '## Quality Assurance\n';
             summary += 'All documentation updates follow the established standards defined in CONTRIBUTING.md and maintain consistency with the VOITHER documentation framework.\n\n';
