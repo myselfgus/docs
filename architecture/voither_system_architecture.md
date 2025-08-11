@@ -1,6 +1,25 @@
+---
+title: "VOITHER v1.0 - Complete System Architecture"
+description: "Comprehensive technical architecture for AI-powered mental health analysis platform"
+version: "1.1"
+last_updated: "2024-01-15"
+audience: ["developers", "architects", "technical_teams"]
+priority: "essential"
+reading_time: "30 minutes"
+tags: ["architecture", "azure", "google-cloud", "ai", "healthcare", "real-time"]
+---
+
 # Sistema VOITHER v1.0: Arquitetura Completa
 
 ## Pipeline de Produção Holístico para Psiquiatria Inteligente
+
+**📋 Quick Navigation:**
+- [Architectural Principles](#1-princípios-fundamentais-da-arquitetura-voither)
+- [Technology Stack](#2-o-stack-tecnológico-voither-v10)
+- [Complete Architecture](#3-arquitetura-completa-do-sistema-voither)
+- [Data Pipeline](#4-o-pipeline-de-dados-e-ia-em-detalhes-o-coração-do-sistema)
+- [Database Design](#5-arquitetura-do-banco-de-dados-mongodb-atlas)
+- [Hybrid Architecture](#sistema-de-insight--sistema-de-registro-para-interoperabilidade-total)
 
 ---
 
@@ -22,7 +41,7 @@ Lidamos com dados de saúde extremamente sensíveis (PHI). A arquitetura deve se
 
 ### 1.4 Escalabilidade Híbrida
 
-O sistema deve suportar tanto uma única consulta de 90 minutos quanto milhares de consultas simultâneas, combinando a flexibilidade da nuvem (Azure) com a performance de bancos de dados especializados (MongoDB).
+O sistema deve suportar tanto uma única consulta de 90 minutos quanto milhares de consultas simultâneas, combinando a flexibilidade da nuvem (Azure / Google Cloud) com a performance de bancos de dados especializados (MongoDB).
 
 ### 1.5 Inteligência Aumentada, não Substitutiva
 
@@ -44,11 +63,11 @@ Com base em seus requisitos e preferências, este é o stack tecnológico recome
 
 ### Comunicação Real-Time
 
-**Azure SignalR Service** - É a escolha perfeita para gerenciar as conexões WebSocket de forma escalável, garantindo a comunicação em tempo real entre o frontend e o backend durante a transcrição.
+**Azure SignalR Service / Google Cloud Pub/Sub** - É a escolha perfeita para gerenciar as conexões WebSocket de forma escalável, garantindo a comunicação em tempo real entre o frontend e o backend durante a transcrição.
 
 ### Processamento de IA
 
-**Azure AI Studio / Azure Machine Learning** - Orquestra os modelos. Para os LLMs, você pode usar o **Azure OpenAI Service** (para modelos GPT) ou conectar-se a endpoints de modelos como **Grok-3 e Claude-4** via **Azure AI Foundry**.
+**Azure AI Studio / Azure Machine Learning / Google Cloud AI Platform** - Orquestra os modelos. Para os LLMs, você pode usar o **Azure OpenAI Service / Google Vertex AI** (para modelos GPT) ou conectar-se a endpoints de modelos como **Grok-3 e Claude-4** via **Azure AI Foundry / Google Cloud AI Platform**.
 
 ### Banco de Dados Primário
 
@@ -56,7 +75,7 @@ Com base em seus requisitos e preferências, este é o stack tecnológico recome
 
 ### Armazenamento de Arquivos Brutos
 
-**Azure Blob Storage** - O local ideal e de baixo custo para armazenar os arquivos de áudio completos de cada consulta para fins de auditoria, reanálise ou treinamento futuro de modelos.
+**Azure Blob Storage / Google Cloud Storage** - O local ideal e de baixo custo para armazenar os arquivos de áudio completos de cada consulta para fins de auditoria, reanálise ou treinamento futuro de modelos.
 
 ### Hospedagem
 

@@ -284,7 +284,7 @@ redis.zadd("coherence_improvements_weekly", {
 patient_id: improvement_score
 })
 ```
-## 5️⃣ DATA LAKE (S3/AZURE BLOB)
+## 5️⃣ DATA LAKE (S3/AZURE BLOB/GOOGLE CLOUD STORAGE)
 ### **Estrutura de Pastas**
 ```
 /voither-data-lake/

@@ -22,7 +22,7 @@ The .ee DSL addresses the critical need for a unified language capable of expres
 
 - **Regulatory Compliance**: Full adherence to IEC 62304, ISO 13485, HIPAA, and FHIR standards
 - **Clinical Safety**: Built-in safeguards for patient data protection and system reliability
-- **Emergenability Support**: Native constructs for detecting and facilitating potential actualization
+- **Emergenability Support**: Native constructs for detecting and facilitating #potential-placeholder actualization
 - **Interoperability**: FHIR R4 compatible data exchange and HL7 integration
 
 ### 1.2 Target Applications
@@ -88,7 +88,7 @@ ontology TherapeuticIntelligence {
         },
         
         EmergenabilityPotential: {
-            properties: [potential_id, domain, readiness_score, conditions],
+            properties: [#potential-placeholder_id, domain, readiness_score, conditions],
             relations: [manifestsIn, requiresConditions, actualizesThrough],
             temporal_sensitivity: high,
             detection_threshold: 0.75
@@ -102,7 +102,7 @@ ontology TherapeuticIntelligence {
 ```ee
 relationships {
     therapeutic: {
-        FACILITATES: "Enables potential actualization",
+        FACILITATES: "Enables #potential-placeholder actualization",
         CO_CREATES: "Mutual intelligence generation", 
         EMERGES_FROM: "Arises naturally from conditions",
         ACTUALIZES_THROUGH: "Manifests via specific pathways"
@@ -313,7 +313,7 @@ emergenabilityProperty
     ;
 
 facilitationProperty
-    : 'therapeutic_potentials' ':' '[' IDENTIFIER (',' IDENTIFIER)* ']' ';'
+    : 'therapeutic_#potential-placeholders' ':' '[' IDENTIFIER (',' IDENTIFIER)* ']' ';'
     | 'clinical_readiness' ':' readinessAssessment ';'
     | 'safety_monitoring' ':' monitoringLevel ';'
     ;
@@ -466,7 +466,7 @@ class ClinicalEmbeddingArchitecture:
         # Multi-modal encoding
         text_embedding = self._encode_clinical_text(session_data['clinical_notes'])
         concept_embedding = self._encode_medical_concepts(session_data['diagnoses'])
-        emergenability_embedding = self._encode_emergenability(session_data['potentials'])
+        emergenability_embedding = self._encode_emergenability(session_data['#potential-placeholders'])
         temporal_embedding = self._encode_temporal_patterns(session_data['timeline'])
         
         # Fusion with attention mechanism
@@ -486,23 +486,23 @@ class ClinicalEmbeddingArchitecture:
         required_fields = ['patient_consent', 'access_authorization', 'audit_trail']
         return all(field in data for field in required_fields)
     
-    def _encode_emergenability(self, potentials: List[Dict]) -> torch.Tensor:
-        """Encode emergenability potentials with safety constraints"""
+    def _encode_emergenability(self, #potential-placeholders: List[Dict]) -> torch.Tensor:
+        """Encode emergenability #potential-placeholders with safety constraints"""
         embeddings = []
-        for potential in potentials:
+        for #potential-placeholder in #potential-placeholders:
             # Safety check
-            if potential.get('safety_validated', False):
-                emb = self.models['emergenability'](potential)
+            if #potential-placeholder.get('safety_validated', False):
+                emb = self.models['emergenability'](#potential-placeholder)
                 embeddings.append(emb)
         return torch.stack(embeddings).mean(dim=0) if embeddings else torch.zeros(self.embedding_dim)
 
 class EmergenabilityEncoder(nn.Module):
-    """Specialized encoder for emergenability potentials"""
+    """Specialized encoder for emergenability #potential-placeholders"""
     
     def __init__(self, output_dim=768):
         super().__init__()
-        self.potential_encoder = nn.Sequential(
-            nn.Linear(128, 256),  # Clinical potential features
+        self.#potential-placeholder_encoder = nn.Sequential(
+            nn.Linear(128, 256),  # Clinical #potential-placeholder features
             nn.ReLU(),
             nn.Dropout(0.1),
             nn.Linear(256, 256)
@@ -527,12 +527,12 @@ class EmergenabilityEncoder(nn.Module):
             nn.Tanh()
         )
     
-    def forward(self, potential_data: Dict) -> torch.Tensor:
-        potential_features = self.potential_encoder(potential_data['potential_vector'])
-        condition_features = self.condition_encoder(potential_data['condition_vector'])
-        safety_features = self.safety_encoder(potential_data['safety_vector'])
+    def forward(self, #potential-placeholder_data: Dict) -> torch.Tensor:
+        #potential-placeholder_features = self.#potential-placeholder_encoder(#potential-placeholder_data['#potential-placeholder_vector'])
+        condition_features = self.condition_encoder(#potential-placeholder_data['condition_vector'])
+        safety_features = self.safety_encoder(#potential-placeholder_data['safety_vector'])
         
-        combined = torch.cat([potential_features, condition_features, safety_features], dim=-1)
+        combined = torch.cat([#potential-placeholder_features, condition_features, safety_features], dim=-1)
         return self.fusion(combined)
 
 # Vector space operations for clinical intelligence
@@ -554,7 +554,7 @@ class ClinicalVectorSpace:
         return self._interpret_clinical_similarity(distances, indices)
     
     def emergenability_clustering(self, session_vectors: torch.Tensor) -> Dict:
-        """Cluster sessions by emergenability potential"""
+        """Cluster sessions by emergenability #potential-placeholder"""
         from sklearn.cluster import DBSCAN
         
         # Focus on emergenability dimensions (512:640)
@@ -612,8 +612,8 @@ FOR (p:Patient) REQUIRE p.patient_id IS UNIQUE;
 CREATE CONSTRAINT clinical_session_id IF NOT EXISTS 
 FOR (s:ClinicalSession) REQUIRE s.session_id IS UNIQUE;
 
-CREATE CONSTRAINT emergenability_potential_id IF NOT EXISTS 
-FOR (e:EmergenabilityPotential) REQUIRE e.potential_id IS UNIQUE;
+CREATE CONSTRAINT emergenability_#potential-placeholder_id IF NOT EXISTS 
+FOR (e:EmergenabilityPotential) REQUIRE e.#potential-placeholder_id IS UNIQUE;
 
 CREATE CONSTRAINT fhir_resource_id IF NOT EXISTS 
 FOR (f:FHIRResource) REQUIRE f.resource_id IS UNIQUE;
@@ -637,7 +637,7 @@ CREATE (:RelationshipType {
 
 CREATE (:RelationshipType {
     name: "EMERGENABILITY_BRIDGE", 
-    description: "Connection facilitating potential actualization",
+    description: "Connection facilitating #potential-placeholder actualization",
     safety_monitoring: true
 });
 
@@ -689,15 +689,15 @@ class ClinicalRhizomaticMemory:
             fhir_compliant: true
         })
         
-        // Create emergenability potentials
+        // Create emergenability #potential-placeholders
         WITH session
-        UNWIND $potentials as potential
+        UNWIND $#potential-placeholders as #potential-placeholder
         CREATE (p:EmergenabilityPotential {
-            potential_id: potential.id,
-            clinical_domain: potential.domain,
-            readiness_score: potential.readiness,
-            safety_constraints: potential.safety_constraints,
-            clinical_evidence: potential.evidence
+            #potential-placeholder_id: #potential-placeholder.id,
+            clinical_domain: #potential-placeholder.domain,
+            readiness_score: #potential-placeholder.readiness,
+            safety_constraints: #potential-placeholder.safety_constraints,
+            clinical_evidence: #potential-placeholder.evidence
         })
         
         // Create HIPAA-compliant relationship
@@ -764,7 +764,7 @@ class ClinicalRhizomaticMemory:
              reduce(relevance = 0.0, rel in relationships(path) | 
                    relevance + rel.correlation_strength) / length(path) as avg_relevance
         
-        // Include emergenability potentials
+        // Include emergenability #potential-placeholders
         OPTIONAL MATCH (connected)-[:CONTAINS_POTENTIAL]->(pot:EmergenabilityPotential)
         WHERE pot.safety_constraints IS NOT NULL
         
@@ -772,7 +772,7 @@ class ClinicalRhizomaticMemory:
                connected.session_id as session_id,
                connected.emergenability_score as emergenability,
                avg_relevance as clinical_relevance,
-               collect(pot.clinical_domain) as potential_domains,
+               collect(pot.clinical_domain) as #potential-placeholder_domains,
                length(path) as pathway_distance
         
         ORDER BY avg_relevance DESC, emergenability DESC
@@ -972,7 +972,7 @@ detect_emergenability {
 
 // Facilitate therapeutic emergence with safety monitoring
 facilitate_emergence {
-    therapeutic_potentials: [pain_management_optimization, medication_adjustment],
+    therapeutic_#potential-placeholders: [pain_management_optimization, medication_adjustment],
     clinical_readiness: evidence_based_assessment,
     safety_monitoring: intensive,
     
@@ -1067,7 +1067,7 @@ safety_classification {
     software_class: "Class B", // Non-life-threatening injury possible
     
     hazard_analysis: {
-        potential_hazards: [
+        #potential-placeholder_hazards: [
             "incorrect_diagnosis_assistance",
             "delayed_treatment_recommendation", 
             "privacy_breach"
