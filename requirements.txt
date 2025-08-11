@@ -1,0 +1,16 @@
+# VOITHER Documentation Pipeline Dependencies
+# Required for automated documentation processing and validation
+
+# Core Python dependencies for documentation automation
+requests>=2.31.0
+pyyaml>=6.0
+python-frontmatter>=1.0.0
+markdownify>=0.11.6
+beautifulsoup4>=4.12.0
+
+# Optional but recommended for enhanced processing
+markdown>=3.4.0
+jinja2>=3.1.0
+
+# Development and validation tools
+pathlib2>=2.3.7; python_version < "3.4"
