@@ -1,6 +1,25 @@
+---
+title: "VOITHER v1.0 - Complete System Architecture"
+description: "Comprehensive technical architecture for AI-powered mental health analysis platform"
+version: "1.1"
+last_updated: "2024-01-15"
+audience: ["developers", "architects", "technical_teams"]
+priority: "essential"
+reading_time: "30 minutes"
+tags: ["architecture", "azure", "ai", "healthcare", "real-time"]
+---
+
 # Sistema VOITHER v1.0: Arquitetura Completa
 
 ## Pipeline de Produção Holístico para Psiquiatria Inteligente
+
+**📋 Quick Navigation:**
+- [Architectural Principles](#1-princípios-fundamentais-da-arquitetura-voither)
+- [Technology Stack](#2-o-stack-tecnológico-voither-v10)
+- [Complete Architecture](#3-arquitetura-completa-do-sistema-voither)
+- [Data Pipeline](#4-o-pipeline-de-dados-e-ia-em-detalhes-o-coração-do-sistema)
+- [Database Design](#5-arquitetura-do-banco-de-dados-mongodb-atlas)
+- [Hybrid Architecture](#sistema-de-insight--sistema-de-registro-para-interoperabilidade-total)
 
 ---
 

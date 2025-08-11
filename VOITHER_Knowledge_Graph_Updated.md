@@ -1,6 +1,26 @@
+---
+title: "VOITHER Knowledge Graph - Complete System Overview"
+description: "Comprehensive knowledge graph covering all VOITHER components, relationships, and capabilities"
+version: "2.0"
+last_updated: "2025-01-19"
+audience: ["all", "researchers", "developers", "clinicians"]
+priority: "essential"
+reading_time: "15 minutes"
+tags: ["overview", "knowledge_graph", "system_map", "comprehensive"]
+---
+
 # VOITHER - KNOWLEDGE GRAPH ATUALIZADO
-# Baseado na análise completa dos arquivos e criação dos templates
-# Data: 2025-01-19 - Análise Claude Sonnet 4 - ATUALIZAÇÃO COMPLETA
+
+*Complete analysis and component mapping - Updated comprehensive overview*
+
+**📋 Quick Navigation:**
+- [Main Entities](#entidades-principais)
+- [System Architecture](#arquitetura-técnica-detalhada)
+- [15 Dimensions](#15-dimensões-fundamentais)
+- [Roadmap](#roadmap-de-versões)
+- [Implementation Status](#status-atual-e-próximos-passos)
+
+---
 
 ## ENTIDADES PRINCIPAIS
 

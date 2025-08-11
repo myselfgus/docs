@@ -1,0 +1,254 @@
+# Documentation Configuration
+# Configuration file for VOITHER documentation automation and tooling
+
+project:
+  name: "VOITHER"
+  description: "AI-Powered Mental Health Analysis Platform"
+  version: "1.0"
+  repository: "https://github.com/myselfgus/docs"
+  documentation_url: "https://github.com/myselfgus/docs"
+  
+documentation:
+  # Source directory containing markdown files
+  source_dir: "."
+  
+  # Output directory for generated content
+  output_dir: "./build"
+  
+  # Main navigation file
+  nav_file: "TABLE_OF_CONTENTS.md"
+  
+  # Document index file
+  index_file: "DOCUMENTATION_INDEX.md"
+  
+  # Metadata file
+  metadata_file: "METADATA.md"
+  
+  # Auto-generated files (excluded from manual editing)
+  auto_generated:
+    - "DOCUMENTATION_INDEX.md"
+    - "METADATA.md"
+    - "build/"
+  
+  # File patterns to include in documentation
+  include_patterns:
+    - "*.md"
+    - "*.py"  # Template files
+    - "*.ini" # Configuration files
+  
+  # File patterns to exclude
+  exclude_patterns:
+    - ".git/"
+    - "node_modules/"
+    - "*.tmp"
+    - ".*"
+    - "*.log"
+
+# Validation rules
+validation:
+  # Check for broken internal links
+  check_internal_links: true
+  
+  # Check for broken external links
+  check_external_links: true
+  
+  # Validate markdown syntax
+  markdown_lint: true
+  
+  # Spell checking
+  spell_check:
+    enabled: true
+    language: "en_US"
+    custom_dictionary: "docs_dictionary.txt"
+    
+  # Check for required frontmatter
+  required_frontmatter:
+    - "title"
+    - "description"
+    - "last_updated"
+    - "audience"
+  
+  # Word count limits
+  word_limits:
+    max_words_per_document: 10000
+    warn_words_per_document: 5000
+
+# Content organization
+content:
+  # Document categories and their priorities
+  categories:
+    getting_started:
+      priority: 1
+      required: true
+      max_docs: 5
+      
+    user_guides:
+      priority: 2
+      required: true
+      max_docs: 10
+      
+    technical_docs:
+      priority: 3
+      required: true
+      max_docs: 20
+      
+    research:
+      priority: 4
+      required: false
+      max_docs: 15
+      
+    reference:
+      priority: 5
+      required: false
+      max_docs: 30
+  
+  # Audience definitions
+  audiences:
+    - "clinicians"
+    - "developers" 
+    - "researchers"
+    - "architects"
+    - "project_managers"
+    - "administrators"
+    - "students"
+    - "all"
+  
+  # Priority levels
+  priorities:
+    - "essential"    # Must read for primary audience
+    - "important"    # Should read for full understanding
+    - "advanced"     # Advanced users and specialists
+    - "specialized"  # Specific use cases
+    - "reference"    # Lookup and reference material
+
+# Generation settings
+generation:
+  # Table of contents generation
+  toc:
+    enabled: true
+    max_depth: 3
+    include_reading_time: true
+    group_by_category: true
+    
+  # Index generation
+  index:
+    enabled: true
+    include_word_count: true
+    include_status: true
+    sort_by: "category"
+    
+  # Metadata extraction
+  metadata:
+    enabled: true
+    extract_tags: true
+    extract_relationships: true
+    generate_search_index: true
+
+# Build and deployment
+build:
+  # Static site generation (if enabled)
+  static_site:
+    enabled: false
+    generator: "mkdocs"
+    theme: "material"
+    
+  # PDF generation
+  pdf:
+    enabled: false
+    combine_all: false
+    per_category: true
+    
+  # Search index
+  search:
+    enabled: true
+    engine: "lunr"
+    index_content: true
+    index_titles: true
+    index_tags: true
+
+# Quality gates
+quality_gates:
+  # Minimum requirements for publishing
+  minimum_requirements:
+    spell_check_pass: true
+    no_broken_links: true
+    required_frontmatter: true
+    
+  # Warning thresholds
+  warnings:
+    document_too_long: 8000  # words
+    outdated_content: 90     # days
+    missing_examples: true
+    
+  # Blocking errors
+  errors:
+    broken_internal_links: true
+    missing_frontmatter: true
+    markdown_syntax_errors: true
+
+# Automation
+automation:
+  # Scheduled tasks
+  schedule:
+    link_check: "daily"
+    content_review: "weekly"
+    full_rebuild: "weekly"
+    
+  # Git hooks
+  git_hooks:
+    pre_commit:
+      - "spell_check"
+      - "markdown_lint"
+      - "link_check_internal"
+    
+    pre_push:
+      - "full_validation"
+      - "generate_index"
+      - "update_metadata"
+  
+  # Notifications
+  notifications:
+    email: "docs-team@voither.com"
+    slack_webhook: null
+    github_issues: true
+
+# Tools configuration
+tools:
+  # Markdown linting
+  markdownlint:
+    config_file: ".markdownlint.yml"
+    ignore_files: 
+      - "CHANGELOG.md"
+      - "auto-generated files"
+  
+  # Spell checking
+  cspell:
+    config_file: ".cspell.json"
+    custom_dictionaries:
+      - "medical_terms.txt"
+      - "technical_terms.txt"
+      - "voither_terms.txt"
+  
+  # Link checking
+  markdown_link_check:
+    timeout: 5000
+    retry_count: 3
+    
+# Performance monitoring
+monitoring:
+  # Analytics (if applicable)
+  analytics:
+    google_analytics: null
+    matomo: null
+    
+  # User feedback
+  feedback:
+    enabled: true
+    feedback_form_url: null
+    github_issues: true
+    
+  # Search analytics
+  search_analytics:
+    track_queries: true
+    track_results: true
+    track_clicks: true
