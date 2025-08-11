@@ -28,6 +28,10 @@ VOITHER is a cutting-edge AI platform that transforms mental health practice thr
 
 ## 🚀 Quick Start
 
+### 📖 **Start Here - Unified Manual**
+- **🎯 Technical Compendium**: [Complete System Manual](docs/VOITHER_TECHNICAL_COMPENDIUM.md) - **NEW: Unified integration of all content**
+- **📋 How Automations Work**: [Automation Status & Monitoring](docs/AUTOMATION_STATUS.md) - **NEW: Complete automation overview**
+
 ### For Clinicians
 - **Getting Started**: [Clinical Quick Start Guide](guides/clinician-quickstart.md)
 - **Core Concepts**: [Understanding the 15 Dimensions](core-concepts/15-dimensions.md)

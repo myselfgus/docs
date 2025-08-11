@@ -7,10 +7,12 @@
 ### 🏛️ **Core Architecture** (Essential Reading)
 | Priority | Document | Size | Description | Audience |
 |----------|----------|------|-------------|----------|
+| 🔴 **ESSENTIAL** | [**Technical Compendium**](VOITHER_TECHNICAL_COMPENDIUM.md) | 520 lines | **Unified system manual - Complete integration** | **All Users** |
 | 🔴 High | [System Architecture](../architecture/voither_system_architecture.md) | 596 lines | Complete technical architecture | Developers, Architects |
 | 🔴 High | [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) | 482 lines | Complete system overview | All Users |
 | 🟡 Medium | [Implementation Plan](../voither-system/voither_implementation_plan.md) | 510 lines | Development roadmap | Project Managers |
 | 🟡 Medium | [Technical Pipeline](../architecture/voither_technical_pipeline.md) | 390 lines | Data flow and processing | Technical Teams |
+| 🟢 New | [Automation Status](AUTOMATION_STATUS.md) | 285 lines | How automations work & monitoring | Developers, Admins |
 
 ### 🧩 **Core Components** (Implementation Details)
 | Priority | Document | Size | Status | Description |

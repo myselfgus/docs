@@ -18,6 +18,7 @@
 | Document | Audience | Priority | Description |
 |----------|----------|----------|-------------|
 | [README.md](../README.md) | Everyone | 🔴 Essential | Project overview and navigation |
+| [**Technical Compendium**](VOITHER_TECHNICAL_COMPENDIUM.md) | **Everyone** | 🔴 **ESSENTIAL** | **Unified system manual - Complete integration** |
 | [Table of Contents](TABLE_OF_CONTENTS.md) | Everyone | 🟡 Helpful | This navigation guide |
 | [Documentation Index](DOCUMENTATION_INDEX.md) | Everyone | 🟡 Helpful | Complete document catalog |
 
@@ -33,6 +34,7 @@
 | Document | Audience | Priority | Lines | Description |
 |----------|----------|----------|-------|-------------|
 | [System Architecture](../architecture/voither_system_architecture.md) | Technical | 🔴 Essential | 596 | Complete technical architecture |
+| [Automation Status](AUTOMATION_STATUS.md) | Admins/Devs | 🟢 New | 285 | How automations work & monitoring |
 | [Implementation Plan](../voither-system/voither_implementation_plan.md) | PM/Tech | 🟡 Important | 510 | Development roadmap |
 | [Technical Pipeline](../architecture/voither_technical_pipeline.md) | Developers | 🟡 Important | 390 | Data flow and processing |
 | [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) | Architects | 🟠 Advanced | 1,489 | Complete data pipeline |
