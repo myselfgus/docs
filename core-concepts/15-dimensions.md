@@ -125,8 +125,8 @@ O framework dimensional do VOITHER baseia-se em 15 dimensões validadas cientifi
 
 ## Aplicações Clínicas
 
-Cada dimensão oferece insights específicos para diagnóstico, planejamento terapêutico e monitoramento de progresso. Ver [med_core.md](../med_core.md) para detalhes de implementação.
+Cada dimensão oferece insights específicos para diagnóstico, planejamento terapêutico e monitoramento de progresso. Ver [med_core.md](./med_core.md) para detalhes de implementação.
 
 ## Validação Científica
 
-As dimensões são baseadas em pesquisa estabelecida em linguística computacional, neuropsicologia e psiquiatria dimensional. Ver [med_frameworks.md](../med_frameworks.md) para fundamentação teórica.
+As dimensões são baseadas em pesquisa estabelecida em linguística computacional, neuropsicologia e psiquiatria dimensional. Ver [med_frameworks.md](./med_frameworks.md) para fundamentação teórica.

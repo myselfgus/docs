@@ -16,11 +16,11 @@ This directory contains research papers, scientific documentation, and theoretic
 ## Available Papers
 
 - [Geometria dos Afetos e Cognição](geometria_afetos_cognicao.md) - Mathematical foundations
-- [Espaço Mental Paper](../espaco_mental_paper.md) - Mental space theory
-- [Emergence Enabled](../emergence_enabled_ee.md) - Emergenability framework
+- [Espaço Mental Paper](../core-concepts/espaco_mental_paper.md) - Mental space theory
+- [Emergence Enabled](../core-concepts/emergence_enabled_ee.md) - Emergenability framework
 
 ## Quick Navigation
 
 - [Back to main documentation](../README.md)
-- [Knowledge Graph](../VOITHER_Knowledge_Graph_Updated.md)
-- [System Architecture](../voither_system_architecture.md)
+- [Knowledge Graph](../docs/VOITHER_Knowledge_Graph_Updated.md)
+- [System Architecture](../architecture/voither_system_architecture.md)

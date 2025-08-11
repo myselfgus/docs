@@ -249,7 +249,7 @@ Yes, training options include:
 
 ### Where can I learn more?
 Additional resources:
-- **[Knowledge Graph](../VOITHER_Knowledge_Graph_Updated.md)**: Complete system overview
-- **[System Architecture](../voither_system_architecture.md)**: Technical details
+- **[Knowledge Graph](../docs/VOITHER_Knowledge_Graph_Updated.md)**: Complete system overview
+- **[System Architecture](../architecture/voither_system_architecture.md)**: Technical details
 - **[Developer Guide](developer-guide.md)**: Implementation guidance
 - **[Research Papers](../research/)**: Scientific foundations
