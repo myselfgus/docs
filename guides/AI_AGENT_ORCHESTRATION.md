@@ -141,7 +141,8 @@ class ClaudeStrategicAgent:
         {situation}
         
         Context: You have deep knowledge of:
-        - 18 months of psychiatric insights and TEA cognitive patterns
+        - 18 months of organized psychiatric research and insights
+        - Systematic cognitive patterns that inform BRRE architecture
         - Four Invariant Ontological Axes (Temporal, Spatial, Emergence, Relational)
         - .ee DSL unified framework
         - Privacy-by-design architecture

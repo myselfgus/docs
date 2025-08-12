@@ -7,7 +7,9 @@
 ### 🏛️ **Core Architecture** (Essential Reading)
 | Priority | Document | Size | Description | Audience |
 |----------|----------|------|-------------|----------|
+| 🔴 **ESSENTIAL** | [**Build-Focused Approach**](../architecture/VOITHER_BUILD_FOCUSED_APPROACH.md) | 300+ lines | **How to build VOITHER efficiently** | **Gustavo, Builders** |
 | 🔴 **ESSENTIAL** | [**Technical Compendium**](VOITHER_TECHNICAL_COMPENDIUM.md) | 520 lines | **Unified system manual - Complete integration** | **All Users** |
+| 🟡 High | [AI Ecosystem Blueprint](../architecture/AI_NATIVE_A2A_ECOSYSTEM_BLUEPRINT.md) | 1000+ lines | Strategic AI coordination (advanced) | AI Architects |
 | 🔴 High | [System Architecture](../architecture/voither_system_architecture.md) | 596 lines | Complete technical architecture | Developers, Architects |
 | 🔴 High | [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) | 482 lines | Complete system overview | All Users |
 | 🟡 Medium | [Implementation Plan](../voither-system/voither_implementation_plan.md) | 510 lines | Development roadmap | Project Managers |
