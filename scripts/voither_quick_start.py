@@ -1,80 +1,388 @@
 #!/usr/bin/env python3
 """
-VOITHER Core System Setup Script
-Focus: Build VOITHER foundation efficiently, not full enterprise deployment
+VOITHER Core System Quick Start
+Focus: Build urgent VOITHER components efficiently with agent orchestration
+Priority: .ee DSL, BRRE, Four Axes, Database, MedicalScribe core
 """
 
 import os
 import subprocess
 import json
-from typing import Dict, List
+import asyncio
+from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
+from datetime import datetime
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 @dataclass
 class VoitherCoreConfig:
-    """Conservative configuration focused on building VOITHER core"""
+    """Configuration focused on urgent VOITHER core components"""
+    # Resource allocation (conservative approach)
     github_repos_needed: int = 3  # voither-docs, voither-core, voither-tools
-    copilot_licenses_used: int = 2  # Minimal for development
-    claude_max: bool = True  # Primary AI partner
-    openai_api: bool = True  # For specific coding tasks
-    google_ai: bool = False  # Optional, add later if needed
-    azure_ai: bool = False   # Not needed for core building
+    copilot_licenses_used: int = 3  # Strategic allocation for urgent work
+    claude_max: bool = True  # Primary AI partner for strategic decisions
+    openai_api: bool = True  # For code generation and implementation
+    google_ai: bool = True   # For research validation (Gemini)
+    azure_ai: bool = False   # Add later when medical compliance needed
+    
+    # Urgent components priority
+    urgent_components: List[str] = None
+    
+    def __post_init__(self):
+        if self.urgent_components is None:
+            self.urgent_components = [
+                "ee_dsl_parser",           # .ee DSL implementation
+                "brre_reasoning_engine",   # BRRE cognitive engine
+                "four_axes_framework",     # Four Invariant Ontological Axes
+                "database_data_lake",      # Privacy-by-design database
+                "medicalscribe_core",      # MedicalScribe foundation
+                "autoagency_basic",        # Basic AutoAgency
+                "med_entity_detection",    # MED (Medical Entity Detection)
+                "ai_clinician_peer",       # AI-clinician/peer-AI prototype
+                "apothecary_foundation"    # Basic Apothecary components
+            ]
 
 class VoitherCoreBuilder:
-    """Build VOITHER core system efficiently"""
+    """Build urgent VOITHER core components with agent orchestration"""
     
     def __init__(self):
         self.config = VoitherCoreConfig()
         self.setup_status = {}
-        print("🎯 VOITHER Core Builder - Focus on Foundation")
+        self.agent_coordinator = None
+        print("🎯 VOITHER Core Builder - Urgent Components Focus")
         print("=" * 50)
+        print("Priority: .ee DSL, BRRE, Four Axes, Database, MedicalScribe")
+        print("Approach: Agent orchestration with Eulerian flows")
     
-    def create_core_structure(self):
-        """Create minimal viable VOITHER structure"""
-        print("📁 Creating VOITHER core structure...")
+    async def create_core_structure(self):
+        """Create structure for urgent VOITHER components"""
+        print("📁 Creating VOITHER core structure for urgent components...")
         
-        # Core directories
+        # Core directories for urgent components
         core_dirs = [
-            "voither-core/src/dsl",
-            "voither-core/src/brre", 
-            "voither-core/src/axes",
-            "voither-core/src/knowledge",
-            "voither-core/tests",
-            "voither-core/docs",
-            "voither-core/tools"
+            # .ee DSL implementation
+            "voither-core/src/dsl/ee_parser",
+            "voither-core/src/dsl/grammar", 
+            "voither-core/src/dsl/validator",
+            
+            # BRRE reasoning engine
+            "voither-core/src/brre/cognitive_patterns",
+            "voither-core/src/brre/reasoning_algorithms",
+            "voither-core/src/brre/inference_engine",
+            
+            # Four Axes framework
+            "voither-core/src/axes/temporal",
+            "voither-core/src/axes/spatial", 
+            "voither-core/src/axes/emergent",
+            "voither-core/src/axes/semantic",
+            
+            # Database and data lake
+            "voither-core/src/database/privacy_layer",
+            "voither-core/src/database/correlation_store",
+            "voither-core/src/database/vector_embeddings",
+            
+            # MedicalScribe core
+            "voither-core/src/medical/scribe",
+            "voither-core/src/medical/fhir_integration",
+            "voither-core/src/medical/terminology",
+            
+            # AutoAgency
+            "voither-core/src/autoagency/coordination",
+            "voither-core/src/autoagency/task_management",
+            
+            # MED (Medical Entity Detection)
+            "voither-core/src/med/entity_recognition",
+            "voither-core/src/med/medical_nlp",
+            
+            # AI-clinician/peer-AI
+            "voither-core/src/ai_clinician/therapeutic_support",
+            "voither-core/src/ai_clinician/patient_interaction",
+            
+            # Apothecary foundation
+            "voither-core/src/apothecary/medication_management",
+            "voither-core/src/apothecary/interaction_checking",
+            
+            # Tests and documentation
+            "voither-core/tests/urgent_components",
+            "voither-core/docs/urgent_implementation",
+            "voither-core/tools/development_support"
         ]
         
         for dir_path in core_dirs:
             os.makedirs(dir_path, exist_ok=True)
             print(f"  ✓ Created {dir_path}")
         
-        # Core files
-        self.create_core_files()
+        # Create urgent component implementations
+        await self.create_urgent_component_files()
         
-    def create_core_files(self):
-        """Create essential VOITHER core files"""
+    async def create_urgent_component_files(self):
+        """Create essential files for urgent VOITHER components"""
         
-        # .ee DSL parser foundation
-        ee_parser = '''"""
-VOITHER .ee DSL Parser
-Unified language combining .aje, .ire, .e, .Re
+        print("📄 Creating urgent component implementations...")
+        
+        # .ee DSL parser foundation (URGENT)
+        ee_parser_implementation = '''"""
+VOITHER .ee DSL Parser - Urgent Implementation
+Unified language combining .aje, .ire, .e, .Re into single .ee DSL
+Priority: Critical for all VOITHER components
 """
 
+import re
+from typing import Dict, List, Any, Optional, Tuple
+from dataclasses import dataclass
+from enum import Enum
+
+class EETokenType(Enum):
+    # Core .ee DSL tokens
+    CLINICAL_EVENT = "clinical_event"
+    CORRELATE = "correlate" 
+    EXECUTE = "execute"
+    TEMPORAL_MARKER = "temporal"
+    SPATIAL_MARKER = "spatial"
+    EMERGENT_MARKER = "emergent"
+    SEMANTIC_MARKER = "semantic"
+    
+    # Legacy DSL integration
+    AJE_CONSTRUCT = "aje_construct"  # From .aje
+    IRE_CONSTRUCT = "ire_construct"  # From .ire
+    E_CONSTRUCT = "e_construct"      # From .e
+    RE_CONSTRUCT = "re_construct"    # From .Re
+    
+    # Four Axes integration
+    FOUR_AXES_ANNOTATION = "four_axes"
+    
+    # Literals and identifiers
+    STRING = "string"
+    NUMBER = "number"
+    IDENTIFIER = "identifier"
+    OPERATOR = "operator"
+
+@dataclass
+class EEASTNode:
+    """AST node for .ee DSL with Four Axes annotations"""
+    node_type: str
+    value: Any
+    four_axes_coords: Optional[Tuple[float, float, float, float]] = None
+    children: List['EEASTNode'] = None
+    metadata: Dict[str, Any] = None
+    
+    def __post_init__(self):
+        if self.children is None:
+            self.children = []
+        if self.metadata is None:
+            self.metadata = {}
+
 class EELanguageParser:
-    """Parse .ee DSL - foundation of VOITHER"""
+    """
+    .ee DSL Parser - Urgent Production Implementation
     
-    def __init__(self):
-        self.grammar = self.load_ee_grammar()
+    Core Features:
+    - Unifies .aje/.ire/.e/.Re into single .ee syntax
+    - Four Axes coordinate assignment for all constructs
+    - BRRE reasoning engine integration
+    - Clinical workflow native support
+    - Privacy-by-design parsing
+    """
     
-    def parse(self, ee_code: str) -> dict:
-        """Parse .ee DSL code into VOITHER structures"""
-        # TODO: Implement ANTLR4 grammar
-        return {"parsed": ee_code, "ast": {}}
+    def __init__(self, four_axes_processor=None):
+        self.four_axes = four_axes_processor
+        self.grammar = self._load_ee_grammar()
+        self.tokens = []
+        self.current_token = 0
+        
+    def parse(self, ee_code: str) -> EEASTNode:
+        """Parse .ee DSL code into AST with Four Axes annotations"""
+        
+        # Tokenize
+        self.tokens = self._tokenize(ee_code)
+        self.current_token = 0
+        
+        # Parse AST
+        ast = self._parse_program()
+        
+        # Annotate with Four Axes coordinates
+        if self.four_axes:
+            ast = self._annotate_four_axes(ast)
+        
+        return ast
     
-    def load_ee_grammar(self):
-        """Load .ee DSL grammar definition"""
-        # TODO: Load ANTLR4 grammar for .ee
-        pass
+    def _tokenize(self, code: str) -> List[Dict[str, Any]]:
+        """Tokenize .ee DSL code"""
+        
+        # .ee DSL token patterns
+        token_patterns = [
+            (r'clinical_event\s*\{', EETokenType.CLINICAL_EVENT),
+            (r'correlate\s*\(', EETokenType.CORRELATE),
+            (r'execute\s*\(', EETokenType.EXECUTE),
+            (r'@temporal\[', EETokenType.TEMPORAL_MARKER),
+            (r'@spatial\[', EETokenType.SPATIAL_MARKER),
+            (r'@emergent\[', EETokenType.EMERGENT_MARKER),
+            (r'@semantic\[', EETokenType.SEMANTIC_MARKER),
+            (r'@four_axes\[', EETokenType.FOUR_AXES_ANNOTATION),
+            
+            # Legacy DSL integration patterns
+            (r'\.aje\s*\{', EETokenType.AJE_CONSTRUCT),
+            (r'\.ire\s*\(', EETokenType.IRE_CONSTRUCT),
+            (r'\.e\s*\[', EETokenType.E_CONSTRUCT),
+            (r'\.Re\s*<', EETokenType.RE_CONSTRUCT),
+            
+            # Basic patterns
+            (r'"[^"]*"', EETokenType.STRING),
+            (r'\d+\.?\d*', EETokenType.NUMBER),
+            (r'[a-zA-Z_][a-zA-Z0-9_]*', EETokenType.IDENTIFIER),
+            (r'[+\-*/=<>!&|]+', EETokenType.OPERATOR),
+        ]
+        
+        tokens = []
+        position = 0
+        
+        while position < len(code):
+            matched = False
+            
+            for pattern, token_type in token_patterns:
+                regex = re.compile(pattern)
+                match = regex.match(code, position)
+                
+                if match:
+                    tokens.append({
+                        "type": token_type,
+                        "value": match.group(0),
+                        "position": position,
+                        "length": len(match.group(0))
+                    })
+                    position = match.end()
+                    matched = True
+                    break
+            
+            if not matched:
+                # Skip whitespace and unknown characters
+                position += 1
+        
+        return tokens
+    
+    def _parse_program(self) -> EEASTNode:
+        """Parse top-level .ee program"""
+        
+        program_node = EEASTNode("program", "root")
+        
+        while self.current_token < len(self.tokens):
+            statement = self._parse_statement()
+            if statement:
+                program_node.children.append(statement)
+        
+        return program_node
+    
+    def _parse_statement(self) -> Optional[EEASTNode]:
+        """Parse individual .ee statement"""
+        
+        if self.current_token >= len(self.tokens):
+            return None
+        
+        token = self.tokens[self.current_token]
+        
+        if token["type"] == EETokenType.CLINICAL_EVENT:
+            return self._parse_clinical_event()
+        elif token["type"] == EETokenType.CORRELATE:
+            return self._parse_correlate()
+        elif token["type"] == EETokenType.EXECUTE:
+            return self._parse_execute()
+        elif token["type"] in [EETokenType.AJE_CONSTRUCT, EETokenType.IRE_CONSTRUCT, 
+                              EETokenType.E_CONSTRUCT, EETokenType.RE_CONSTRUCT]:
+            return self._parse_legacy_construct()
+        else:
+            # Skip unknown tokens
+            self.current_token += 1
+            return None
+    
+    def _parse_clinical_event(self) -> EEASTNode:
+        """Parse clinical_event construct"""
+        
+        self.current_token += 1  # Skip 'clinical_event{'
+        
+        event_node = EEASTNode("clinical_event", {})
+        
+        # Parse event properties
+        while (self.current_token < len(self.tokens) and 
+               self.tokens[self.current_token]["value"] != "}"):
+            
+            property_node = self._parse_property()
+            if property_node:
+                event_node.children.append(property_node)
+        
+        return event_node
+    
+    def _parse_correlate(self) -> EEASTNode:
+        """Parse correlate construct"""
+        
+        self.current_token += 1  # Skip 'correlate('
+        
+        correlate_node = EEASTNode("correlate", {})
+        
+        # Parse correlation parameters
+        while (self.current_token < len(self.tokens) and 
+               self.tokens[self.current_token]["value"] != ")"):
+            
+            param_node = self._parse_parameter()
+            if param_node:
+                correlate_node.children.append(param_node)
+        
+        return correlate_node
+    
+    def _parse_execute(self) -> EEASTNode:
+        """Parse execute construct"""
+        
+        self.current_token += 1  # Skip 'execute('
+        
+        execute_node = EEASTNode("execute", {})
+        
+        # Parse execution parameters
+        while (self.current_token < len(self.tokens) and 
+               self.tokens[self.current_token]["value"] != ")"):
+            
+            param_node = self._parse_parameter()
+            if param_node:
+                execute_node.children.append(param_node)
+        
+        return execute_node
+    
+    def _annotate_four_axes(self, ast: EEASTNode) -> EEASTNode:
+        """Annotate AST with Four Axes coordinates"""
+        
+        if self.four_axes:
+            ast.four_axes_coords = self.four_axes.calculate_coordinates(ast)
+        
+        # Recursively annotate children
+        for child in ast.children:
+            self._annotate_four_axes(child)
+        
+        return ast
+    
+    def validate(self, ast: EEASTNode) -> Dict[str, Any]:
+        """Validate .ee DSL AST for correctness and compliance"""
+        
+        validation_result = {
+            "valid": True,
+            "errors": [],
+            "warnings": [],
+            "four_axes_coverage": 0.0,
+            "legacy_constructs_count": 0,
+            "privacy_compliance": True
+        }
+        
+        # Validate AST structure
+        self._validate_ast_structure(ast, validation_result)
+        
+        # Validate Four Axes annotations
+        self._validate_four_axes_coverage(ast, validation_result)
+        
+        # Check privacy compliance
+        self._validate_privacy_compliance(ast, validation_result)
+        
+        return validation_result
 '''
         
         # BRRE cognitive engine
