@@ -1,0 +1,296 @@
+name: 🤖 AI Content Verification
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.md'
+  workflow_dispatch:
+    inputs:
+      docs_dir:
+        description: 'Directory to verify'
+        required: false
+        default: '.'
+        type: string
+
+jobs:
+  ai-content-verification:
+    name: 🧠 AI-Powered Content Quality Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml python-frontmatter
+          
+      - name: 🤖 Run AI Content Verification
+        run: |
+          python << 'EOF'
+          import os
+          import re
+          import json
+          import yaml
+          import hashlib
+          from datetime import datetime
+          from pathlib import Path
+          import frontmatter
+          from typing import Dict, List, Any, Tuple
+          
+          class AIContentVerifier:
+              def __init__(self, docs_directory: str):
+                  self.docs_directory = Path(docs_directory)
+                  self.verification_log = []
+                  self.content_hashes = {}
+                  self.terminology_database = self._load_terminology_database()
+                  
+              def _load_terminology_database(self) -> Dict[str, Any]:
+                  """Load VOITHER terminology database"""
+                  return {
+                      "MED": {
+                          "full_name": "Mental State Extraction in Dialogue",
+                          "dimensions": 15,
+                          "type": "AI_framework",
+                          "validated": True
+                      },
+                      "BRRE": {
+                          "full_name": "Bidirectional Recursive Reasoning Engine",
+                          "type": "reasoning_engine",
+                          "validated": True
+                      },
+                      "VOITHER": {
+                          "full_name": "Virtual Orchestrator of Integrated Therapeutic Holistic Ecosystem Resources",
+                          "type": "ecosystem",
+                          "validated": True
+                      },
+                      "EE": {
+                          "full_name": "Emergence Enabled",
+                          "type": "enhancement_protocol",
+                          "validated": True
+                      }
+                  }
+              
+              def analyze_content_quality(self, content: str, metadata: dict) -> Dict[str, Any]:
+                  """Analyze content quality using multiple metrics"""
+                  analysis = {
+                      "word_count": len(content.split()),
+                      "character_count": len(content),
+                      "paragraph_count": len([p for p in content.split('\n\n') if p.strip()]),
+                      "readability_score": self._calculate_readability(content),
+                      "terminology_consistency": self._check_terminology_consistency(content),
+                      "structure_quality": self._assess_structure_quality(content),
+                      "metadata_completeness": self._check_metadata_completeness(metadata)
+                  }
+                  
+                  # Calculate overall quality score
+                  analysis["overall_quality"] = self._calculate_overall_quality(analysis)
+                  
+                  return analysis
+              
+              def _calculate_readability(self, content: str) -> float:
+                  """Simple readability calculation"""
+                  words = content.split()
+                  sentences = content.split('.')
+                  
+                  if len(sentences) == 0 or len(words) == 0:
+                      return 0.0
+                  
+                  avg_sentence_length = len(words) / len(sentences)
+                  
+                  # Higher score for moderate sentence length (10-20 words)
+                  if 10 <= avg_sentence_length <= 20:
+                      return 85.0
+                  elif 5 <= avg_sentence_length <= 30:
+                      return 75.0
+                  else:
+                      return 60.0
+              
+              def _check_terminology_consistency(self, content: str) -> float:
+                  """Check for consistent use of VOITHER terminology"""
+                  score = 100.0
+                  content_lower = content.lower()
+                  
+                  # Check for proper use of key terms
+                  for term, info in self.terminology_database.items():
+                      if term.lower() in content_lower:
+                          # Award points for using validated terminology
+                          score += 5.0
+                  
+                  return min(score, 100.0)
+              
+              def _assess_structure_quality(self, content: str) -> float:
+                  """Assess document structure quality"""
+                  score = 50.0  # Base score
+                  
+                  # Check for headers
+                  if re.search(r'^#{1,6}\s+', content, re.MULTILINE):
+                      score += 20.0
+                  
+                  # Check for lists
+                  if re.search(r'^\s*[-*+]\s+', content, re.MULTILINE):
+                      score += 10.0
+                  
+                  # Check for code blocks
+                  if '```' in content:
+                      score += 10.0
+                  
+                  # Check for links
+                  if re.search(r'\[([^\]]*)\]\(([^)]+)\)', content):
+                      score += 10.0
+                  
+                  return min(score, 100.0)
+              
+              def _check_metadata_completeness(self, metadata: dict) -> float:
+                  """Check frontmatter completeness"""
+                  required_fields = ['title', 'description', 'version', 'last_updated', 'audience', 'priority', 'reading_time', 'tags']
+                  present_fields = sum(1 for field in required_fields if field in metadata and metadata[field])
+                  
+                  return (present_fields / len(required_fields)) * 100.0
+              
+              def _calculate_overall_quality(self, analysis: Dict[str, Any]) -> float:
+                  """Calculate weighted overall quality score"""
+                  weights = {
+                      "readability_score": 0.25,
+                      "terminology_consistency": 0.20,
+                      "structure_quality": 0.25,
+                      "metadata_completeness": 0.30
+                  }
+                  
+                  weighted_score = sum(
+                      analysis[metric] * weight 
+                      for metric, weight in weights.items()
+                      if metric in analysis
+                  )
+                  
+                  return round(weighted_score, 2)
+              
+              def verify_directory(self, verbose: bool = False) -> Dict[str, Any]:
+                  """Verify all markdown files in directory"""
+                  results = {
+                      "verification_timestamp": datetime.now().isoformat(),
+                      "files_analyzed": [],
+                      "summary": {
+                          "total_files": 0,
+                          "average_quality": 0.0,
+                          "needs_improvement": 0,
+                          "excellent_quality": 0
+                      },
+                      "detailed_results": {}
+                  }
+                  
+                  quality_scores = []
+                  
+                  for root, dirs, files in os.walk(self.docs_directory):
+                      # Skip hidden directories and raw folder
+                      dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'raw']
+                      
+                      for file in files:
+                          if file.endswith('.md'):
+                              file_path = os.path.join(root, file)
+                              relative_path = os.path.relpath(file_path, self.docs_directory)
+                              
+                              try:
+                                  with open(file_path, 'r', encoding='utf-8') as f:
+                                      post = frontmatter.load(f)
+                                  
+                                  analysis = self.analyze_content_quality(post.content, post.metadata)
+                                  quality_scores.append(analysis["overall_quality"])
+                                  
+                                  results["files_analyzed"].append(relative_path)
+                                  results["detailed_results"][relative_path] = analysis
+                                  
+                                  if verbose:
+                                      print(f"📄 {relative_path}: Quality Score {analysis['overall_quality']}/100")
+                                  
+                                  # Track quality categories
+                                  if analysis["overall_quality"] < 70:
+                                      results["summary"]["needs_improvement"] += 1
+                                  elif analysis["overall_quality"] >= 85:
+                                      results["summary"]["excellent_quality"] += 1
+                              
+                              except Exception as e:
+                                  if verbose:
+                                      print(f"⚠️ Error processing {relative_path}: {e}")
+                  
+                  # Calculate summary statistics
+                  results["summary"]["total_files"] = len(quality_scores)
+                  if quality_scores:
+                      results["summary"]["average_quality"] = round(sum(quality_scores) / len(quality_scores), 2)
+                      results["detailed_results"]["average_quality_score"] = results["summary"]["average_quality"]
+                  
+                  return results
+          
+          def main():
+              """Main verification function"""
+              docs_dir = "${{ inputs.docs_dir || '.' }}"
+              verifier = AIContentVerifier(docs_dir)
+              
+              print("🤖 Starting AI-powered content verification...")
+              print(f"📁 Analyzing directory: {docs_dir}")
+              print("📝 Note: Raw folder excluded from analysis (unprocessed backups)")
+              
+              results = verifier.verify_directory(verbose=True)
+              
+              # Save results to file
+              with open('ai_verification_report.json', 'w') as f:
+                  json.dump(results, f, indent=2)
+              
+              print(f"\n📊 Verification Complete:")
+              print(f"📁 Files analyzed: {results['summary']['total_files']}")
+              print(f"⭐ Average quality score: {results['summary']['average_quality']}/100")
+              print(f"🔴 Files needing improvement: {results['summary']['needs_improvement']}")
+              print(f"🟢 Excellent quality files: {results['summary']['excellent_quality']}")
+              
+              # Quality assessment
+              avg_quality = results['summary']['average_quality']
+              if avg_quality >= 85:
+                  print("✅ Excellent overall documentation quality!")
+              elif avg_quality >= 75:
+                  print("👍 Good documentation quality")
+              elif avg_quality >= 65:
+                  print("⚠️ Documentation quality needs improvement")
+              else:
+                  print("❌ Documentation quality requires attention")
+              
+              print(f"📋 Detailed report saved to: ai_verification_report.json")
+          
+          if __name__ == "__main__":
+              main()
+          EOF
+          
+      - name: 📋 Upload Verification Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: ai-verification-report
+          path: ai_verification_report.json
+          
+      - name: 📊 Display Summary
+        if: always()
+        run: |
+          if [ -f ai_verification_report.json ]; then
+            echo "📊 AI Content Verification Summary:"
+            python -c "
+            import json
+            with open('ai_verification_report.json', 'r') as f:
+                data = json.load(f)
+            print(f'📁 Files analyzed: {data[\"summary\"][\"total_files\"]}')
+            print(f'⭐ Average quality: {data[\"summary\"][\"average_quality\"]}/100')
+            print(f'🔴 Need improvement: {data[\"summary\"][\"needs_improvement\"]}')
+            print(f'🟢 Excellent quality: {data[\"summary\"][\"excellent_quality\"]}')
+            "
+          else
+            echo "⚠️ Verification report not generated"
+          fi

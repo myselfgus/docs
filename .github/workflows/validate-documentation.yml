@@ -1,0 +1,204 @@
+name: 🔍 Validate Documentation
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+      - '**/*.py'
+      - '**/*.yml'
+      - '**/*.yaml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.md'
+      - '**/*.py'
+      - '**/*.yml'
+      - '**/*.yaml'
+  workflow_dispatch:
+
+jobs:
+  validate-docs:
+    name: 📚 Validate Documentation Links & Structure
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        
+      - name: 🐍 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml python-frontmatter
+          
+      - name: 🔗 Validate Internal Links
+        run: |
+          python << 'EOF'
+          import os
+          import re
+          import sys
+          from pathlib import Path
+          
+          def find_markdown_files(directory):
+              """Find all markdown files in directory"""
+              md_files = []
+              for root, dirs, files in os.walk(directory):
+                  # Skip hidden directories, build directories, and raw folder
+                  dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['build', 'dist', 'node_modules', 'raw']]
+                  
+                  for file in files:
+                      if file.endswith('.md'):
+                          md_files.append(os.path.join(root, file))
+              
+              return md_files
+          
+          def extract_links(content, file_path):
+              """Extract internal links from markdown content"""
+              link_pattern = r'\[([^\]]*)\]\(([^)]+)\)'
+              links = []
+              
+              for match in re.finditer(link_pattern, content):
+                  text = match.group(1)
+                  url = match.group(2)
+                  
+                  # Skip external URLs and anchors
+                  if url.startswith(('http://', 'https://', '#', 'mailto:')):
+                      continue
+                      
+                  links.append({
+                      'text': text,
+                      'url': url,
+                      'line': content[:match.start()].count('\n') + 1
+                  })
+              
+              return links
+          
+          def check_file_exists(link_url, base_path):
+              """Check if a linked file exists"""
+              # Handle relative paths
+              if link_url.startswith('./'):
+                  target_path = base_path.parent / link_url[2:]
+              elif link_url.startswith('../'):
+                  target_path = base_path.parent / link_url
+              else:
+                  target_path = Path(link_url)
+                  if not target_path.is_absolute():
+                      target_path = base_path.parent / link_url
+              
+              return target_path.exists()
+          
+          def validate_documentation():
+              """Main validation function"""
+              current_dir = Path('.')
+              md_files = find_markdown_files(current_dir)
+              
+              total_files = len(md_files)
+              total_links = 0
+              broken_links = 0
+              
+              print(f"🔍 Validating {total_files} markdown files...")
+              
+              for md_file in md_files:
+                  try:
+                      with open(md_file, 'r', encoding='utf-8') as f:
+                          content = f.read()
+                      
+                      links = extract_links(content, Path(md_file))
+                      total_links += len(links)
+                      
+                      for link in links:
+                          if not check_file_exists(link['url'], Path(md_file)):
+                              print(f"❌ Broken link in {md_file}:{link['line']}: {link['url']}")
+                              broken_links += 1
+                  
+                  except Exception as e:
+                      print(f"⚠️ Error processing {md_file}: {e}")
+              
+              print(f"\n📊 Validation Summary:")
+              print(f"📁 Files processed: {total_files}")
+              print(f"🔗 Links checked: {total_links}")
+              print(f"❌ Broken links: {broken_links}")
+              
+              if broken_links > 0:
+                  print(f"\n⚠️ Found {broken_links} broken links")
+                  return False
+              else:
+                  print(f"\n✅ All links are valid!")
+                  return True
+          
+          # Run validation
+          if __name__ == "__main__":
+              success = validate_documentation()
+              sys.exit(0 if success else 1)
+          EOF
+          
+      - name: 📋 Check Frontmatter Compliance
+        run: |
+          python << 'EOF'
+          import os
+          import frontmatter
+          import sys
+          
+          def check_frontmatter_compliance():
+              """Check if all markdown files have proper frontmatter"""
+              missing_frontmatter = []
+              incomplete_frontmatter = []
+              total_files = 0
+              
+              required_fields = ['title', 'description', 'version', 'last_updated', 'audience', 'priority', 'reading_time', 'tags']
+              
+              for root, dirs, files in os.walk('.'):
+                  # Skip hidden directories and raw folder
+                  dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'raw']
+                  
+                  for file in files:
+                      if file.endswith('.md'):
+                          total_files += 1
+                          filepath = os.path.join(root, file)
+                          
+                          try:
+                              with open(filepath, 'r', encoding='utf-8') as f:
+                                  post = frontmatter.load(f)
+                              
+                              if not post.metadata:
+                                  missing_frontmatter.append(filepath)
+                              else:
+                                  missing_fields = [field for field in required_fields if field not in post.metadata]
+                                  if missing_fields:
+                                      incomplete_frontmatter.append({
+                                          'file': filepath,
+                                          'missing': missing_fields
+                                      })
+                          
+                          except Exception as e:
+                              print(f"⚠️ Error processing {filepath}: {e}")
+              
+              print(f"📊 Frontmatter Compliance Report:")
+              print(f"📁 Total files: {total_files}")
+              print(f"❌ Missing frontmatter: {len(missing_frontmatter)}")
+              print(f"⚠️ Incomplete frontmatter: {len(incomplete_frontmatter)}")
+              
+              if missing_frontmatter:
+                  print(f"\n📝 Files missing frontmatter:")
+                  for file in missing_frontmatter:
+                      print(f"  - {file}")
+              
+              if incomplete_frontmatter:
+                  print(f"\n📝 Files with incomplete frontmatter:")
+                  for item in incomplete_frontmatter:
+                      print(f"  - {item['file']}: missing {', '.join(item['missing'])}")
+              
+              compliance_rate = ((total_files - len(missing_frontmatter) - len(incomplete_frontmatter)) / total_files * 100) if total_files > 0 else 100
+              print(f"\n📈 Compliance rate: {compliance_rate:.1f}%")
+              
+              return compliance_rate >= 90  # 90% compliance threshold
+          
+          if __name__ == "__main__":
+              success = check_frontmatter_compliance()
+              sys.exit(0 if success else 1)
+          EOF
