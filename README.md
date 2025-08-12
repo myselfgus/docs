@@ -40,6 +40,8 @@ VOITHER is a cutting-edge AI platform that transforms mental health practice thr
 ### For Developers
 - **Technical Overview**: [System Architecture](architecture/voither_system_architecture.md)
 - **Implementation Guide**: [Development Setup](guides/developer-guide.md)
+- **A2A Agent Setup**: [Agent Orchestration Guide](guides/AI_AGENT_ORCHESTRATION.md) ⭐ **NEW**
+- **Enterprise Setup**: [GitHub Enterprise Configuration](guides/GITHUB_ENTERPRISE_SETUP.md) ⭐ **NEW**
 - **API Documentation**: [Technical Pipeline](architecture/voither_technical_pipeline.md)
 
 ### For Researchers
@@ -57,25 +59,42 @@ docs/
 ├── 📁 core-concepts/       # Core AI concepts & frameworks
 ├── 📁 database/            # Database design & ideas  
 ├── 📁 docs/                # Main documentation files
-├── 📁 dsl/                 # Domain-specific language files
+│   ├── 📁 architecture/    # Advanced architecture blueprints
+│   ├── 📁 core-concepts/   # Enhanced core concepts
+│   ├── 📁 database/        # Database implementation details
+│   ├── 📁 dsl/            # Domain-specific language files
+│   ├── 📁 pipelines/      # Data processing pipelines
+│   ├── 📁 reengine/       # ReEngine framework sections
+│   ├── 📁 visualflows_charts/ # 📊 Complete visual workflows (NEW)
+│   └── 📁 voither-system/ # VOITHER system components
 ├── 📁 guides/              # User guides & tutorials
-├── 📁 pipelines/           # Data processing pipelines
 ├── 📁 raw/                 # Unprocessed backup archive
-├── 📁 reengine/            # ReEngine framework sections
 ├── 📁 research/            # Academic papers & research
-├── 📁 scripts/             # Automation & utility scripts
+├── 📁 scripts/             # 🤖 Enterprise orchestrator & automation (ENHANCED)
 ├── 📁 templates/           # Clinical templates & forms
-├── 📁 voither-system/      # VOITHER system components
-├── 📁 workflows/           # Automation workflow diagrams
-└── 📄 README.md            # Main documentation entry
+└── 📁 workflows/           # 🔄 Automation workflow diagrams (NEW)
 ```
 
 ### 🏗️ **Architecture & System Design**
 | Document | Description | Audience |
 |----------|-------------|----------|
 | [System Architecture](architecture/voither_system_architecture.md) | Complete technical architecture overview | Developers, Architects |
-| [Implementation Plan](voither-system/voither_implementation_plan.md) | Development roadmap and milestones | Project Managers, Developers |
+| [A2A Agent Orchestration Blueprint](docs/architecture/VOITHER_AGENT_ORCHESTRATION_TECHNICAL_BLUEPRINT.md) | 🤖 **NEW**: Sophisticated agent coordination with Eulerian flows | Technical Architects, AI Engineers |
+| [AI-Native A2A Ecosystem](docs/architecture/AI_NATIVE_A2A_ECOSYSTEM_BLUEPRINT.md) | **NEW**: Agent-to-Agent protocols and enterprise setup | Enterprise Architects |
+| [Implementation Plan](docs/voither-system/voither_implementation_plan.md) | Development roadmap and milestones | Project Managers, Developers |
 | [Technical Pipeline](architecture/voither_technical_pipeline.md) | Data flow and processing pipeline | Technical Teams |
+
+### 📊 **Visual Workflows & Charts (NEW)**
+| Chart | Focus Area | Description |
+|-------|------------|-------------|
+| [Visual Flows Index](docs/visualflows_charts/README.md) | Complete visual documentation suite | All audiences |
+| [System Architecture Chart](docs/visualflows_charts/01_voither_system_architecture.md) | Core foundation & .ee DSL integration | Technical Leadership |
+| [Clinical Workflow Pipeline](docs/visualflows_charts/02_clinical_workflow_pipeline.md) | Healthcare processes & AI integration | Clinical Teams |
+| [Development Lifecycle](docs/visualflows_charts/03_development_lifecycle.md) | DevOps, CI/CD, quality assurance | Development Teams |
+| [AI Model Integration](docs/visualflows_charts/04_ai_model_integration.md) | ML pipeline & inference architecture | AI/ML Engineers |
+| [Data Architecture](docs/visualflows_charts/05_data_architecture.md) | Knowledge graphs & data flow | Data Engineers |
+| [Security & Compliance](docs/visualflows_charts/06_security_compliance.md) | Zero-trust security & regulatory compliance | Security Teams |
+| [Deployment Infrastructure](docs/visualflows_charts/07_deployment_infrastructure.md) | Cloud-native deployment & scalability | Infrastructure Teams |
 
 ### 🧩 **Core Components**
 | Component | Description | Status |
@@ -88,9 +107,20 @@ docs/
 ### 🔧 **Technical Implementation**
 | Document | Focus Area | Complexity |
 |----------|------------|------------|
-| [MED Implementation](voither-system/voither_med_implementation.md) | Dimensional extraction engine | Advanced |
-| [Framework Integration](core-concepts/med_frameworks.md) | RDoC, HiTOP, Big Five integration | Intermediate |
-| [FHIR Integration](voither-system/voither_orchestrator_doc.md) | Healthcare interoperability | Advanced |
+| [MED Implementation](docs/voither-system/voither_med_implementation.md) | Dimensional extraction engine | Advanced |
+| [Framework Integration](docs/core-concepts/med_frameworks.md) | RDoC, HiTOP, Big Five integration | Intermediate |
+| [FHIR Integration](docs/voither-system/voither_orchestrator_doc.md) | Healthcare interoperability | Advanced |
+| [Enterprise Orchestrator Script](scripts/voither_enterprise_orchestrator.py) | 🤖 **NEW**: A2A agent coordination & GitHub Enterprise setup | Advanced |
+| [Agent A2A Initialization](scripts/initialize_agent_a2a.py) | **NEW**: Agent-to-Agent protocol setup | Intermediate |
+
+### 🤖 **Enterprise & Automation Systems (NEW)**
+| Document | Description | Status |
+|----------|-------------|--------|
+| [Automation Pipeline](docs/AUTOMATION_PIPELINE.md) | Complete automation system overview | ✅ Active |
+| [Automation Status Monitor](docs/AUTOMATION_STATUS.md) | Real-time automation monitoring | ✅ Active |
+| [GitHub Enterprise Setup](guides/GITHUB_ENTERPRISE_SETUP.md) | Enterprise organization configuration | 📋 Available |
+| [AI Agent Orchestration Guide](guides/AI_AGENT_ORCHESTRATION.md) | Agent coordination implementation | 📋 Available |
+| [Technical Compendium](docs/VOITHER_TECHNICAL_COMPENDIUM.md) | **Unified manual**: Complete system integration | ✅ Comprehensive |
 
 ### 🔬 **Research & Theory**
 | Document | Topic | Type |
@@ -100,6 +130,13 @@ docs/
 | [ReEngine Framework](reengine/ReEngine_Sec_01.md) | Bergsonian-Rhizomatic reasoning | Philosophical-Technical |
 
 ## 🌟 Key Features
+
+### 🤖 **A2A Agent Orchestration System (NEW)**
+- **Eulerian Flow Coordination**: Mathematical agent state management with runtime reversibility
+- **Enterprise Multi-Agent Setup**: Strategic GitHub Enterprise organization with 7 Copilot licenses
+- **Agent Specialization**: Claude Strategic, OpenAI Constructor, Copilot Specialists, Gemini Research, Azure Medical
+- **Modern A2A Protocols**: Message passing with event sourcing and comprehensive audit trails
+- **Composable Architecture**: Sequential, parallel, and hierarchical agent composition patterns
 
 ### 🎯 **Real-Time Analysis**
 - Live transcription with Azure Speech Services / Google Cloud Speech-to-Text
@@ -144,6 +181,12 @@ VOITHER analyzes mental states across 15 validated dimensions:
 
 ## 🛠️ **Technology Stack**
 
+### **Agent Orchestration & Enterprise (NEW)**
+- **A2A Protocols**: Eulerian flow-based agent coordination with mathematical reversibility
+- **GitHub Enterprise**: Multi-organization setup (voither-core, voither-medical, voither-development)
+- **Enterprise Agents**: Claude Strategic, OpenAI Constructor, Copilot Specialists, Gemini Research, Azure Medical
+- **Automation Pipeline**: Complete CI/CD with quality scoring and validation systems
+
 ### **Frontend**
 - React/Next.js with TypeScript
 - Three.js for 3D visualization
@@ -169,7 +212,23 @@ VOITHER analyzes mental states across 15 validated dimensions:
 
 ```mermaid
 graph TD
-    A[Clinician Interface] --> B[Real-time Transcription]
+    subgraph "A2A Agent Orchestration Layer (NEW)"
+        AO[Agent Orchestrator]
+        CS[Claude Strategic Agent]
+        OC[OpenAI Constructor Agent]
+        CP[Copilot Specialists]
+        GR[Gemini Research Agent]
+        AM[Azure Medical Agent]
+    end
+    
+    A[Clinician Interface] --> AO
+    AO --> CS
+    AO --> OC
+    AO --> CP
+    AO --> GR
+    AO --> AM
+    
+    AO --> B[Real-time Transcription]
     B --> C[Dimensional Analysis Engine]
     C --> D[3D Visualization]
     C --> E[Clinical Documentation]
@@ -182,9 +241,18 @@ graph TD
         J[Azure Blob Storage / Google Cloud Storage]
     end
     
+    subgraph "Enterprise Infrastructure (NEW)"
+        K[GitHub Enterprise Organizations]
+        L[Automation Pipeline]
+        M[Quality Monitoring]
+    end
+    
     C --> H
     F --> I
     B --> J
+    AO --> K
+    AO --> L
+    L --> M
 ```
 
 ## 🤝 **Contributing**
@@ -219,6 +287,12 @@ make dev-setup
 
 # Install Git hooks for automatic validation
 make install-hooks
+
+# Enterprise orchestrator setup (NEW)
+python scripts/voither_enterprise_orchestrator.py --setup-phase-1 --validate
+
+# Initialize A2A agents (NEW)
+python scripts/initialize_agent_a2a.py --agents=claude,openai,copilot_medical --full-test
 ```
 
 ## 📄 **License & Compliance**
@@ -232,12 +306,18 @@ make install-hooks
 
 ### **Documentation Index**
 - 📖 [Complete Knowledge Graph](docs/VOITHER_Knowledge_Graph_Updated.md)
+- 🎯 [Technical Compendium - Unified Manual](docs/VOITHER_TECHNICAL_COMPENDIUM.md) ⭐ **NEW**
+- 📊 [Visual Workflows Charts](docs/visualflows_charts/README.md) ⭐ **NEW**
+- 🤖 [A2A Agent Orchestration Blueprint](docs/architecture/VOITHER_AGENT_ORCHESTRATION_TECHNICAL_BLUEPRINT.md) ⭐ **NEW**
+- 🔄 [Automation Pipeline Status](docs/AUTOMATION_STATUS.md) ⭐ **NEW**
 - 🎯 [Implementation Templates](templates/voither_primeira_consulta_template.py)
-- 🔗 [Pipeline Documentation](voither-system/VOITHER_files_pipeline.md)
+- 🔗 [Pipeline Documentation](docs/voither-system/VOITHER_files_pipeline.md)
 
 ### **Quick Links**
 - [System Requirements](guides/system-requirements.md)
 - [Installation Guide](guides/installation.md)
+- [GitHub Enterprise Setup](guides/GITHUB_ENTERPRISE_SETUP.md) ⭐ **NEW**
+- [AI Agent Orchestration Guide](guides/AI_AGENT_ORCHESTRATION.md) ⭐ **NEW**
 - [Troubleshooting](guides/troubleshooting.md)
 - [FAQ](guides/faq.md)
 
