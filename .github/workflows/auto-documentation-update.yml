@@ -156,7 +156,7 @@ jobs:
           echo "Running AI-powered content verification..."
           echo "Note: Raw folder files are excluded from quality evaluation (unprocessed backups)"
           echo "Note: Quality scores are informational (non-blocking)"
-          python scripts/ai-content-verifier.py --docs-dir . --output ai_verification_report.json --verbose || echo "✅ AI verification completed with warnings - workflow continues"
+          python .github/workflows/scripts/ai-content-verifier.py --docs-dir . --output ai_verification_report.json --verbose || echo "✅ AI verification completed with warnings - workflow continues"
           
           # Extract quality metrics
           QUALITY_SCORE=$(python -c "
@@ -459,7 +459,7 @@ jobs:
         run: |
           echo "Validating internal links..."
           echo "Note: Link validation errors are reported as warnings (non-blocking)"
-          python scripts/validate-docs.py || echo "✅ Link validation completed with warnings - workflow continues"
+          python .github/workflows/scripts/validate-docs.py || echo "✅ Link validation completed with warnings - workflow continues"
 
       - name: 📋 Create Documentation Update Summary
         if: steps.changes.outputs.has_docs_changes == 'true'
