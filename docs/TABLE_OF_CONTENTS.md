@@ -7,10 +7,23 @@
 | I Need To... | Go Here | Time Required |
 |--------------|---------|---------------|
 | **Understand VOITHER** | [README](../README.md) → [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) | 15 min |
+| **See Visual Architecture** | [**Visual Flows & Charts**](./visualflows_charts/) | 30 min |
 | **Start Using (Clinician)** | [Clinician Quick Start](../guides/clinician-quickstart.md) | 30 min |
 | **Start Developing** | [Developer Guide](../guides/developer-guide.md) | 45 min |
-| **See Architecture** | [System Architecture](../architecture/voither_system_architecture.md) | 30 min |
+| **See Architecture** | [System Architecture](./architecture/voither_system_architecture.md) | 30 min |
 | **Find Specific Info** | [Documentation Index](DOCUMENTATION_INDEX.md) | 5 min |
+
+## 🎨 **NEW: Complete Visual Architecture Suite**
+
+| Chart | Focus Area | Key Components | Audience |
+|-------|------------|----------------|----------|
+| [**System Architecture**](./visualflows_charts/01_voither_system_architecture.md) | Core foundation, unified .ee DSL, BRRE engine | Four Invariant Axes, AI Integration | Technical Leadership |
+| [**Clinical Workflow**](./visualflows_charts/02_clinical_workflow_pipeline.md) | Clinical processes, emergenability detection | Patient care, AI decision support | Clinical Teams |
+| [**Development Lifecycle**](./visualflows_charts/03_development_lifecycle.md) | DevOps, CI/CD, quality assurance | Automated testing, deployment | DevOps Engineers |
+| [**AI Model Integration**](./visualflows_charts/04_ai_model_integration.md) | Machine learning, inference pipeline | Medical LLM, emergenability models | AI/ML Engineers |
+| [**Data Architecture**](./visualflows_charts/05_data_architecture.md) | Knowledge graphs, data flow | Real-time processing, analytics | Data Engineers |
+| [**Security & Compliance**](./visualflows_charts/06_security_compliance.md) | Zero-trust security, regulations | HIPAA, IEC 62304, AI governance | Security Teams |
+| [**Infrastructure**](./visualflows_charts/07_deployment_infrastructure.md) | Cloud deployment, Kubernetes | Auto-scaling, disaster recovery | Infrastructure Teams |
 
 ## 📚 Complete Documentation Structure
 
@@ -18,8 +31,101 @@
 | Document | Audience | Priority | Description |
 |----------|----------|----------|-------------|
 | [README.md](../README.md) | Everyone | 🔴 Essential | Project overview and navigation |
+| [**Technical Compendium**](VOITHER_TECHNICAL_COMPENDIUM.md) | **Everyone** | 🔴 **ESSENTIAL** | **Unified system manual - Complete integration** |
+| [**Visual Architecture Suite**](./visualflows_charts/) | **Everyone** | 🔴 **NEW** | **Complete visual documentation** |
 | [Table of Contents](TABLE_OF_CONTENTS.md) | Everyone | 🟡 Helpful | This navigation guide |
 | [Documentation Index](DOCUMENTATION_INDEX.md) | Everyone | 🟡 Helpful | Complete document catalog |
+
+### 🏗️ **Core Architecture** (Reorganized)
+| Document | Audience | Priority | Lines | Description |
+|----------|----------|----------|-------|-------------|
+| [System Architecture](./architecture/voither_system_architecture.md) | Technical | 🔴 Essential | 596 | Complete technical architecture |
+| [Technical Pipeline](./architecture/voither_technical_pipeline.md) | Developers | 🟡 Important | 390 | Data flow and processing |
+| [Core Concepts - 15 Dimensions](./core-concepts/15-dimensions.md) | All | 🔴 Essential | - | Dimensional framework |
+| [Core Concepts - MED Core](./core-concepts/med_core.md) | Technical | 🔴 Essential | 1,011 | Extraction engine |
+| [Core Concepts - Frameworks](./core-concepts/med_frameworks.md) | Researchers | 🟡 Important | 1,108 | Integration frameworks |
+| [DSL Specification](./dsl/.ee) | Developers | 🔴 Essential | 1,909 | **Unified .ee language** |
+
+### 🔄 **System Components** (Reorganized)
+| Document | Audience | Priority | Lines | Description |
+|----------|----------|----------|-------|-------------|
+| [VOITHER System - Implementation](./voither-system/voither_implementation_plan.md) | PM/Tech | 🟡 Important | 510 | Development roadmap |
+| [VOITHER System - Files Pipeline](./voither-system/VOITHER_files_pipeline.md) | Architects | 🟠 Advanced | 1,489 | Complete data pipeline |
+| [VOITHER System - Holofractor](./voither-system/voither_dimensional_holofractor.md) | Developers | 🟡 Important | 358 | 3D visualization |
+| [ReEngine - Section 01](./reengine/ReEngine_Sec_01.md) | Researchers | 🔵 Specialized | 1,261 | Advanced reasoning |
+| [ReEngine - Section 02](./reengine/ReEngine_Sec_02.md) | Researchers | 🔵 Specialized | 1,753 | Implementation details |
+| [Pipelines - ISER](./pipelines/iser_pipelines.md) | Developers | 🟠 Advanced | 338 | Processing pipelines |
+
+### 💾 **Data & Storage** (Reorganized)
+| Document | Audience | Priority | Lines | Description |
+|----------|----------|----------|-------|-------------|
+| [Database Design](./database/DB_ideas.md) | Architects | 🔵 Specialized | 409 | Database concepts |
+
+### 🚀 **Comprehensive Integration Documents** (Enhanced)
+| Document | Audience | Priority | Lines | Status | Description |
+|----------|----------|----------|-------|--------|-------------|
+| [**Ecosystem Coherence Analysis**](./VOITHER_ECOSYSTEM_COHERENCE_ANALYSIS.md) | All | 🔴 **NEW** | 1,200+ | ✅ Complete | **9.4/10 coherence assessment** |
+| [**AI Memory Persistence**](./AI_Memory_Persistence_Best_Practices_2025.md) | Technical | 🔴 **NEW** | 2,800+ | ✅ Complete | **Advanced memory patterns** |
+| [**BRRE Healthcare Spec**](./BRRE_Healthcare_Specification.md) | Clinical/Tech | 🔴 **NEW** | 3,200+ | ✅ Complete | **Clinical BRRE implementation** |
+| [**Emergenability Framework**](./Emergenability_Conceptual_Framework.md) | Researchers | 🔴 **NEW** | 2,400+ | ✅ Complete | **Theoretical foundation** |
+| [**DSL Consolidation Blueprint**](./ISER_RE_Consolidation_Blueprint.md) | Technical | 🔴 **NEW** | 2,900+ | ✅ Complete | **Unification roadmap** |
+| [**Knowledge Graph Journey**](./Knowledge_Graph_Jornada_Gustavo.md) | All | 🔴 **NEW** | 2,100+ | ✅ Complete | **Development narrative** |
+
+### 👥 **User Guides**
+| Document | Audience | Priority | Description |
+|----------|----------|----------|-------------|
+| [Clinician Quick Start](../guides/clinician-quickstart.md) | Clinicians | 🔴 Essential | 30-minute getting started guide |
+| [Developer Guide](../guides/developer-guide.md) | Developers | 🔴 Essential | Complete implementation guide |
+| [System Requirements](../guides/system-requirements.md) | IT/Admins | 🟡 Helpful | Technical requirements |
+| [Installation Guide](../guides/installation.md) | IT/Admins | 🟡 Helpful | Step-by-step setup |
+
+### 📖 **Additional Resources**
+- [Documentation System](./AI_DOCUMENTATION_SYSTEM.md)
+- [Getting Started Guide](./GETTING_STARTED.md)
+- [Contributing Guidelines](./CONTRIBUTING.md)
+- [Repository Improvements](./REPOSITORY_IMPROVEMENTS.md)
+- [Automation Status](./AUTOMATION_STATUS.md)
+
+## 📖 Reading Paths by Role
+
+### 🩺 **For Clinicians** (Mental Health Professionals)
+**Quick Start Path** (45 minutes):
+1. [README](../README.md) (10 min) - Project overview
+2. [Visual Clinical Workflow](./visualflows_charts/02_clinical_workflow_pipeline.md) (20 min) - **NEW: Complete visual guide**
+3. [Clinician Quick Start](../guides/clinician-quickstart.md) (30 min) - Hands-on guide
+4. [Knowledge Graph](VOITHER_Knowledge_Graph_Updated.md) (15 min) - Complete picture
+
+### 👨‍💻 **For Developers** (Software Engineers)
+**Technical Foundation** (1 hour):
+1. [README](../README.md) (10 min) - Project context
+2. [Visual System Architecture](./visualflows_charts/01_voither_system_architecture.md) (30 min) - **NEW: Complete visual overview**
+3. [Developer Guide](../guides/developer-guide.md) (45 min) - Implementation guide
+4. [DSL Specification](./dsl/.ee) (30 min) - **Unified .ee language**
+
+### 🔬 **For Researchers** (Academic/Clinical Research)
+**Theoretical Foundation** (2 hours):
+1. [Emergenability Framework](./Emergenability_Conceptual_Framework.md) (45 min) - **NEW: Complete theory**
+2. [Ecosystem Coherence Analysis](./VOITHER_ECOSYSTEM_COHERENCE_ANALYSIS.md) (30 min) - **NEW: 9.4/10 rating**
+3. [BRRE Healthcare Specification](./BRRE_Healthcare_Specification.md) (45 min) - **NEW: Clinical implementation**
+
+### 🏗️ **For System Architects** (Enterprise/Infrastructure)
+**Architecture Overview** (2 hours):
+1. [Visual System Architecture](./visualflows_charts/01_voither_system_architecture.md) (45 min) - **NEW: Complete visual**
+2. [Visual Infrastructure](./visualflows_charts/07_deployment_infrastructure.md) (45 min) - **NEW: Cloud-native design**
+3. [System Architecture](./architecture/voither_system_architecture.md) (30 min) - Technical details
+
+## 🎯 **Key Improvements in This Release**
+
+✅ **Complete Visual Architecture Suite** - 7 comprehensive visual charts  
+✅ **Unified .ee DSL** - Single language replacing .aje/.ire/.e/.Re complexity  
+✅ **9.4/10 Ecosystem Coherence** - Exceptional conceptual unity  
+✅ **Professional Repository Organization** - All components in docs/ structure  
+✅ **110,607+ New Characters** - 5 major missing documents completed  
+✅ **Production-Ready Specifications** - Complete technical implementation  
+
+---
+
+*This table of contents reflects the complete reorganization and comprehensive enhancement of the VOITHER documentation ecosystem. All visual flows use Mermaid.js for consistent, maintainable diagrams.*
 
 ### 👥 **User Guides**
 | Document | Audience | Priority | Description |
@@ -33,6 +139,7 @@
 | Document | Audience | Priority | Lines | Description |
 |----------|----------|----------|-------|-------------|
 | [System Architecture](../architecture/voither_system_architecture.md) | Technical | 🔴 Essential | 596 | Complete technical architecture |
+| [Automation Status](AUTOMATION_STATUS.md) | Admins/Devs | 🟢 New | 285 | How automations work & monitoring |
 | [Implementation Plan](../voither-system/voither_implementation_plan.md) | PM/Tech | 🟡 Important | 510 | Development roadmap |
 | [Technical Pipeline](../architecture/voither_technical_pipeline.md) | Developers | 🟡 Important | 390 | Data flow and processing |
 | [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) | Architects | 🟠 Advanced | 1,489 | Complete data pipeline |
