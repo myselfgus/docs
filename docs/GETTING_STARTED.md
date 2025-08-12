@@ -29,7 +29,7 @@ Choose your path based on your role and immediate needs:
 **Then Explore:**
 - [System Overview](VOITHER_Knowledge_Graph_Updated.md) - Complete picture
 - [15 Dimensions Deep Dive](../core-concepts/med_core.md) - Understanding the science
-- [Clinical Templates](../templates/voither_primeira_consulta_template.py) - Practical examples
+- [Clinical Templates](guides/research/voither_primeira_consulta_template.py) - Practical examples
 
 ### 👨‍💻 **I'm a Developer**
 *"I need to implement, integrate, or extend VOITHER"*
@@ -42,7 +42,7 @@ Choose your path based on your role and immediate needs:
 
 **Then Explore:**
 - [System Architecture](../architecture/voither_system_architecture.md) - Technical foundation
-- [MED Engine Implementation](../voither-system/voither_med_implementation.md) - Core AI system
+- [MED Engine Implementation](docs/voither-system/voither_med_implementation.md) - Core AI system
 - [Technical Pipeline](../architecture/voither_technical_pipeline.md) - Data flow details
 
 ### 🔬 **I'm a Researcher**
@@ -55,9 +55,9 @@ Choose your path based on your role and immediate needs:
 - Academic applications
 
 **Then Explore:**
-- [Mental Geometry](../research/geometria_afetos_cognicao.md) - Theoretical foundation
+- [Mental Geometry](guides/research/geometria_afetos_cognicao.md) - Theoretical foundation
 - [Framework Integration](../core-concepts/med_frameworks.md) - RDoC, HiTOP, Big Five
-- [ReEngine Framework](../reengine/ReEngine_Sec_01.md) - Advanced AI reasoning
+- [ReEngine Framework](docs/reengine/ReEngine_Sec_01.md) - Advanced AI reasoning
 
 ### 🏗️ **I'm a System Architect**
 *"I need to plan infrastructure and integration strategy"*
@@ -69,14 +69,14 @@ Choose your path based on your role and immediate needs:
 - Azure integration patterns
 
 **Then Explore:**
-- [Files Pipeline](../voither-system/VOITHER_files_pipeline.md) - Data architecture
-- [Orchestrator](../voither-system/voither_orchestrator_doc.md) - System coordination
-- [Database Design](../database/DB_ideas.md) - Storage strategy
+- [Files Pipeline](docs/voither-system/VOITHER_files_pipeline.md) - Data architecture
+- [Orchestrator](docs/voither-system/voither_orchestrator_doc.md) - System coordination
+- [Database Design](docs/database/DB_ideas.md) - Storage strategy
 
 ### 📊 **I'm a Project Manager**
 *"I need to understand scope, timeline, and resource requirements"*
 
-**Start Here:** [README](../README.md) + [Implementation Plan](../voither-system/voither_implementation_plan.md) (30 min)
+**Start Here:** [README](../README.md) + [Implementation Plan](docs/voither-system/voither_implementation_plan.md) (30 min)
 - Project vision and scope
 - Development roadmap
 - Resource requirements
@@ -189,7 +189,7 @@ After exploring VOITHER documentation, you should be able to:
 - **"Where do I start coding?"** → [Developer Guide](../guides/developer-guide.md)
 - **"How does the AI work?"** → [MED Core](../core-concepts/med_core.md)
 - **"What about data privacy?"** → [System Architecture - Security](../architecture/voither_system_architecture.md#13-segurança-e-conformidade-por-design)
-- **"Can this integrate with our EHR?"** → [FHIR Integration](../voither-system/voither_orchestrator_doc.md)
+- **"Can this integrate with our EHR?"** → [FHIR Integration](docs/voither-system/voither_orchestrator_doc.md)
 
 ### **Finding Specific Information**
 - **Complete document list**: [Documentation Index](DOCUMENTATION_INDEX.md)

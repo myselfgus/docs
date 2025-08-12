@@ -138,7 +138,7 @@ class DocumentationValidator:
 > **💡 Related Content**
 > - For implementation details: [MED Core](../core-concepts/med_core.md)
 > - For clinical use: [Clinician Guide](../guides/clinician-quickstart.md)
-> - For research context: [Mental Geometry](../research/geometria_afetos_cognicao.md)
+> - For research context: [Mental Geometry](guides/research/geometria_afetos_cognicao.md)
 
 > **🔄 Prerequisites**
 > Before reading this section, review:

@@ -157,6 +157,8 @@ def main():
                         help='Directory to check (default: current directory)')
     parser.add_argument('--quick', action='store_true',
                         help='Quick check - skip detailed link validation')
+    parser.add_argument('--auto-fix', action='store_true',
+                        help='Automatically fix common link issues')
     
     args = parser.parse_args()
     
@@ -168,7 +170,15 @@ def main():
     
     print(f"🔍 VOITHER Documentation Validator")
     print(f"📁 Directory: {directory}")
+    if args.auto_fix:
+        print(f"🔧 Auto-fix mode: Enabled")
     print("=" * 50)
+    
+    # Auto-fix common issues if requested
+    if args.auto_fix:
+        print("🔧 Attempting to auto-fix common link issues...")
+        auto_fix_common_issues(directory)
+        print("✅ Auto-fix completed\n")
     
     # Check required files
     required_files_ok = check_required_files(directory)
@@ -191,6 +201,64 @@ def main():
         print("📋 This is a warning only - workflow will continue")
         print("✅ Documentation validation completed (non-blocking)")
         sys.exit(0)
+
+def auto_fix_common_issues(directory):
+    """Auto-fix common link issues in documentation"""
+    import glob
+    import re
+    
+    md_files = glob.glob(os.path.join(directory, "**/*.md"), recursive=True)
+    fixes_applied = 0
+    
+    for md_file in md_files:
+        # Skip raw backup files
+        if "raw/" in md_file or "/raw/" in md_file:
+            continue
+            
+        try:
+            with open(md_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            original_content = content
+            
+            # Fix common link patterns based on repository structure
+            # Fix paths that should point to guides/research/
+            content = re.sub(r'\]\(\.\.?/templates/', '](guides/research/', content)
+            content = re.sub(r'\]\(\.\.?/research/(?!README\.md)', '](guides/research/', content)
+            
+            # Fix paths for moved architecture files
+            content = re.sub(r'\]\(\.\.?/architecture/VOITHER_BUILD_FOCUSED_APPROACH\.md', '](docs/architecture/VOITHER_BUILD_FOCUSED_APPROACH.md', content)
+            content = re.sub(r'\]\(\.\.?/architecture/AI_NATIVE_A2A_ECOSYSTEM_BLUEPRINT\.md', '](docs/architecture/AI_NATIVE_A2A_ECOSYSTEM_BLUEPRINT.md', content)
+            
+            # Fix relative path inconsistencies for voither-system
+            content = re.sub(r'\]\(\.\.?/voither-system/', '](docs/voither-system/', content)
+            
+            # Fix core-concepts paths that should now be in docs/core-concepts/
+            content = re.sub(r'\]\(\.\.?/core-concepts/(?!med_frameworks\.md|15-dimensions\.md|emergence_enabled_ee\.md|autoagency\.md|med_core\.md|apothecary_engine\.md)', '](docs/core-concepts/', content)
+            
+            # Fix reengine paths
+            content = re.sub(r'\]\(\.\.?/reengine/', '](docs/reengine/', content)
+            
+            # Fix database paths
+            content = re.sub(r'\]\(\.\.?/database/', '](docs/database/', content)
+            
+            # Fix pipelines paths
+            content = re.sub(r'\]\(\.\.?/pipelines/', '](docs/pipelines/', content)
+            
+            if content != original_content:
+                with open(md_file, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                fixes_applied += 1
+                rel_path = os.path.relpath(md_file, directory)
+                print(f"🔧 Auto-fixed links in: {rel_path}")
+        
+        except Exception as e:
+            print(f"⚠️ Could not process {md_file}: {e}")
+    
+    if fixes_applied > 0:
+        print(f"✅ Applied {fixes_applied} automatic link fixes")
+    else:
+        print("ℹ️ No common link issues found to auto-fix")
 
 if __name__ == '__main__':
     main()

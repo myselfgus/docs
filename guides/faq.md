@@ -252,4 +252,4 @@ Additional resources:
 - **[Knowledge Graph](../docs/VOITHER_Knowledge_Graph_Updated.md)**: Complete system overview
 - **[System Architecture](../architecture/voither_system_architecture.md)**: Technical details
 - **[Developer Guide](developer-guide.md)**: Implementation guidance
-- **[Research Papers](../research/)**: Scientific foundations
+- **[Research Papers](guides/research/)**: Scientific foundations

@@ -99,8 +99,8 @@ VOITHER Platform
 | **MED Core** | ✅ Implemented | 🟢 Full | [Complete](../core-concepts/med_core.md) |
 | **AutoAgency** | ⚠️ Needs Update | 🟡 Partial | [Needs Review](../core-concepts/autoagency.md) |
 | **Apothecary** | 🔄 Development | 🟡 Partial | [In Progress](../core-concepts/apothecary_engine.md) |
-| **Holofractor** | 🔄 Development | 🟡 Partial | [In Progress](../voither-system/voither_dimensional_holofractor.md) |
-| **Orchestrator** | 🔄 Development | 🟡 Partial | [In Progress](../voither-system/voither_orchestrator_doc.md) |
+| **Holofractor** | 🔄 Development | 🟡 Partial | [In Progress](docs/voither-system/voither_dimensional_holofractor.md) |
+| **Orchestrator** | 🔄 Development | 🟡 Partial | [In Progress](docs/voither-system/voither_orchestrator_doc.md) |
 
 ### 1.2 Business Value Proposition
 
@@ -169,7 +169,7 @@ graph TB
 ## 2. Theoretical Foundation
 
 ### 2.1 Mental Space Geometry
-**Source**: [Mental Geometry Research](../research/geometria_afetos_cognicao.md)
+**Source**: [Mental Geometry Research](guides/research/geometria_afetos_cognicao.md)
 
 The VOITHER system is built on the revolutionary concept of **mental space geometry**, which proposes that psychological states can be mathematically represented in multi-dimensional space.
 
@@ -400,7 +400,7 @@ class AutoAgency:
 - **Treatment Efficacy Tracking** - Outcome prediction modeling
 
 ### 5.3 Narrative Agent - AI Documentation
-**Source**: [Narrative Agent](../voither-system/voither_narrative_agent.md)
+**Source**: [Narrative Agent](docs/voither-system/voither_narrative_agent.md)
 **Status**: 🔄 Development - AI-powered clinical documentation
 
 #### Narrative Generation Capabilities:
@@ -427,12 +427,12 @@ class AutoAgency:
 
 ### 🏥 Clinical Quick Links:
 - **[Clinician Guide](../guides/clinician-quickstart.md)** - Clinical implementation
-- **[Templates](../templates/)** - Clinical workflow templates
+- **[Templates](guides/research/)** - Clinical workflow templates
 - **[Framework Integration](../core-concepts/med_frameworks.md)** - Clinical frameworks
 
 ### 🔬 Research Quick Links:
-- **[Mental Geometry](../research/geometria_afetos_cognicao.md)** - Theoretical foundation
-- **[ReEngine Framework](../reengine/ReEngine_Sec_01.md)** - Advanced reasoning
+- **[Mental Geometry](guides/research/geometria_afetos_cognicao.md)** - Theoretical foundation
+- **[ReEngine Framework](docs/reengine/ReEngine_Sec_01.md)** - Advanced reasoning
 - **[Emergence Systems](../core-concepts/emergence_enabled_ee.md)** - AI architecture
 
 ---
