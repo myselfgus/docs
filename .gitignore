@@ -93,3 +93,24 @@ wip-*.md
 *.tmp.gif
 *.tmp.mp4
 *.processing.*
+
+# GitHub Actions generated artifacts and reports
+*_report.json
+*_results.json
+link_validation_report.json
+ai_verification_report.json
+security_compliance_report.json
+integrated_validation_report.json
+ai_orchestrated_project_result.json
+voither_core_setup_results.json
+integration_summary.json
+docs_stats.txt
+copilot_prompt.md
+copilot_instructions.md
+current_state.md
+documentation_update_summary.md
+
+# Generated VOITHER core files (when created by workflows)
+voither-core/
+ai_coordinated_project_result.json
+voither_setup_report.json
