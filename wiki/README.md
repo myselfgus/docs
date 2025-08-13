@@ -32,7 +32,6 @@ Bem-vindo à Wiki completa do VOITHER - Sistema de Análise de Saúde Mental Bas
 
 ### 🔬 Pesquisa e Teoria
 - [**Base Científica**](Base_Cientifica.md) - Fundamentos acadêmicos e pesquisa
-- [**Papers e Publicações**](Papers_Publicacoes.md) - Literatura científica relacionada
 
 ---
 
