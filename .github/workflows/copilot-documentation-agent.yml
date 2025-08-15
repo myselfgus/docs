@@ -67,13 +67,13 @@ jobs:
           - **Timestamp**: $(date '+%Y-%m-%d %H:%M:%S UTC')
           
           ## User Instruction
-          ${{ inputs.instruction }}
+          ${{ github.event.inputs.instruction || 'Update documentation following established standards' }}
           
           ## Update Scope
-          ${{ inputs.update_scope }}
+          ${{ github.event.inputs.update_scope || 'comprehensive' }}
           
           ## Target Files
-          ${{ inputs.target_files || 'All documentation files' }}
+          ${{ github.event.inputs.target_files || 'All documentation files' }}
           
           ## Established Documentation Standards
           
@@ -150,11 +150,15 @@ jobs:
             });
             
             // Tag Copilot in a comment
+            const instruction = context.payload.inputs?.instruction || 'Update documentation following established standards';
+            const updateScope = context.payload.inputs?.update_scope || 'comprehensive';
+            const targetFiles = context.payload.inputs?.target_files || '';
+            
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue.data.number,
-              body: `@copilot ${context.payload.inputs.instruction}\n\nScope: ${context.payload.inputs.update_scope}${context.payload.inputs.target_files ? `\nTarget files: ${context.payload.inputs.target_files}` : ''}`
+              body: `@copilot ${instruction}\n\nScope: ${updateScope}${targetFiles ? `\nTarget files: ${targetFiles}` : ''}`
             });
             
             console.log(`Created issue #${issue.data.number} for Copilot Agent`);
@@ -180,7 +184,7 @@ jobs:
         run: |
           echo "📚 Copilot Documentation Agent workflow completed"
           echo "🎯 Issue created for Copilot Agent: #${{ steps.create_issue.outputs.result }}"
-          echo "📋 Instructions: ${{ inputs.instruction }}"
-          echo "🔧 Scope: ${{ inputs.update_scope }}"
-          echo "📁 Target files: ${{ inputs.target_files || 'All documentation files' }}"
+          echo "📋 Instructions: ${{ github.event.inputs.instruction || 'Update documentation following established standards' }}"
+          echo "🔧 Scope: ${{ github.event.inputs.update_scope || 'comprehensive' }}"
+          echo "📁 Target files: ${{ github.event.inputs.target_files || 'All documentation files' }}"
           echo "⏰ Timestamp: $(date '+%Y-%m-%d %H:%M:%S UTC')"
