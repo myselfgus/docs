@@ -1,0 +1,116 @@
+# VOITHER Documentation .gitignore
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Build outputs
+/build/
+/dist/
+/output/
+
+# Documentation tools
+.spell-cache
+.link-check-cache
+.markdown-lint-cache
+
+# Node.js (if using JS tools)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using Python tools)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Generated files (auto-updated by scripts)
+# Note: We don't ignore these as they're part of the documentation
+# but mark them clearly as auto-generated
+# DOCUMENTATION_INDEX.md  # Auto-generated but committed
+# METADATA.md             # Auto-generated but committed
+
+# Log files
+*.log
+logs/
+
+# Cache directories
+.cache/
+.tmp/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Documentation site builds (if using static site generators)
+site/
+public/
+_site/
+
+# Backup files
+*.orig
+*.rej
+
+# Lock files for documentation tools
+package-lock.json
+yarn.lock
+Pipfile.lock
+
+# Temporary markdown files
+draft-*.md
+temp-*.md
+wip-*.md
+
+# Media processing temporary files
+*.tmp.png
+*.tmp.jpg
+*.tmp.gif
+*.tmp.mp4
+*.processing.*
+
+# GitHub Actions generated artifacts and reports
+*_report.json
+*_results.json
+link_validation_report.json
+ai_verification_report.json
+security_compliance_report.json
+integrated_validation_report.json
+ai_orchestrated_project_result.json
+voither_core_setup_results.json
+integration_summary.json
+docs_stats.txt
+copilot_prompt.md
+copilot_instructions.md
+current_state.md
+documentation_update_summary.md
+
+# Generated VOITHER core files (when created by workflows)
+voither-core/
+ai_coordinated_project_result.json
+voither_setup_report.json

@@ -1,0 +1,4031 @@
+{
+  "audit_metadata": {
+    "report_generated": "2025-08-11T08:12:45.671914",
+    "verification_system": "AI_Content_Verifier_v1.0",
+    "repository": ".",
+    "verification_standards": "VOITHER_Documentation_Standards_v2.0"
+  },
+  "executive_summary": {
+    "total_documents_analyzed": 46,
+    "average_quality_score": 80.46,
+    "quality_distribution": {
+      "excellent_quality": 14,
+      "good_quality": 1,
+      "acceptable_quality": 24,
+      "needs_improvement": 7
+    },
+    "compliance_rate": "32.6%"
+  },
+  "detailed_results": {
+    "verification_timestamp": "2025-08-11T08:12:45.299498",
+    "total_documents": 46,
+    "documents_verified": 46,
+    "average_quality_score": 80.46,
+    "documents": [
+      {
+        "file": "README.md",
+        "timestamp": "2025-08-11T08:12:45.301227",
+        "content_hash": "1bb2bc44b538220626327f80c90ff361",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 70,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: LGPD",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: CONTRIBUTING",
+            "Undefined technical term: API",
+            "Undefined technical term: IEC",
+            "Undefined technical term: GDPR",
+            "Undefined technical term: SOAP",
+            "Undefined technical term: EHR",
+            "Undefined technical term: FAQ",
+            "Undefined technical term: SQL",
+            "Undefined technical term: NVIDIA",
+            "Undefined technical term: NLP",
+            "Undefined technical term: README",
+            "Undefined technical term: DAP"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+            "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 77.5,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.306490",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "reengine/ReEngine_Sec_03.md",
+        "timestamp": "2025-08-11T08:12:45.307086",
+        "content_hash": "3885d112b2383c041edde4f43d904655",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 68,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: RUN",
+            "Undefined technical term: ISER",
+            "Undefined technical term: CEE",
+            "Undefined technical term: DSE",
+            "Undefined technical term: DESIGN",
+            "Undefined technical term: RHIZOMATIC",
+            "Undefined technical term: FIRST",
+            "Undefined technical term: DURATIONAL",
+            "Undefined technical term: INTELLIGENCE",
+            "Undefined technical term: MEMORY",
+            "Undefined technical term: PARTNERSHIP",
+            "Undefined technical term: ESM",
+            "Undefined technical term: BRRE",
+            "Undefined technical term: USER",
+            "Undefined technical term: CREATIVE",
+            "Undefined technical term: EMERGENABILITY"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 75.47,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.330415",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "reengine/ReEngine_Sec_01.md",
+        "timestamp": "2025-08-11T08:12:45.330928",
+        "content_hash": "c85df0187333d3c55e0dc58ea505ceb4",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": -76,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: ENERGETIC",
+            "Undefined technical term: FLOAT",
+            "Undefined technical term: HAS",
+            "Undefined technical term: NARRATIVE",
+            "Undefined technical term: RELATIONAL",
+            "Undefined technical term: EMERGENABILITY",
+            "Undefined technical term: ACTUALIZES",
+            "Undefined technical term: CHRONIC",
+            "Undefined technical term: SUFFICIENT",
+            "Undefined technical term: SURFACE",
+            "Undefined technical term: III",
+            "Undefined technical term: ACTUALIZATION",
+            "Undefined technical term: PRIMARY",
+            "Undefined technical term: REQUIRES",
+            "Undefined technical term: COMMISSIVE",
+            "Undefined technical term: ADEQUATE",
+            "Undefined technical term: UNFOLD",
+            "Undefined technical term: DIRECTIVE",
+            "Undefined technical term: TEMPORAL",
+            "Undefined technical term: ACTUALIZE",
+            "Undefined technical term: NECESSARY",
+            "Undefined technical term: AND",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: COMPONENTS",
+            "Undefined technical term: CRYSTALLIZE",
+            "Undefined technical term: GENERALIZATION",
+            "Undefined technical term: TESTABILITY",
+            "Undefined technical term: OBSERVATION",
+            "Undefined technical term: ISER",
+            "Undefined technical term: PSYCHIC",
+            "Undefined technical term: SECONDARY",
+            "Undefined technical term: ARE",
+            "Undefined technical term: AXIS",
+            "Undefined technical term: CRITICAL",
+            "Undefined technical term: LIST",
+            "Undefined technical term: CONTEXT",
+            "Undefined technical term: RULE",
+            "Undefined technical term: WEIGHTED",
+            "Undefined technical term: ASSERTIVE",
+            "Undefined technical term: PATTERN",
+            "Undefined technical term: EPISODIC",
+            "Undefined technical term: BOOLEAN",
+            "Undefined technical term: ENVIRONMENTAL",
+            "Undefined technical term: INDICATOR",
+            "Undefined technical term: DYNAMIC",
+            "Undefined technical term: ACTUALIZING",
+            "Undefined technical term: UNDER",
+            "Undefined technical term: PROBABILITY",
+            "Undefined technical term: INFORMATIONAL",
+            "Undefined technical term: PART",
+            "Undefined technical term: CONFIDENCE",
+            "Undefined technical term: LATENT",
+            "Undefined technical term: WILL",
+            "Undefined technical term: ACTUALIZED",
+            "Undefined technical term: ENABLES",
+            "Undefined technical term: MANIFEST",
+            "Undefined technical term: EXISTENTIAL",
+            "Undefined technical term: ARISE",
+            "Undefined technical term: TERTIARY",
+            "Undefined technical term: CONDITIONS",
+            "Undefined technical term: SOCIAL",
+            "Undefined technical term: MINIMAL",
+            "Undefined technical term: THEN",
+            "Undefined technical term: ABILITY",
+            "Undefined technical term: CONDITION",
+            "Undefined technical term: OPTIMAL",
+            "Undefined technical term: WEAK",
+            "Undefined technical term: CONCLUSION",
+            "Undefined technical term: SYNCHRONIZES",
+            "Undefined technical term: API",
+            "Undefined technical term: SIMPLICITY",
+            "Undefined technical term: INFLUENCES",
+            "Undefined technical term: DECLARATIVE",
+            "Undefined technical term: CONDITIONAL",
+            "Undefined technical term: EMERGE",
+            "Undefined technical term: SOMATIC",
+            "Undefined technical term: SET",
+            "Undefined technical term: FUNCTION",
+            "Undefined technical term: POTENTIAL",
+            "Undefined technical term: OBSERVATIONS",
+            "Undefined technical term: PERIODIC",
+            "Undefined technical term: HIGH",
+            "Undefined technical term: STRICT",
+            "Undefined technical term: ACTIVATING",
+            "Undefined technical term: EXPRESSIVE",
+            "Undefined technical term: CONNECTS",
+            "Undefined technical term: MODERATE",
+            "Undefined technical term: ENHANCING"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 60,
+          "citation_quality": 80,
+          "fact_checking": {
+            "768_dimensions": "needs_verification",
+            "256_dimensions": "needs_verification"
+          },
+          "warnings": [
+            "Claim of 768 dimensions needs verification",
+            "Claim of 256 dimensions needs verification",
+            "Claim of 256 dimensions needs verification",
+            "Claim of 256 dimensions needs verification",
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 56.9,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Claim of 768 dimensions needs verification",
+          "Claim of 256 dimensions needs verification",
+          "Claim of 256 dimensions needs verification",
+          "Claim of 256 dimensions needs verification",
+          "Long content lacks proper citations",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.341999",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "reengine/ReEngine_Sec_04.md",
+        "timestamp": "2025-08-11T08:12:45.342486",
+        "content_hash": "40e35a96f3fa01ac8597ac2128b862aa",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 64,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: SIMD",
+            "Undefined technical term: SEAL",
+            "Undefined technical term: CPU",
+            "Undefined technical term: API",
+            "Undefined technical term: CUDA",
+            "Undefined technical term: GPU",
+            "Undefined technical term: DEBUG",
+            "Undefined technical term: BLAS",
+            "Undefined technical term: FFT",
+            "Undefined technical term: ISER",
+            "Undefined technical term: HIGH",
+            "Undefined technical term: MINIMAL",
+            "Undefined technical term: CKKS",
+            "Undefined technical term: FFI",
+            "Undefined technical term: EPSILON",
+            "Undefined technical term: LOW",
+            "Undefined technical term: MEDIUM",
+            "Undefined technical term: SGD"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 77.57,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.373028",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "reengine/ReEngine_Sec_02.md",
+        "timestamp": "2025-08-11T08:12:45.373549",
+        "content_hash": "d14aa0bcd075422a20c365147d129532",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 80,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: LRP",
+            "Undefined technical term: ISER",
+            "Undefined technical term: PAE",
+            "Undefined technical term: NSE",
+            "Undefined technical term: RMN",
+            "Undefined technical term: TPR",
+            "Undefined technical term: TEA",
+            "Undefined technical term: BTP",
+            "Undefined technical term: ESA",
+            "Undefined technical term: BRRE"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 77.5,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.390007",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/README.md",
+        "timestamp": "2025-08-11T08:12:45.390656",
+        "content_hash": "bdc5f0eaab38c704860282c5061400c7",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 94,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: SIM",
+            "Undefined technical term: LLM",
+            "Undefined technical term: API"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 98.15,
+        "improvement_suggestions": [
+          "Technical content lacks code examples"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.391659",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/file-processing-matrix.md",
+        "timestamp": "2025-08-11T08:12:45.392098",
+        "content_hash": "1917f6de87261ead8e0422b08a32b2e4",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 80,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: VALIDATE",
+            "Undefined technical term: DOCUMENT",
+            "Undefined technical term: ANALYZE",
+            "Undefined technical term: DETECT",
+            "Undefined technical term: CONFIG",
+            "Undefined technical term: COMMIT",
+            "Undefined technical term: JSON",
+            "Undefined technical term: YAML",
+            "Undefined technical term: PARSE",
+            "Undefined technical term: API"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 95.5,
+        "improvement_suggestions": [
+          "Long content lacks proper citations"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.394909",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/main-automation-pipeline.md",
+        "timestamp": "2025-08-11T08:12:45.395302",
+        "content_hash": "13dbf886938aa57eb4809ce6f93983cc",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_2_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 82,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: AUTOMATED",
+            "Undefined technical term: NOTIFY",
+            "Undefined technical term: DOCUMENTATION",
+            "Undefined technical term: END",
+            "Undefined technical term: BRANCH",
+            "Undefined technical term: PUSH",
+            "Undefined technical term: SUCCESS",
+            "Undefined technical term: HEAD",
+            "Undefined technical term: UPDATE"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 95.7,
+        "improvement_suggestions": [
+          "Long content lacks proper citations"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.396777",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/error-handling-fallbacks.md",
+        "timestamp": "2025-08-11T08:12:45.397185",
+        "content_hash": "04d157515e760dc6f9e75a0b774c9cad",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 78,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: ROLLBACK",
+            "Undefined technical term: EMERGENCY",
+            "Undefined technical term: MINIMAL",
+            "Undefined technical term: START",
+            "Undefined technical term: INITIATED",
+            "Undefined technical term: DEBUG",
+            "Undefined technical term: ERROR",
+            "Undefined technical term: SUCCESS",
+            "Undefined technical term: HEAD",
+            "Undefined technical term: EXECUTION",
+            "Undefined technical term: RESULT"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 95.3,
+        "improvement_suggestions": [
+          "Long content lacks proper citations"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.400141",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/copilot-agent-workflow.md",
+        "timestamp": "2025-08-11T08:12:45.400569",
+        "content_hash": "61fa8dd8590e180fda4b596e0d9c33d0",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 64,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: TAXONOMY",
+            "Undefined technical term: INPUT",
+            "Undefined technical term: TAG",
+            "Undefined technical term: COMPREHENSIVE",
+            "Undefined technical term: PREPARE",
+            "Undefined technical term: CONTRIBUTING",
+            "Undefined technical term: TRIGGER",
+            "Undefined technical term: YAML",
+            "Undefined technical term: START",
+            "Undefined technical term: AUTO",
+            "Undefined technical term: DECISION",
+            "Undefined technical term: CONCEPTS",
+            "Undefined technical term: SUCCESS",
+            "Undefined technical term: RELATIONS",
+            "Undefined technical term: MANUAL",
+            "Undefined technical term: ONTOLOGICAL",
+            "Undefined technical term: ISSUE",
+            "Undefined technical term: CONTEXT"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 93.4,
+        "improvement_suggestions": [
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Long content lacks proper citations"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.403792",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "workflows/complete-system-flow.md",
+        "timestamp": "2025-08-11T08:12:45.404180",
+        "content_hash": "b4f3f3b93477ed15c6bcbcf7da2ad21e",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_5_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 38,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: NOTIFY",
+            "Undefined technical term: RETRY",
+            "Undefined technical term: HEAD",
+            "Undefined technical term: MAKEFILE",
+            "Undefined technical term: TRANSFORMER",
+            "Undefined technical term: GUIDES",
+            "Undefined technical term: CPU",
+            "Undefined technical term: API",
+            "Undefined technical term: VALIDATOR",
+            "Undefined technical term: SUCCESS",
+            "Undefined technical term: COMPLIANCE",
+            "Undefined technical term: MANUAL",
+            "Undefined technical term: PARSER",
+            "Undefined technical term: DOCUMENTATION",
+            "Undefined technical term: UPLOAD",
+            "Undefined technical term: RULES",
+            "Undefined technical term: REPO",
+            "Undefined technical term: CONFIG",
+            "Undefined technical term: VALIDATION",
+            "Undefined technical term: CLASSIFY",
+            "Undefined technical term: FILES",
+            "Undefined technical term: LOG",
+            "Undefined technical term: FRONTMATTER",
+            "Undefined technical term: TOC",
+            "Undefined technical term: WORKFLOWS",
+            "Undefined technical term: NOTIFICATIONS",
+            "Undefined technical term: ONTOLOGICAL",
+            "Undefined technical term: ERROR",
+            "Undefined technical term: ISSUE",
+            "Undefined technical term: ANALYZER",
+            "Undefined technical term: REPORTS"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 91.3,
+        "improvement_suggestions": [
+          "Long content lacks proper citations"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.407397",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/DOCUMENTATION_INDEX.md",
+        "timestamp": "2025-08-11T08:12:45.407660",
+        "content_hash": "dc660d1d7ff39656cf6d36c71bc20634",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 94,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: ISER",
+            "Undefined technical term: README",
+            "Undefined technical term: API"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 95,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": [
+            "Inconsistent link paths: ['../voither-system/voither_implementation_plan.md', '../voither-system/voither_med_implementation.md', '../voither-system/voither_orchestrator_doc.md']"
+          ]
+        },
+        "quality_score": 79.65,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use",
+          "Inconsistent link paths: ['../voither-system/voither_implementation_plan.md', '../voither-system/voither_med_implementation.md', '../voither-system/voither_orchestrator_doc.md']",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.411340",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/TABLE_OF_CONTENTS.md",
+        "timestamp": "2025-08-11T08:12:45.411629",
+        "content_hash": "61b586bd3fcc0bf5b27e8b42b643907f",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 88,
+          "standardization_score": 80,
+          "inconsistencies": [
+            "Undefined technical term: ICO",
+            "Undefined technical term: MOV",
+            "Undefined technical term: ISER",
+            "Undefined technical term: DSL",
+            "Undefined technical term: PNG",
+            "Undefined technical term: README"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+            "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 95,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": [
+            "Inconsistent link paths: ['../README.md', '../README.md', '../voither-system/voither_implementation_plan.md']"
+          ]
+        },
+        "quality_score": 77.3,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Technical content lacks code examples",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use",
+          "Inconsistent link paths: ['../README.md', '../README.md', '../voither-system/voither_implementation_plan.md']",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.417296",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/VOITHER_Knowledge_Graph_Updated.md",
+        "timestamp": "2025-08-11T08:12:45.417842",
+        "content_hash": "70d1eb887842c6c836f0f8e44948d695",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_4_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_6_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": -228,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: LGPD",
+            "Undefined technical term: LLM",
+            "Undefined technical term: MELHORIAS",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: CONCEITUAIS",
+            "Undefined technical term: CONCEITUAL",
+            "Undefined technical term: TRABALHO",
+            "Undefined technical term: RECOMENDADAS",
+            "Undefined technical term: ESTABELECIDO",
+            "Undefined technical term: SISTEMA",
+            "Undefined technical term: AGENT",
+            "Undefined technical term: EMERGENABILITY",
+            "Undefined technical term: SOAP",
+            "Undefined technical term: BIRT",
+            "Undefined technical term: OMNIVERSE",
+            "Undefined technical term: TEMPLATES",
+            "Undefined technical term: DOCUMENTATION",
+            "Undefined technical term: ICF",
+            "Undefined technical term: IMPLEMENTADO",
+            "Undefined technical term: HSL",
+            "Undefined technical term: JSON",
+            "Undefined technical term: NATURAL",
+            "Undefined technical term: VISUAL",
+            "Undefined technical term: WORKFLOW",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: FRAMEWORKS",
+            "Undefined technical term: FUTURO",
+            "Undefined technical term: COMPETITIVAS",
+            "Undefined technical term: MAPEADOS",
+            "Undefined technical term: PMP",
+            "Undefined technical term: NVIDIA",
+            "Undefined technical term: ISO",
+            "Undefined technical term: CONCEITOS",
+            "Undefined technical term: ENTREGUE",
+            "Undefined technical term: THREE",
+            "Undefined technical term: CLINIC",
+            "Undefined technical term: PLANEJADAS",
+            "Undefined technical term: ENGAJAMENTO",
+            "Undefined technical term: KNOWLEDGE",
+            "Undefined technical term: TDAH",
+            "Undefined technical term: SUS",
+            "Undefined technical term: WHO",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: DSL",
+            "Undefined technical term: MOTOR",
+            "Undefined technical term: CRIADA",
+            "Undefined technical term: EVOLUTIVA",
+            "Undefined technical term: COMPONENTES",
+            "Undefined technical term: SIM",
+            "Undefined technical term: ATUAL",
+            "Undefined technical term: REAL",
+            "Undefined technical term: MAPEAMENTO",
+            "Undefined technical term: COMPREHENSIVE",
+            "Undefined technical term: IMEDIATAS",
+            "Undefined technical term: UNIFICADO",
+            "Undefined technical term: ACT",
+            "Undefined technical term: PARADIGMA",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: DETALHADA",
+            "Undefined technical term: COMPLIANCE",
+            "Undefined technical term: SISTEMAS",
+            "Undefined technical term: BIRP",
+            "Undefined technical term: AGENTE",
+            "Undefined technical term: FASE",
+            "Undefined technical term: COMPLETAMENTE",
+            "Undefined technical term: ENTIDADES",
+            "Undefined technical term: REALIZADO",
+            "Undefined technical term: TEMPO",
+            "Undefined technical term: DOS",
+            "Undefined technical term: FIBER",
+            "Undefined technical term: AMBIENTE",
+            "Undefined technical term: MENTAL",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: RELACIONAMENTOS",
+            "Undefined technical term: RESTRUCTURE",
+            "Undefined technical term: HOLOFRACTOR",
+            "Undefined technical term: FUNDAMENTAIS",
+            "Undefined technical term: STACK",
+            "Undefined technical term: PIPELINE",
+            "Undefined technical term: TCC",
+            "Undefined technical term: NLP",
+            "Undefined technical term: COMPLETO",
+            "Undefined technical term: PLANO",
+            "Undefined technical term: JANEIRO",
+            "Undefined technical term: NOVO",
+            "Undefined technical term: CRITICAL",
+            "Undefined technical term: ATUALIZADO",
+            "Undefined technical term: ARQUITETURA",
+            "Undefined technical term: IMPLEMENTADOS",
+            "Undefined technical term: SERVICE",
+            "Undefined technical term: ENTRE",
+            "Undefined technical term: ROADMAP",
+            "Undefined technical term: FINAIS",
+            "Undefined technical term: PROFUNDA",
+            "Undefined technical term: RECURSOS",
+            "Undefined technical term: TRIGGER",
+            "Undefined technical term: CAPS",
+            "Undefined technical term: SOCIAIS",
+            "Undefined technical term: DBT",
+            "Undefined technical term: VANTAGENS",
+            "Undefined technical term: UPDATE",
+            "Undefined technical term: ESTRUTURA",
+            "Undefined technical term: FOUNDATION",
+            "Undefined technical term: METADATA",
+            "Undefined technical term: INTEGRATION",
+            "Undefined technical term: PCA",
+            "Undefined technical term: PRINCIPAIS",
+            "Undefined technical term: INTEGRADO",
+            "Undefined technical term: COPILOT",
+            "Undefined technical term: FRAMEWORK",
+            "Undefined technical term: MOMENTOS",
+            "Undefined technical term: EQUIVALENTES",
+            "Undefined technical term: FUNCIONAIS",
+            "Undefined technical term: ALVO",
+            "Undefined technical term: USD",
+            "Undefined technical term: README",
+            "Undefined technical term: DETECTION",
+            "Undefined technical term: SUGERIDO",
+            "Undefined technical term: DAP",
+            "Undefined technical term: PASSOS",
+            "Undefined technical term: VERSIONING",
+            "Undefined technical term: PELO",
+            "Undefined technical term: FERRAMENTAS",
+            "Undefined technical term: QUALITATIVO",
+            "Undefined technical term: API",
+            "Undefined technical term: CONTRIBUTING",
+            "Undefined technical term: SDK",
+            "Undefined technical term: SUPORTE",
+            "Undefined technical term: GLSL",
+            "Undefined technical term: YAML",
+            "Undefined technical term: REESTRUTURADA",
+            "Undefined technical term: CENTRAL",
+            "Undefined technical term: AUTOMATED",
+            "Undefined technical term: SUMMARY",
+            "Undefined technical term: LINGUAGEM",
+            "Undefined technical term: IEC",
+            "Undefined technical term: FUNCIONALIDADES",
+            "Undefined technical term: QUALIDADE",
+            "Undefined technical term: GRAPH",
+            "Undefined technical term: ESPERADO",
+            "Undefined technical term: MONGODB",
+            "Undefined technical term: TAXONOMIAS",
+            "Undefined technical term: STATUS",
+            "Undefined technical term: ATUALIZADAS",
+            "Undefined technical term: VALOR",
+            "Undefined technical term: CONCEITO",
+            "Undefined technical term: RESTRUCTURADA",
+            "Undefined technical term: INTEGRADOS",
+            "Undefined technical term: ISRS",
+            "Undefined technical term: SHADERS",
+            "Undefined technical term: ECOSSISTEMA",
+            "Undefined technical term: QUANTITATIVO",
+            "Undefined technical term: SQL",
+            "Undefined technical term: REACT",
+            "Undefined technical term: DESENVOLVIMENTO",
+            "Undefined technical term: ONTOLOGICAL",
+            "Undefined technical term: TAXONOMIA",
+            "Undefined technical term: CHATBOT",
+            "Undefined technical term: PACIENTE",
+            "Undefined technical term: PERMA",
+            "Undefined technical term: INTELIGENTE",
+            "Undefined technical term: IMPACTO",
+            "Undefined technical term: POR",
+            "Undefined technical term: LAYER"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 90,
+          "inconsistencies": [
+            "Inconsistent heading hierarchy"
+          ]
+        },
+        "quality_score": 64.37,
+        "improvement_suggestions": [
+          "Consider breaking into smaller sections",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Inconsistent heading hierarchy",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.434288",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/AI_DOCUMENTATION_SYSTEM.md",
+        "timestamp": "2025-08-11T08:12:45.434669",
+        "content_hash": "68a5358c3682a373c17bcb098030f95b",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 96,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: JSON",
+            "Undefined technical term: YAML"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 78.6,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.437367",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/GETTING_STARTED.md",
+        "timestamp": "2025-08-11T08:12:45.437797",
+        "content_hash": "9e6a046de64aa027bbac23e1b74f10a5",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_1_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_4_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 90,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: NVIDIA",
+            "Undefined technical term: EHR",
+            "Undefined technical term: README",
+            "Undefined technical term: API"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 95,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": [
+            "Inconsistent link paths: ['../templates/voither_primeira_consulta_template.py', '../voither-system/voither_med_implementation.md', '../research/geometria_afetos_cognicao.md']"
+          ]
+        },
+        "quality_score": 96.5,
+        "improvement_suggestions": [
+          "Technical content lacks code examples",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Inconsistent link paths: ['../templates/voither_primeira_consulta_template.py', '../voither-system/voither_med_implementation.md', '../research/geometria_afetos_cognicao.md']"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.441033",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/METADATA.md",
+        "timestamp": "2025-08-11T08:12:45.441294",
+        "content_hash": "869beb7b3d1984272b30d2aa0bba5027",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 96,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: METADATA",
+            "Undefined technical term: README"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 78.6,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.443654",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/CONTRIBUTING.md",
+        "timestamp": "2025-08-11T08:12:45.443941",
+        "content_hash": "083046e3e3cad765e5cb08201fb56b4f",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 84,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: YYYY",
+            "Undefined technical term: WCAG",
+            "Undefined technical term: METADATA",
+            "Undefined technical term: CONTRIBUTING",
+            "Undefined technical term: README",
+            "Undefined technical term: WAI",
+            "Undefined technical term: API",
+            "Undefined technical term: YAML"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 79.9,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.447261",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "docs/AUTOMATION_PIPELINE.md",
+        "timestamp": "2025-08-11T08:12:45.447503",
+        "content_hash": "2c1bd81277a5cf68d9241f906f6b21eb",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 96,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: YAML",
+            "Undefined technical term: CONTRIBUTING"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 78.6,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.449479",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/espaco_mental_paper.md",
+        "timestamp": "2025-08-11T08:12:45.449708",
+        "content_hash": "329624136f2734ba0c46271775f87ba7",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 98,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: PCA"
+          ],
+          "suggestions": [
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 78.8,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.454349",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/autoagency.md",
+        "timestamp": "2025-08-11T08:12:45.454856",
+        "content_hash": "6e9841bfa51e02107076d2f28a97746f",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 66,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: ADMINISTRATIVOS",
+            "Undefined technical term: DSL",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: ATENCAO",
+            "Undefined technical term: AUTOAGENCY",
+            "Undefined technical term: OVERVIEW",
+            "Undefined technical term: IMPLEMENTATION",
+            "Undefined technical term: DEPENDENCIES",
+            "Undefined technical term: GENERATED",
+            "Undefined technical term: BRRE",
+            "Undefined technical term: EHR",
+            "Undefined technical term: VALIDATION",
+            "Undefined technical term: OUTPUTS",
+            "Undefined technical term: ROI",
+            "Undefined technical term: WORKFLOWS",
+            "Undefined technical term: DEPLOYMENT",
+            "Undefined technical term: README"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 73.77,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.479750",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/apothecary_engine.md",
+        "timestamp": "2025-08-11T08:12:45.480246",
+        "content_hash": "9542d1a6c721485c3560d620eca9d8f0",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 66,
+          "standardization_score": 80,
+          "inconsistencies": [
+            "Undefined technical term: IRSN",
+            "Undefined technical term: HAM",
+            "Undefined technical term: OVERVIEW",
+            "Undefined technical term: IMPLEMENTATION",
+            "Undefined technical term: PHQ",
+            "Undefined technical term: DEPENDENCIES",
+            "Undefined technical term: APOTHECARY",
+            "Undefined technical term: GENERATED",
+            "Undefined technical term: FDA",
+            "Undefined technical term: GABA",
+            "Undefined technical term: VALIDATION",
+            "Undefined technical term: ISRS",
+            "Undefined technical term: OUTPUTS",
+            "Undefined technical term: DEPLOYMENT",
+            "Undefined technical term: PERMA",
+            "Undefined technical term: README",
+            "Undefined technical term: AUC"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+            "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 74.1,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+          "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.497294",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/med_frameworks.md",
+        "timestamp": "2025-08-11T08:12:45.497787",
+        "content_hash": "651d948f8da23b176297aa703e89c061",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 72,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: DSL",
+            "Undefined technical term: MSE",
+            "Undefined technical term: DEPLOYMENT",
+            "Undefined technical term: OVERVIEW",
+            "Undefined technical term: SPRINT",
+            "Undefined technical term: PERMA",
+            "Undefined technical term: IMPLEMENTATION",
+            "Undefined technical term: VALIDATION",
+            "Undefined technical term: DEPENDENCIES",
+            "Undefined technical term: README",
+            "Undefined technical term: GENERATED",
+            "Undefined technical term: FRAMEWORKS",
+            "Undefined technical term: API",
+            "Undefined technical term: OUTPUTS"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct",
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 75.7,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.513597",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/15-dimensions.md",
+        "timestamp": "2025-08-11T08:12:45.514091",
+        "content_hash": "1aab183f9329eda37613df59128f552f",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_4_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 98,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: TDAH"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 99.3,
+        "improvement_suggestions": [
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.515345",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/med_core.md",
+        "timestamp": "2025-08-11T08:12:45.515701",
+        "content_hash": "c5b5c81e1c8382b6b64a246b6732c8f3",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 82,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: PER",
+            "Undefined technical term: CORE",
+            "Undefined technical term: DSL",
+            "Undefined technical term: ORG",
+            "Undefined technical term: OVERVIEW",
+            "Undefined technical term: IMPLEMENTATION",
+            "Undefined technical term: LOC",
+            "Undefined technical term: DEPENDENCIES",
+            "Undefined technical term: README"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 76.7,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.529557",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "core-concepts/emergence_enabled_ee.md",
+        "timestamp": "2025-08-11T08:12:45.530037",
+        "content_hash": "eeb0a49c32357f90689a5e48d05385f4",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": -40,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: ALL",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: FLOAT",
+            "Undefined technical term: DURATIONAL",
+            "Undefined technical term: DIAGNOSES",
+            "Undefined technical term: FOR",
+            "Undefined technical term: CFR",
+            "Undefined technical term: AES",
+            "Undefined technical term: INTEGER",
+            "Undefined technical term: LSP",
+            "Undefined technical term: LOINC",
+            "Undefined technical term: INDEX",
+            "Undefined technical term: ORDER",
+            "Undefined technical term: III",
+            "Undefined technical term: WITH",
+            "Undefined technical term: DESC",
+            "Undefined technical term: ISO",
+            "Undefined technical term: ORU",
+            "Undefined technical term: PRESCRIBES",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: DSL",
+            "Undefined technical term: NOT",
+            "Undefined technical term: COMMENT",
+            "Undefined technical term: AST",
+            "Undefined technical term: FACILITATES",
+            "Undefined technical term: AND",
+            "Undefined technical term: CREATE",
+            "Undefined technical term: DBSCAN",
+            "Undefined technical term: SDLC",
+            "Undefined technical term: CHRONOS",
+            "Undefined technical term: UNWIND",
+            "Undefined technical term: UNIQUE",
+            "Undefined technical term: OBSERVATION",
+            "Undefined technical term: ADT",
+            "Undefined technical term: PHI",
+            "Undefined technical term: WHERE",
+            "Undefined technical term: ALERT",
+            "Undefined technical term: NULL",
+            "Undefined technical term: ENCRYPT",
+            "Undefined technical term: OPTIONAL",
+            "Undefined technical term: IDENTIFIER",
+            "Undefined technical term: BOOLEAN",
+            "Undefined technical term: MLLP",
+            "Undefined technical term: STRING",
+            "Undefined technical term: EXISTS",
+            "Undefined technical term: DICOM",
+            "Undefined technical term: PRECEDES",
+            "Undefined technical term: REQUIRE",
+            "Undefined technical term: EHR",
+            "Undefined technical term: MONITOR",
+            "Undefined technical term: KAIROS",
+            "Undefined technical term: INFO",
+            "Undefined technical term: EVENT",
+            "Undefined technical term: CONSTRAINT",
+            "Undefined technical term: LIMIT",
+            "Undefined technical term: CONDITION",
+            "Undefined technical term: IDE",
+            "Undefined technical term: CDSS",
+            "Undefined technical term: IEC",
+            "Undefined technical term: SIU",
+            "Undefined technical term: CORRELATE",
+            "Undefined technical term: DISTINCT",
+            "Undefined technical term: EXECUTE",
+            "Undefined technical term: MATCH",
+            "Undefined technical term: RETURN",
+            "Undefined technical term: TREATS",
+            "Undefined technical term: MEDICATION",
+            "Undefined technical term: EOF",
+            "Undefined technical term: MONITORS",
+            "Undefined technical term: ORM"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "ICD_reference": "validated_framework"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 67.17,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.540572",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/faq.md",
+        "timestamp": "2025-08-11T08:12:45.541030",
+        "content_hash": "fd36bc793529d481cfdb7779df4567fe",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_1_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_3_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 80,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: RAM",
+            "Undefined technical term: PDF",
+            "Undefined technical term: EHR",
+            "Undefined technical term: JSON",
+            "Undefined technical term: CSV",
+            "Undefined technical term: FAQ",
+            "Undefined technical term: API",
+            "Undefined technical term: WAV"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {
+            "15_dimensions": "verified_correct"
+          },
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 95,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": [
+            "Inconsistent link paths: ['../research/']"
+          ]
+        },
+        "quality_score": 96.0,
+        "improvement_suggestions": [
+          "Technical content lacks code examples",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Inconsistent link paths: ['../research/']"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.542691",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/system-requirements.md",
+        "timestamp": "2025-08-11T08:12:45.543036",
+        "content_hash": "0812b7e7d4ca70ed6ec37eab0d835b81",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_2_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_3_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 74,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: RTO",
+            "Undefined technical term: CDN",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: RPO",
+            "Undefined technical term: RAM",
+            "Undefined technical term: GPT",
+            "Undefined technical term: INFO",
+            "Undefined technical term: GDPR",
+            "Undefined technical term: LTS",
+            "Undefined technical term: RPM",
+            "Undefined technical term: RBAC",
+            "Undefined technical term: CPU",
+            "Undefined technical term: API"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 96.15,
+        "improvement_suggestions": [
+          "Technical content lacks code examples"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.543606",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/installation.md",
+        "timestamp": "2025-08-11T08:12:45.543911",
+        "content_hash": "e7a273fab1c2a140be9948c7859580f4",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_2_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_3_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 84,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: CDN",
+            "Undefined technical term: SSL",
+            "Undefined technical term: FAQ",
+            "Undefined technical term: HTTPS",
+            "Undefined technical term: POST",
+            "Undefined technical term: RBAC",
+            "Undefined technical term: API"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 97.9,
+        "improvement_suggestions": [
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.544728",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/troubleshooting.md",
+        "timestamp": "2025-08-11T08:12:45.545066",
+        "content_hash": "89ebcb441d76e7d3823fb5e895d34f3e",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_3_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 76,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: CDN",
+            "Undefined technical term: SQL",
+            "Undefined technical term: SSL",
+            "Undefined technical term: AZURE",
+            "Undefined technical term: DNS",
+            "Undefined technical term: ERROR",
+            "Undefined technical term: FAQ",
+            "Undefined technical term: CLI",
+            "Undefined technical term: RBAC",
+            "Undefined technical term: CPU",
+            "Undefined technical term: API"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 97.1,
+        "improvement_suggestions": [
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.546917",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/clinician-quickstart.md",
+        "timestamp": "2025-08-11T08:12:45.547144",
+        "content_hash": "53fb0fb149704d32dc6abd77eaed2dc4",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 85,
+          "issues": [
+            "Technical content lacks code examples"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 86,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: FHIR",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: EHR",
+            "Undefined technical term: XXXX",
+            "Undefined technical term: ADHD",
+            "Undefined technical term: DAP",
+            "Undefined technical term: SOAP"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 76.35,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Technical content lacks code examples",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.550024",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "guides/developer-guide.md",
+        "timestamp": "2025-08-11T08:12:45.550249",
+        "content_hash": "faf2b3abc5e211d50e855b8d10a9e3e0",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 42,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: JSONB",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: DEFAULT",
+            "Undefined technical term: TABLE",
+            "Undefined technical term: PEP",
+            "Undefined technical term: NOT",
+            "Undefined technical term: NOW",
+            "Undefined technical term: EXPOSE",
+            "Undefined technical term: API",
+            "Undefined technical term: TIMESTAMP",
+            "Undefined technical term: UUID",
+            "Undefined technical term: CREATE",
+            "Undefined technical term: FROM",
+            "Undefined technical term: COPY",
+            "Undefined technical term: DECIMAL",
+            "Undefined technical term: REFERENCES",
+            "Undefined technical term: INDEX",
+            "Undefined technical term: JWT",
+            "Undefined technical term: SECRET",
+            "Undefined technical term: RUN",
+            "Undefined technical term: PRIMARY",
+            "Undefined technical term: WHERE",
+            "Undefined technical term: NULL",
+            "Undefined technical term: NLP",
+            "Undefined technical term: SELECT",
+            "Undefined technical term: WORKDIR",
+            "Undefined technical term: KEY",
+            "Undefined technical term: CMD",
+            "Undefined technical term: VARCHAR"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "15_dimensions": "verified_correct"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 72.7,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.557523",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "database/DB_ideas.md",
+        "timestamp": "2025-08-11T08:12:45.557760",
+        "content_hash": "bfd207e13bc05173fba975c0fc3b6b8a",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": -96,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: ADJ",
+            "Undefined technical term: POLICY",
+            "Undefined technical term: TEXT",
+            "Undefined technical term: DEFAULT",
+            "Undefined technical term: ALL",
+            "Undefined technical term: SERIAL",
+            "Undefined technical term: TABLE",
+            "Undefined technical term: ESQUEMA",
+            "Undefined technical term: FLOAT",
+            "Undefined technical term: NOW",
+            "Undefined technical term: RECOMENDADA",
+            "Undefined technical term: ACE",
+            "Undefined technical term: STORAGE",
+            "Undefined technical term: WITHIN",
+            "Undefined technical term: UUID",
+            "Undefined technical term: CPF",
+            "Undefined technical term: DET",
+            "Undefined technical term: LAKE",
+            "Undefined technical term: ROW",
+            "Undefined technical term: GROUP",
+            "Undefined technical term: MVP",
+            "Undefined technical term: FOR",
+            "Undefined technical term: BLOB",
+            "Undefined technical term: INTEGER",
+            "Undefined technical term: INDEX",
+            "Undefined technical term: INTERVAL",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: ORDER",
+            "Undefined technical term: MAX",
+            "Undefined technical term: END",
+            "Undefined technical term: PRIMARY",
+            "Undefined technical term: WITH",
+            "Undefined technical term: DESC",
+            "Undefined technical term: SELECT",
+            "Undefined technical term: NOT",
+            "Undefined technical term: REAL",
+            "Undefined technical term: USING",
+            "Undefined technical term: AND",
+            "Undefined technical term: ENABLE",
+            "Undefined technical term: LEVEL",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: REPLACE",
+            "Undefined technical term: CREATE",
+            "Undefined technical term: COMPLIANCE",
+            "Undefined technical term: SERVING",
+            "Undefined technical term: GERAL",
+            "Undefined technical term: VERB",
+            "Undefined technical term: UNIQUE",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: JOIN",
+            "Undefined technical term: ESTRUTURADOS",
+            "Undefined technical term: AVG",
+            "Undefined technical term: WHERE",
+            "Undefined technical term: SECURITY",
+            "Undefined technical term: NULL",
+            "Undefined technical term: CACHE",
+            "Undefined technical term: CBT",
+            "Undefined technical term: KEY",
+            "Undefined technical term: TTL",
+            "Undefined technical term: POSTGRESQL",
+            "Undefined technical term: ARQUITETURA",
+            "Undefined technical term: JSONB",
+            "Undefined technical term: MIN",
+            "Undefined technical term: BEGIN",
+            "Undefined technical term: TEMPORAIS",
+            "Undefined technical term: BOOLEAN",
+            "Undefined technical term: QUERIES",
+            "Undefined technical term: TIMESTAMP",
+            "Undefined technical term: DATA",
+            "Undefined technical term: EXISTS",
+            "Undefined technical term: ESTRUTURA",
+            "Undefined technical term: FROM",
+            "Undefined technical term: TIMESTAMPTZ",
+            "Undefined technical term: MATERIALIZED",
+            "Undefined technical term: NOUN",
+            "Undefined technical term: VARCHAR",
+            "Undefined technical term: CORE",
+            "Undefined technical term: REDIS",
+            "Undefined technical term: API",
+            "Undefined technical term: STDDEV",
+            "Undefined technical term: TIME",
+            "Undefined technical term: CAMADA",
+            "Undefined technical term: MONGODB",
+            "Undefined technical term: EXTENSION",
+            "Undefined technical term: RETURNS",
+            "Undefined technical term: FUNCTION",
+            "Undefined technical term: ALTER",
+            "Undefined technical term: REFERENCES",
+            "Undefined technical term: COUNT",
+            "Undefined technical term: DIMENSIONAIS",
+            "Undefined technical term: VIEW",
+            "Undefined technical term: RETURN",
+            "Undefined technical term: AZURE",
+            "Undefined technical term: LANGUAGE",
+            "Undefined technical term: GOOGLE",
+            "Undefined technical term: EXEMPLO",
+            "Undefined technical term: CLOUD",
+            "Undefined technical term: TIMESCALEDB"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "ICD_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 59.9,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Long content lacks proper citations",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.561112",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "pipelines/iser_pipelines.md",
+        "timestamp": "2025-08-11T08:12:45.561396",
+        "content_hash": "e0a7084e30000d5380a625e2d338c8db",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": -14,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: CRP",
+            "Undefined technical term: ARQUITETURA",
+            "Undefined technical term: COMPLEMENTARES",
+            "Undefined technical term: INPUT",
+            "Undefined technical term: FINAL",
+            "Undefined technical term: FEATURES",
+            "Undefined technical term: DIAGRAMAS",
+            "Undefined technical term: TEXTUAL",
+            "Undefined technical term: TEMPORAL",
+            "Undefined technical term: CONCEITUAL",
+            "Undefined technical term: MAPEAMENTO",
+            "Undefined technical term: VETOR",
+            "Undefined technical term: SIMPLIFICADA",
+            "Undefined technical term: API",
+            "Undefined technical term: MONITORAMENTO",
+            "Undefined technical term: PROCESSAMENTO",
+            "Undefined technical term: COMPETITIVO",
+            "Undefined technical term: VALIDADAS",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: PROCESSO",
+            "Undefined technical term: QUALIDADE",
+            "Undefined technical term: DETALHADA",
+            "Undefined technical term: FRONTEND",
+            "Undefined technical term: MULTIMODAL",
+            "Undefined technical term: PROCESSING",
+            "Undefined technical term: SOLICITADOS",
+            "Undefined technical term: INFRAESTRUTURA",
+            "Undefined technical term: GERAL",
+            "Undefined technical term: DIFERENCIAL",
+            "Undefined technical term: REDE",
+            "Undefined technical term: TEMPO",
+            "Undefined technical term: RESULTADO",
+            "Undefined technical term: DETALHADO",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: PERFIL",
+            "Undefined technical term: VISUAL",
+            "Undefined technical term: ABORDAGENS",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: TARGETS",
+            "Undefined technical term: BACKEND",
+            "Undefined technical term: FRAMEWORKS",
+            "Undefined technical term: HPA",
+            "Undefined technical term: TRADICIONAL",
+            "Undefined technical term: PIPELINE",
+            "Undefined technical term: INTEGRATIVA",
+            "Undefined technical term: EXAMES",
+            "Undefined technical term: NARRATIVA",
+            "Undefined technical term: ENTRADA",
+            "Undefined technical term: TRAJETORIAL",
+            "Undefined technical term: PERMA",
+            "Undefined technical term: NLP",
+            "Undefined technical term: COMPLETO",
+            "Undefined technical term: BASEADO",
+            "Undefined technical term: CBT",
+            "Undefined technical term: FLUXO",
+            "Undefined technical term: BANCO",
+            "Undefined technical term: TRADICIONAIS"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+            "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework",
+            "Big Five_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 66.6,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+          "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use",
+          "Long content lacks proper citations",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.568356",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "research/README.md",
+        "timestamp": "2025-08-11T08:12:45.568791",
+        "content_hash": "299c17b6dfca8aedd656369d365d07f6",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_2_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_3_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 70,
+          "issues": [
+            "Content too brief for comprehensive documentation"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 98,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: README"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 95,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": [
+            "Inconsistent link paths: ['../README.md']"
+          ]
+        },
+        "quality_score": 97.05,
+        "improvement_suggestions": [
+          "Content too brief for comprehensive documentation",
+          "Inconsistent link paths: ['../README.md']"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.569001",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "research/geometria_afetos_cognicao.md",
+        "timestamp": "2025-08-11T08:12:45.569237",
+        "content_hash": "79ac553f538cb93ad089e01a55581360",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 80,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": [
+            "Missing main heading"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": 92,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: GLSL",
+            "Undefined technical term: RGB",
+            "Undefined technical term: GPU",
+            "Undefined technical term: HSL"
+          ],
+          "suggestions": [
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 76.53,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Missing main heading",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.573019",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_dimensional_holofractor.md",
+        "timestamp": "2025-08-11T08:12:45.573268",
+        "content_hash": "1f5951ee84620ef3f16605fb89a45ad7",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 96,
+          "standardization_score": 85,
+          "inconsistencies": [
+            "Undefined technical term: TOC",
+            "Undefined technical term: BERT"
+          ],
+          "suggestions": [
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+            "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+            "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 77.6,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+          "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.579218",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/VOITHER_for_Narrative.md",
+        "timestamp": "2025-08-11T08:12:45.579476",
+        "content_hash": "92acf70d312248aa3d584abd30b3135a",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 56,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: ROLE",
+            "Undefined technical term: LLM",
+            "Undefined technical term: TAREFA",
+            "Undefined technical term: FORMATO",
+            "Undefined technical term: DEVE",
+            "Undefined technical term: PRINCIPAL",
+            "Undefined technical term: API",
+            "Undefined technical term: DIRETRIZES",
+            "Undefined technical term: CSS",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: CENTRAL",
+            "Undefined technical term: PDF",
+            "Undefined technical term: SVG",
+            "Undefined technical term: ESTRUTURA",
+            "Undefined technical term: HTML",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: JSON",
+            "Undefined technical term: ENTRADA",
+            "Undefined technical term: GPT",
+            "Undefined technical term: FILOSOFIA",
+            "Undefined technical term: TODOS",
+            "Undefined technical term: EXEMPLO"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 75.1,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.582871",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_implementation_plan.md",
+        "timestamp": "2025-08-11T08:12:45.583098",
+        "content_hash": "cc7a003811bd3dfe467d68da93ca0a0a",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 64,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: UTF",
+            "Undefined technical term: MODULATION",
+            "Undefined technical term: MVMP",
+            "Undefined technical term: GEOMETRY",
+            "Undefined technical term: SDK",
+            "Undefined technical term: DOCTYPE",
+            "Undefined technical term: CSS",
+            "Undefined technical term: MATERIAL",
+            "Undefined technical term: SETUP",
+            "Undefined technical term: GPU",
+            "Undefined technical term: HTML",
+            "Undefined technical term: CODE",
+            "Undefined technical term: HSL",
+            "Undefined technical term: RGB",
+            "Undefined technical term: NVIDIA",
+            "Undefined technical term: NLP",
+            "Undefined technical term: SHADER",
+            "Undefined technical term: THREE"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 77.4,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.590285",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_navigate.md",
+        "timestamp": "2025-08-11T08:12:45.590590",
+        "content_hash": "8ce5ab8b067584ce3766f572a0466e76",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 90,
+          "standardization_score": 100,
+          "inconsistencies": [
+            "Undefined technical term: PCA",
+            "Undefined technical term: HSL",
+            "Undefined technical term: ZEOCARE",
+            "Undefined technical term: THREE",
+            "Undefined technical term: RGB"
+          ],
+          "suggestions": []
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 100,
+          "fact_checking": {},
+          "warnings": []
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 81.0,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.594334",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_med_implementation.md",
+        "timestamp": "2025-08-11T08:12:45.594578",
+        "content_hash": "19bbeedee4b955212ccc96802a55ab72",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 60,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: ADJ",
+            "Undefined technical term: LLM",
+            "Undefined technical term: SCONJ",
+            "Undefined technical term: PRINCIPAL",
+            "Undefined technical term: SERVIDOR",
+            "Undefined technical term: USO",
+            "Undefined technical term: LINGUAGEM",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: COMPLEXO",
+            "Undefined technical term: UMA",
+            "Undefined technical term: VEZ",
+            "Undefined technical term: VERB",
+            "Undefined technical term: MODELO",
+            "Undefined technical term: FAZER",
+            "Undefined technical term: CARREGANDO",
+            "Undefined technical term: ADV",
+            "Undefined technical term: ISSO",
+            "Undefined technical term: PRON",
+            "Undefined technical term: NOUN",
+            "Undefined technical term: EXEMPLO"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 74.5,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.600287",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_narrative_agent.md",
+        "timestamp": "2025-08-11T08:12:45.600550",
+        "content_hash": "fa33a30e2f2540f461c105c99c323dfd",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 54,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: ROLE",
+            "Undefined technical term: LLM",
+            "Undefined technical term: TAREFA",
+            "Undefined technical term: FORMATO",
+            "Undefined technical term: DEVE",
+            "Undefined technical term: PRINCIPAL",
+            "Undefined technical term: API",
+            "Undefined technical term: DIRETRIZES",
+            "Undefined technical term: DOCTYPE",
+            "Undefined technical term: CSS",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: CENTRAL",
+            "Undefined technical term: DOTALL",
+            "Undefined technical term: PDF",
+            "Undefined technical term: SVG",
+            "Undefined technical term: HTML",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: JSON",
+            "Undefined technical term: ENTRADA",
+            "Undefined technical term: FILOSOFIA",
+            "Undefined technical term: TODOS",
+            "Undefined technical term: EXEMPLOS",
+            "Undefined technical term: HTTP"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 74.4,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.605334",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/VOITHER_files_pipeline.md",
+        "timestamp": "2025-08-11T08:12:45.605804",
+        "content_hash": "64e95d70d768fff686119723d6acf84d",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": -54,
+          "standardization_score": 75,
+          "inconsistencies": [
+            "Undefined technical term: ADJ",
+            "Undefined technical term: LLM",
+            "Undefined technical term: DEVE",
+            "Undefined technical term: FOQUE",
+            "Undefined technical term: INSIGHT",
+            "Undefined technical term: STREAMING",
+            "Undefined technical term: SISTEMA",
+            "Undefined technical term: COMPLEXO",
+            "Undefined technical term: DNA",
+            "Undefined technical term: RECOGNIZED",
+            "Undefined technical term: LOINC",
+            "Undefined technical term: ADV",
+            "Undefined technical term: JSON",
+            "Undefined technical term: INSERT",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: CONTEXTO",
+            "Undefined technical term: ISSO",
+            "Undefined technical term: TODOS",
+            "Undefined technical term: ROLE",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: SNOMED",
+            "Undefined technical term: TAREFA",
+            "Undefined technical term: ATUAL",
+            "Undefined technical term: SERVIDOR",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: UMA",
+            "Undefined technical term: VEZ",
+            "Undefined technical term: BIRP",
+            "Undefined technical term: NUNCA",
+            "Undefined technical term: VERB",
+            "Undefined technical term: FALLBACK",
+            "Undefined technical term: MODELO",
+            "Undefined technical term: VALUES",
+            "Undefined technical term: FAZER",
+            "Undefined technical term: CARREGANDO",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: TOC",
+            "Undefined technical term: PRON",
+            "Undefined technical term: NLP",
+            "Undefined technical term: TUDO",
+            "Undefined technical term: POSTGRESQL",
+            "Undefined technical term: ETAPAS",
+            "Undefined technical term: HTTP",
+            "Undefined technical term: COLETADOS",
+            "Undefined technical term: ATLAS",
+            "Undefined technical term: INTO",
+            "Undefined technical term: NER",
+            "Undefined technical term: MANTENHA",
+            "Undefined technical term: NLTK",
+            "Undefined technical term: DOTALL",
+            "Undefined technical term: EVITE",
+            "Undefined technical term: EHR",
+            "Undefined technical term: INFO",
+            "Undefined technical term: QUANTITATIVA",
+            "Undefined technical term: NAS",
+            "Undefined technical term: TEMPLATE",
+            "Undefined technical term: SER",
+            "Undefined technical term: NOUN",
+            "Undefined technical term: DAP",
+            "Undefined technical term: REGISTRO",
+            "Undefined technical term: SCONJ",
+            "Undefined technical term: PREENCHIDO",
+            "Undefined technical term: PRINCIPAL",
+            "Undefined technical term: API",
+            "Undefined technical term: SDK",
+            "Undefined technical term: USO",
+            "Undefined technical term: LINGUAGEM",
+            "Undefined technical term: SALVAR",
+            "Undefined technical term: PARA",
+            "Undefined technical term: MONGODB",
+            "Undefined technical term: SEMPRE",
+            "Undefined technical term: BERT",
+            "Undefined technical term: ANTERIORES",
+            "Undefined technical term: PACIENTE",
+            "Undefined technical term: GPT",
+            "Undefined technical term: EXEMPLO"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+            "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+            "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+            "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {
+            "RDoC_reference": "validated_framework",
+            "HiTOP_reference": "validated_framework"
+          },
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 60.77,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use",
+          "Consider defining 'RDoC' as 'Research Domain Criteria' on first use",
+          "Consider defining 'HiTOP' as 'Hierarchical Taxonomy of Psychopathology' on first use",
+          "Long content lacks proper citations",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.636841",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "voither-system/voither_orchestrator_doc.md",
+        "timestamp": "2025-08-11T08:12:45.637420",
+        "content_hash": "7f894c43bba3c7e2f3f272fd8de064f6",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 90,
+          "completeness_score": 100,
+          "issues": [
+            "Consider breaking into smaller sections"
+          ]
+        },
+        "terminology_validation": {
+          "terminology_consistency": -48,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: ADJ",
+            "Undefined technical term: LLM",
+            "Undefined technical term: DEVE",
+            "Undefined technical term: FOQUE",
+            "Undefined technical term: INSIGHT",
+            "Undefined technical term: STREAMING",
+            "Undefined technical term: SISTEMA",
+            "Undefined technical term: COMPLEXO",
+            "Undefined technical term: RECOGNIZED",
+            "Undefined technical term: LOINC",
+            "Undefined technical term: ADV",
+            "Undefined technical term: JSON",
+            "Undefined technical term: INSERT",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: CONTEXTO",
+            "Undefined technical term: ISSO",
+            "Undefined technical term: TODOS",
+            "Undefined technical term: ROLE",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: SNOMED",
+            "Undefined technical term: TAREFA",
+            "Undefined technical term: ATUAL",
+            "Undefined technical term: SERVIDOR",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: UMA",
+            "Undefined technical term: VEZ",
+            "Undefined technical term: BIRP",
+            "Undefined technical term: NUNCA",
+            "Undefined technical term: VERB",
+            "Undefined technical term: FALLBACK",
+            "Undefined technical term: VALUES",
+            "Undefined technical term: MODELO",
+            "Undefined technical term: FAZER",
+            "Undefined technical term: CARREGANDO",
+            "Undefined technical term: DADOS",
+            "Undefined technical term: PRON",
+            "Undefined technical term: POSTGRESQL",
+            "Undefined technical term: ETAPAS",
+            "Undefined technical term: WARN",
+            "Undefined technical term: HTTP",
+            "Undefined technical term: COLETADOS",
+            "Undefined technical term: JSONB",
+            "Undefined technical term: ATLAS",
+            "Undefined technical term: INTO",
+            "Undefined technical term: NER",
+            "Undefined technical term: MANTENHA",
+            "Undefined technical term: NLTK",
+            "Undefined technical term: DOTALL",
+            "Undefined technical term: EVITE",
+            "Undefined technical term: INFO",
+            "Undefined technical term: QUANTITATIVA",
+            "Undefined technical term: NAS",
+            "Undefined technical term: TEMPLATE",
+            "Undefined technical term: SER",
+            "Undefined technical term: NOUN",
+            "Undefined technical term: REGISTRO",
+            "Undefined technical term: DAP",
+            "Undefined technical term: SCONJ",
+            "Undefined technical term: PREENCHIDO",
+            "Undefined technical term: PRINCIPAL",
+            "Undefined technical term: API",
+            "Undefined technical term: SDK",
+            "Undefined technical term: USO",
+            "Undefined technical term: DOCTYPE",
+            "Undefined technical term: LINGUAGEM",
+            "Undefined technical term: SALVAR",
+            "Undefined technical term: PARA",
+            "Undefined technical term: MONGODB",
+            "Undefined technical term: POST",
+            "Undefined technical term: SEMPRE",
+            "Undefined technical term: ANTERIORES",
+            "Undefined technical term: PACIENTE",
+            "Undefined technical term: EXEMPLO"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 62.87,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider breaking into smaller sections",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Consider comprehensive revision - quality score below acceptable threshold"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.658347",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "architecture/voither_technical_pipeline.md",
+        "timestamp": "2025-08-11T08:12:45.658783",
+        "content_hash": "5d14a1a5331e15a0a3c87d0830047845",
+        "metadata_validation": {
+          "has_required_fields": false,
+          "missing_fields": [
+            "title",
+            "description",
+            "version",
+            "last_updated",
+            "audience",
+            "priority",
+            "reading_time",
+            "tags"
+          ],
+          "field_quality": {},
+          "score": -20
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 52,
+          "standardization_score": 90,
+          "inconsistencies": [
+            "Undefined technical term: ROLE",
+            "Undefined technical term: LLM",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: SNOMED",
+            "Undefined technical term: TAREFA",
+            "Undefined technical term: DEVE",
+            "Undefined technical term: NER",
+            "Undefined technical term: PREENCHIDO",
+            "Undefined technical term: ATUAL",
+            "Undefined technical term: NLTK",
+            "Undefined technical term: API",
+            "Undefined technical term: SYSTEM",
+            "Undefined technical term: DIMENSIONAL",
+            "Undefined technical term: LOINC",
+            "Undefined technical term: BERT",
+            "Undefined technical term: JSON",
+            "Undefined technical term: COMPLETA",
+            "Undefined technical term: QUANTITATIVA",
+            "Undefined technical term: TEMPLATE",
+            "Undefined technical term: CONTEXTO",
+            "Undefined technical term: PACIENTE",
+            "Undefined technical term: GPT",
+            "Undefined technical term: SER",
+            "Undefined technical term: TODOS"
+          ],
+          "suggestions": [
+            "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 100,
+          "citation_quality": 80,
+          "fact_checking": {},
+          "warnings": [
+            "Long content lacks proper citations"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 90,
+          "inconsistencies": [
+            "Inconsistent heading hierarchy"
+          ]
+        },
+        "quality_score": 73.2,
+        "improvement_suggestions": [
+          "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+          "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use",
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Long content lacks proper citations",
+          "Inconsistent heading hierarchy",
+          "Good content - consider minor improvements for excellence"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.663831",
+          "verification_rules_version": "1.0"
+        }
+      },
+      {
+        "file": "architecture/voither_system_architecture.md",
+        "timestamp": "2025-08-11T08:12:45.664365",
+        "content_hash": "384780db2dfd6ec0f88ae993b2e3f6a3",
+        "metadata_validation": {
+          "has_required_fields": true,
+          "missing_fields": [],
+          "field_quality": {
+            "title": "present",
+            "description": "present",
+            "version": "present",
+            "last_updated": "valid_date",
+            "audience": "valid_list_3_audiences",
+            "priority": "present",
+            "reading_time": "present",
+            "tags": "valid_list_6_tags"
+          },
+          "score": 100
+        },
+        "content_validation": {
+          "structure_score": 100,
+          "readability_score": 100,
+          "completeness_score": 100,
+          "issues": []
+        },
+        "terminology_validation": {
+          "terminology_consistency": 64,
+          "standardization_score": 95,
+          "inconsistencies": [
+            "Undefined technical term: LGPD",
+            "Undefined technical term: LLM",
+            "Undefined technical term: FHIR",
+            "Undefined technical term: HIPAA",
+            "Undefined technical term: SNOMED",
+            "Undefined technical term: REST",
+            "Undefined technical term: API",
+            "Undefined technical term: PDF",
+            "Undefined technical term: BIRT",
+            "Undefined technical term: LOINC",
+            "Undefined technical term: EHR",
+            "Undefined technical term: JSON",
+            "Undefined technical term: GET",
+            "Undefined technical term: PHI",
+            "Undefined technical term: SQL",
+            "Undefined technical term: NVIDIA",
+            "Undefined technical term: GPT",
+            "Undefined technical term: DAP"
+          ],
+          "suggestions": [
+            "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use"
+          ]
+        },
+        "scientific_validation": {
+          "scientific_accuracy": 90,
+          "citation_quality": 100,
+          "fact_checking": {
+            "2_dimensions": "needs_verification"
+          },
+          "warnings": [
+            "Claim of 2 dimensions needs verification"
+          ]
+        },
+        "consistency_validation": {
+          "cross_reference_consistency": 100,
+          "version_consistency": 100,
+          "style_consistency": 100,
+          "inconsistencies": []
+        },
+        "quality_score": 94.65,
+        "improvement_suggestions": [
+          "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use",
+          "Claim of 2 dimensions needs verification"
+        ],
+        "audit_trail": {
+          "verified_by": "AI_Content_Verifier_v1.0",
+          "verification_timestamp": "2025-08-11T08:12:45.671835",
+          "verification_rules_version": "1.0"
+        }
+      }
+    ],
+    "summary": {
+      "excellent_quality": 14,
+      "good_quality": 1,
+      "acceptable_quality": 24,
+      "needs_improvement": 7
+    },
+    "common_issues": {
+      "Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags": 31,
+      "Long content lacks proper citations": 28,
+      "Consider defining 'VOITHER' as 'Virtual Operations in Therapeutic Healthcare and Emergency Response' on first use": 27,
+      "Good content - consider minor improvements for excellence": 25,
+      "Consider defining 'MED' as 'Mental State Extraction in Dialogue' on first use": 14,
+      "Consider defining 'Holofractor' as 'Holographic Mental State Visualization System' on first use": 8,
+      "Consider breaking into smaller sections": 7,
+      "Consider comprehensive revision - quality score below acceptable threshold": 7,
+      "Technical content lacks code examples": 6,
+      "Consider defining 'ReEngine' as 'Recursive Reasoning Engine' on first use": 4
+    },
+    "recommendations": [
+      "Address most common issue: Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+      "Implement metadata template enforcement",
+      "Establish code example standards for technical documentation",
+      "Consider implementing automated quality gates in CI/CD pipeline",
+      "Regular quality reviews recommended every 2 weeks"
+    ],
+    "excluded_folders": [
+      "raw"
+    ]
+  },
+  "action_items": [
+    "Address most common issue: Add missing metadata fields: title, description, version, last_updated, audience, priority, reading_time, tags",
+    "Implement metadata template enforcement",
+    "Establish code example standards for technical documentation",
+    "Consider implementing automated quality gates in CI/CD pipeline",
+    "Regular quality reviews recommended every 2 weeks"
+  ],
+  "verification_methodology": {
+    "metadata_validation": "YAML frontmatter compliance checking",
+    "content_validation": "Structure, readability, and completeness analysis",
+    "terminology_validation": "VOITHER terminology database consistency",
+    "scientific_validation": "Fact-checking against established frameworks",
+    "consistency_validation": "Cross-document consistency verification"
+  }
+}

@@ -1,0 +1,1093 @@
+---
+name: 🔒 Integrated Documentation Validation & Security
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - '**/*.md'
+      - '**/*.py'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.json'
+      - '**/*.yml'
+      - '**/*.yaml'
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+    inputs:
+      validation_level:
+        description: 'Level of validation to perform'
+        required: true
+        default: 'comprehensive'
+        type: choice
+        options:
+        - quick
+        - comprehensive
+        - strict
+      auto_remediate_secrets:
+        description: 'Automatically replace detected secrets with placeholders'
+        required: false
+        default: false
+        type: boolean
+      remediation_mode:
+        description: 'Secret remediation behavior'
+        required: false
+        default: 'alert_only'
+        type: choice
+        options:
+        - alert_only
+        - auto_replace
+        - auto_replace_and_commit
+
+env:
+  DOCUMENTATION_STANDARDS_VERSION: "2.0"
+  SECURITY_VALIDATION_ENABLED: true
+  AUTO_REMEDIATE_SECRETS: ${{ github.event.inputs.auto_remediate_secrets || 'false' }}
+  REMEDIATION_MODE: ${{ github.event.inputs.remediation_mode || 'alert_only' }}
+
+jobs:
+  integrated-validation:
+    name: 🛡️ Integrated Documentation Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+      security-events: write
+
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 🐍 Setup Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Required Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml python-frontmatter markdownify beautifulsoup4 requests
+
+      - name: 🔍 Detect File Changes
+        id: changes
+        run: |
+          echo "Detecting documentation changes..."
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.sha }})
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          fi
+
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Check for markdown files
+          HAS_MD_CHANGES=false
+          HAS_SECURITY_RELEVANT=false
+          MD_FILES=""
+
+          for file in $CHANGED_FILES; do
+            if [[ "$file" =~ \.md$ ]]; then
+              HAS_MD_CHANGES=true
+              MD_FILES="$MD_FILES $file"
+            fi
+            if [[ "$file" =~ \.(py|js|ts|yml|yaml)$ ]]; then
+              HAS_SECURITY_RELEVANT=true
+            fi
+          done
+
+          echo "has_md_changes=$HAS_MD_CHANGES" >> $GITHUB_OUTPUT
+          echo "has_security_relevant=$HAS_SECURITY_RELEVANT" >> $GITHUB_OUTPUT
+          echo "md_files=$MD_FILES" >> $GITHUB_OUTPUT
+          echo "changed_files<<EOF" >> $GITHUB_OUTPUT
+          echo "$CHANGED_FILES" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 🔗 Integrated Link Validation
+        if: steps.changes.outputs.has_md_changes == 'true'
+        id: link_validation
+        run: |
+          echo "🔗 Performing integrated link validation..."
+
+          python << 'EOF'
+          import os
+          import re
+          import json
+          from pathlib import Path
+          from urllib.parse import urlparse
+
+          def find_markdown_files(directory):
+              """Find all markdown files, excluding raw folder"""
+              md_files = []
+              for root, dirs, files in os.walk(directory):
+                  # Skip hidden dirs, build dirs, and raw folder (unprocessed backups)
+                  dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['build', 'dist', 'node_modules', 'raw']]
+
+                  for file in files:
+                      if file.endswith('.md'):
+                          md_files.append(os.path.join(root, file))
+              return md_files
+
+          def extract_internal_links(content, file_path):
+              """Extract internal links from markdown content"""
+              link_pattern = r'\[([^\]]*)\]\(([^)]+)\)'
+              links = []
+
+              for match in re.finditer(link_pattern, content):
+                  text = match.group(1)
+                  url = match.group(2)
+
+                  # Skip external URLs and anchors
+                  if url.startswith(('http://', 'https://', '#', 'mailto:')):
+                      continue
+
+                  links.append({
+                      'text': text,
+                      'url': url,
+                      'line': content[:match.start()].count('\n') + 1,
+                      'file': file_path
+                  })
+
+              return links
+
+          def validate_link_target(link_url, base_path):
+              """Check if a linked file exists"""
+              # Handle relative paths
+              base_dir = Path(base_path).parent
+              if link_url.startswith('./'):
+                  target_path = base_dir / link_url[2:]
+              elif link_url.startswith('../'):
+                  # Handle parent directory navigation
+                  target_path = base_dir / link_url[3:]
+              else:
+                  target_path = base_dir / link_url
+
+              # Check if target exists
+              if target_path.exists():
+                  return True, str(target_path)
+
+              # Try from repository root
+              repo_root = Path('.')
+              alt_target = repo_root / link_url
+              if alt_target.exists():
+                  return True, str(alt_target)
+
+              return False, str(target_path)
+
+          # Main validation logic
+          print("Starting comprehensive link validation...")
+
+          md_files = find_markdown_files('.')
+          all_links = []
+          broken_links = []
+          validation_results = {
+              "total_files_checked": len(md_files),
+              "total_links_found": 0,
+              "broken_links": 0,
+              "validation_passed": True,
+              "details": []
+          }
+
+          for md_file in md_files:
+              try:
+                  with open(md_file, 'r', encoding='utf-8') as f:
+                      content = f.read()
+
+                  links = extract_internal_links(content, md_file)
+                  all_links.extend(links)
+
+                  for link in links:
+                      is_valid, target_path = validate_link_target(link['url'], md_file)
+
+                      if not is_valid:
+                          broken_links.append({
+                              "file": md_file,
+                              "line": link['line'],
+                              "text": link['text'],
+                              "url": link['url'],
+                              "target_path": target_path
+                          })
+                          validation_results["validation_passed"] = False
+
+              except Exception as e:
+                  print(f"Error processing {md_file}: {e}")
+                  validation_results["validation_passed"] = False
+
+          validation_results["total_links_found"] = len(all_links)
+          validation_results["broken_links"] = len(broken_links)
+          validation_results["details"] = broken_links
+
+          # Output results
+          print(f"📊 Link Validation Results:")
+          print(f"   Files checked: {validation_results['total_files_checked']}")
+          print(f"   Links found: {validation_results['total_links_found']}")
+          print(f"   Broken links: {validation_results['broken_links']}")
+
+          if broken_links:
+              print(f"\n❌ Broken Links Found:")
+              for broken in broken_links[:10]:  # Show first 10
+                  print(f"   📄 {broken['file']}:{broken['line']}")
+                  print(f"      Text: '{broken['text']}'")
+                  print(f"      URL: {broken['url']}")
+                  print(f"      Target: {broken['target_path']}")
+                  print()
+          else:
+              print("✅ All links are valid!")
+
+          # Save results
+          with open('link_validation_report.json', 'w') as f:
+              json.dump(validation_results, f, indent=2)
+
+          # Set output for next steps
+          print(f"validation_passed={validation_results['validation_passed']}")
+          print(f"broken_count={validation_results['broken_links']}")
+          EOF
+
+          # Extract results for GitHub Actions
+          VALIDATION_PASSED=$(python -c "
+          import json
+          with open('link_validation_report.json', 'r') as f:
+              data = json.load(f)
+          print('true' if data['validation_passed'] else 'false')
+          ")
+
+          BROKEN_COUNT=$(python -c "
+          import json
+          with open('link_validation_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['broken_links'])
+          ")
+
+          echo "validation_passed=$VALIDATION_PASSED" >> $GITHUB_OUTPUT
+          echo "broken_count=$BROKEN_COUNT" >> $GITHUB_OUTPUT
+
+          if [ "$VALIDATION_PASSED" = "false" ]; then
+            echo "⚠️ Link validation found issues - see report for details"
+            echo "This is informational - workflow continues"
+          fi
+
+      - name: 🤖 Integrated AI Content Verification
+        if: steps.changes.outputs.has_md_changes == 'true'
+        id: ai_verification
+        run: |
+          echo "🤖 Performing integrated AI content verification..."
+
+          python << 'EOF'
+          import os
+          import re
+          import json
+          import yaml
+          from datetime import datetime
+          from pathlib import Path
+          import frontmatter
+
+          class IntegratedContentVerifier:
+              def __init__(self, docs_directory='.'):
+                  self.docs_directory = Path(docs_directory)
+                  self.verification_results = []
+                  self.terminology_db = self._load_voither_terminology()
+
+              def _load_voither_terminology(self):
+                  """Load VOITHER-specific terminology database"""
+                  return {
+                      "MED": {
+                          "full_name": "Mental State Extraction in Dialogue",
+                          "dimensions": 15,
+                          "type": "AI_framework"
+                      },
+                      "BRRE": {
+                          "full_name": "Bergsonian-Rhizomatic Reasoning Engine",
+                          "type": "cognitive_engine"
+                      },
+                      "TEA": {
+                          "full_name": "Trans-Etiological Autism",
+                          "type": "medical_condition"
+                      },
+                      "VOITHER": {
+                          "full_name": "Vernacular Ontology for Introspection, Therapeutics & Holistic Enhancement Research",
+                          "type": "framework"
+                      },
+                      "Four_Axes": {
+                          "components": ["temporal", "spatial", "emergent", "semantic"],
+                          "type": "ontological_framework"
+                      },
+                      "Emergenability": {
+                          "definition": "Capacity for cognitive and behavioral emergence",
+                          "type": "concept"
+                      }
+                  }
+
+              def verify_frontmatter(self, file_path):
+                  """Verify YAML frontmatter compliance"""
+                  try:
+                      with open(file_path, 'r', encoding='utf-8') as f:
+                          post = frontmatter.load(f)
+
+                      required_fields = ['title', 'description', 'version', 'last_updated',
+                                       'audience', 'priority', 'reading_time', 'tags']
+
+                      missing_fields = []
+                      for field in required_fields:
+                          if field not in post.metadata:
+                              missing_fields.append(field)
+
+                      return {
+                          "file": str(file_path),
+                          "has_frontmatter": bool(post.metadata),
+                          "missing_fields": missing_fields,
+                          "compliant": len(missing_fields) == 0
+                      }
+
+                  except Exception as e:
+                      return {
+                          "file": str(file_path),
+                          "has_frontmatter": False,
+                          "missing_fields": required_fields,
+                          "compliant": False,
+                          "error": str(e)
+                      }
+
+              def verify_terminology_consistency(self, content, file_path):
+                  """Verify consistent use of VOITHER terminology"""
+                  inconsistencies = []
+                  content_lower = content.lower()
+
+                  for term, definition in self.terminology_db.items():
+                      # Check for variations that should be standardized
+                      if term.lower() in content_lower:
+                          # Count occurrences of correct vs incorrect forms
+                          correct_count = len(re.findall(r'\b' + re.escape(term) + r'\b', content))
+
+                          # Check for common misspellings or variations
+                          variations = self._get_term_variations(term)
+                          for variation in variations:
+                              var_count = len(re.findall(r'\b' + re.escape(variation) + r'\b', content, re.IGNORECASE))
+                              if var_count > 0:
+                                  inconsistencies.append({
+                                      "term": term,
+                                      "variation_found": variation,
+                                      "occurrences": var_count,
+                                      "file": str(file_path)
+                                  })
+
+                  return inconsistencies
+
+              def _get_term_variations(self, term):
+                  """Get common variations/misspellings of terms"""
+                  variations_map = {
+                      "VOITHER": ["voither", "Voither"],
+                      "BRRE": ["brre", "Brre"],
+                      "TEA": ["tea", "Tea"],
+                      "MED": ["med", "Med"]
+                  }
+                  return variations_map.get(term, [])
+
+              def calculate_quality_score(self, file_path, content):
+                  """Calculate content quality score"""
+                  score = 100
+                  factors = []
+
+                  # Length factor
+                  word_count = len(content.split())
+                  if word_count < 100:
+                      score -= 10
+                      factors.append("Short content (< 100 words)")
+                  elif word_count > 5000:
+                      score -= 5
+                      factors.append("Very long content (> 5000 words)")
+
+                  # Structure factor
+                  if not re.search(r'^#+\s', content, re.MULTILINE):
+                      score -= 15
+                      factors.append("No headers found")
+
+                  # VOITHER terminology usage
+                  voither_terms_found = 0
+                  for term in self.terminology_db.keys():
+                      if term.lower() in content.lower():
+                          voither_terms_found += 1
+
+                  if voither_terms_found == 0:
+                      score -= 20
+                      factors.append("No VOITHER terminology used")
+                  elif voither_terms_found < 3:
+                      score -= 10
+                      factors.append("Limited VOITHER terminology")
+
+                  # Links and references
+                  link_count = len(re.findall(r'\[([^\]]*)\]\(([^)]+)\)', content))
+                  if link_count == 0:
+                      score -= 10
+                      factors.append("No links or references")
+
+                  return max(0, score), factors
+
+              def verify_all_files(self):
+                  """Verify all markdown files in the repository"""
+                  results = {
+                      "timestamp": datetime.now().isoformat(),
+                      "total_files_checked": 0,
+                      "files_with_issues": 0,
+                      "average_quality_score": 0,
+                      "summary": {
+                          "frontmatter_compliant": 0,
+                          "terminology_consistent": 0,
+                          "needs_improvement": 0
+                      },
+                      "detailed_results": {
+                          "files": [],
+                          "average_quality_score": 0,
+                          "summary": {}
+                      }
+                  }
+
+                  md_files = []
+                  for root, dirs, files in os.walk(self.docs_directory):
+                      # Skip raw folder (unprocessed backups)
+                      dirs[:] = [d for d in dirs if not d.startswith('.') and d != 'raw']
+
+                      for file in files:
+                          if file.endswith('.md'):
+                              md_files.append(Path(root) / file)
+
+                  total_quality_score = 0
+
+                  for md_file in md_files:
+                      try:
+                          with open(md_file, 'r', encoding='utf-8') as f:
+                              content = f.read()
+
+                          # Verify frontmatter
+                          frontmatter_result = self.verify_frontmatter(md_file)
+
+                          # Verify terminology
+                          terminology_issues = self.verify_terminology_consistency(content, md_file)
+
+                          # Calculate quality score
+                          quality_score, quality_factors = self.calculate_quality_score(md_file, content)
+                          total_quality_score += quality_score
+
+                          file_result = {
+                              "file": str(md_file),
+                              "frontmatter": frontmatter_result,
+                              "terminology_issues": terminology_issues,
+                              "quality_score": quality_score,
+                              "quality_factors": quality_factors,
+                              "needs_improvement": quality_score < 70 or not frontmatter_result["compliant"] or len(terminology_issues) > 0
+                          }
+
+                          results["detailed_results"]["files"].append(file_result)
+
+                          # Update summary counts
+                          if frontmatter_result["compliant"]:
+                              results["summary"]["frontmatter_compliant"] += 1
+                          if len(terminology_issues) == 0:
+                              results["summary"]["terminology_consistent"] += 1
+                          if file_result["needs_improvement"]:
+                              results["summary"]["needs_improvement"] += 1
+                              results["files_with_issues"] += 1
+
+                      except Exception as e:
+                          print(f"Error processing {md_file}: {e}")
+
+                  results["total_files_checked"] = len(md_files)
+                  if len(md_files) > 0:
+                      results["average_quality_score"] = total_quality_score / len(md_files)
+                      results["detailed_results"]["average_quality_score"] = results["average_quality_score"]
+
+                  results["detailed_results"]["summary"] = results["summary"]
+
+                  return results
+
+          # Run verification
+          print("Starting integrated AI content verification...")
+          verifier = IntegratedContentVerifier()
+          verification_results = verifier.verify_all_files()
+
+          # Display results
+          print(f"📊 AI Content Verification Results:")
+          print(f"   Files checked: {verification_results['total_files_checked']}")
+          print(f"   Average quality score: {verification_results['average_quality_score']:.1f}/100")
+          print(f"   Files needing improvement: {verification_results['summary']['needs_improvement']}")
+          print(f"   Frontmatter compliant: {verification_results['summary']['frontmatter_compliant']}")
+          print(f"   Terminology consistent: {verification_results['summary']['terminology_consistent']}")
+
+          if verification_results['summary']['needs_improvement'] > 0:
+              print(f"\n⚠️ Issues found:")
+              for file_result in verification_results['detailed_results']['files'][:5]:  # Show first 5
+                  if file_result['needs_improvement']:
+                      print(f"   📄 {file_result['file']}")
+                      if not file_result['frontmatter']['compliant']:
+                          print(f"      Missing frontmatter: {', '.join(file_result['frontmatter']['missing_fields'])}")
+                      if file_result['terminology_issues']:
+                          print(f"      Terminology issues: {len(file_result['terminology_issues'])}")
+                      if file_result['quality_score'] < 70:
+                          print(f"      Quality score: {file_result['quality_score']}/100")
+          else:
+              print("✅ All files meet quality standards!")
+
+          # Save results
+          with open('ai_verification_report.json', 'w') as f:
+              json.dump(verification_results, f, indent=2)
+
+          EOF
+
+          # Extract metrics for GitHub Actions
+          QUALITY_SCORE=$(python -c "
+          import json
+          with open('ai_verification_report.json', 'r') as f:
+              data = json.load(f)
+          print(f\"{data['average_quality_score']:.1f}\")
+          ")
+
+          NEEDS_IMPROVEMENT=$(python -c "
+          import json
+          with open('ai_verification_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['summary']['needs_improvement'])
+          ")
+
+          echo "quality_score=$QUALITY_SCORE" >> $GITHUB_OUTPUT
+          echo "needs_improvement=$NEEDS_IMPROVEMENT" >> $GITHUB_OUTPUT
+
+          # Quality assessment (informational, non-blocking)
+          if (( $(echo "$QUALITY_SCORE < 70" | bc -l) )); then
+            echo "⚠️ Quality score below threshold (70) - consider improvements"
+            echo "quality_status=warning" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Quality score meets standards"
+            echo "quality_status=passed" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🛡️ Security & Compliance Check
+        if: steps.changes.outputs.has_security_relevant == 'true'
+        id: security_check
+        run: |
+          echo "🛡️ Performing integrated security and compliance validation..."
+
+          python << 'EOF'
+          import os
+          import re
+          import json
+          from datetime import datetime
+          from pathlib import Path
+
+          def scan_for_secrets(content, file_path):
+              """Scan for potential secrets or sensitive information"""
+              patterns = {
+                  "api_key": r'api[_-]?key["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                  "password": r'password["\']?\s*[:=]\s*["\']?([^"\'\s]{6,})',
+                  "token": r'token["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                  "secret": r'secret["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                  "connection_string": r'(mongodb://|postgres://|mysql://|redis://)[^\s"\']+',
+                  "aws_key": r'AKIA[0-9A-Z]{16}',
+                  "github_token": r'ghp_[a-zA-Z0-9]{36}'
+              }
+
+              findings = []
+              for pattern_name, pattern in patterns.items():
+                  matches = re.finditer(pattern, content, re.IGNORECASE)
+                  for match in matches:
+                      findings.append({
+                          "type": pattern_name,
+                          "file": str(file_path),
+                          "line": content[:match.start()].count('\n') + 1,
+                          "context": content[max(0, match.start()-20):match.end()+20]
+                      })
+
+              return findings
+
+          def check_compliance_keywords(content, file_path):
+              """Check for compliance-related content"""
+              compliance_indicators = {
+                  "HIPAA": r'\bHIPAA\b',
+                  "LGPD": r'\bLGPD\b',
+                  "GDPR": r'\bGDPR\b',
+                  "PHI": r'\bPHI\b|\bprotected health information\b',
+                  "PII": r'\bPII\b|\bpersonally identifiable information\b',
+                  "medical_data": r'\bmedical data\b|\bhealth data\b|\bclinical data\b'
+              }
+
+              findings = []
+              for keyword, pattern in compliance_indicators.items():
+                  if re.search(pattern, content, re.IGNORECASE):
+                      findings.append({
+                          "compliance_area": keyword,
+                          "file": str(file_path),
+                          "requires_review": True
+                      })
+
+              return findings
+
+          def validate_file_structure(file_path):
+              """Validate file structure and naming"""
+              issues = []
+
+              # Check for sensitive file patterns
+              sensitive_patterns = [
+                  r'\.env',
+                  r'\.key$',
+                  r'\.pem$',
+                  r'\.p12$',
+                  r'config\.json$',
+                  r'secrets\..*'
+              ]
+
+              file_name = Path(file_path).name
+              for pattern in sensitive_patterns:
+                  if re.search(pattern, file_name, re.IGNORECASE):
+                      issues.append({
+                          "type": "sensitive_file_pattern",
+                          "file": str(file_path),
+                          "pattern": pattern,
+                          "risk_level": "high"
+                      })
+
+              return issues
+
+          # Main security scan
+          print("Starting integrated security and compliance scan...")
+
+          security_results = {
+              "timestamp": datetime.now().isoformat(),
+              "files_scanned": 0,
+              "secrets_found": 0,
+              "compliance_flags": 0,
+              "security_score": 100,
+              "findings": {
+                  "secrets": [],
+                  "compliance": [],
+                  "file_structure": []
+              }
+          }
+
+          # Scan all relevant files
+          file_extensions = ['.py', '.js', '.ts', '.json', '.yml', '.yaml', '.md', '.txt', '.env']
+
+          for root, dirs, files in os.walk('.'):
+              # Skip hidden and build directories
+              dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['build', 'dist', 'node_modules']]
+
+              for file in files:
+                  file_path = Path(root) / file
+
+                  if any(str(file_path).endswith(ext) for ext in file_extensions):
+                      try:
+                          # Check file structure
+                          structure_issues = validate_file_structure(file_path)
+                          security_results["findings"]["file_structure"].extend(structure_issues)
+
+                          # Read and scan content
+                          with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                              content = f.read()
+
+                          # Scan for secrets
+                          secrets = scan_for_secrets(content, file_path)
+                          security_results["findings"]["secrets"].extend(secrets)
+
+                          # Check compliance indicators
+                          compliance = check_compliance_keywords(content, file_path)
+                          security_results["findings"]["compliance"].extend(compliance)
+
+                          security_results["files_scanned"] += 1
+
+                      except Exception as e:
+                          print(f"Error scanning {file_path}: {e}")
+
+          # Calculate security metrics
+          security_results["secrets_found"] = len(security_results["findings"]["secrets"])
+          security_results["compliance_flags"] = len(security_results["findings"]["compliance"])
+
+          # Calculate security score
+          score_deductions = 0
+          score_deductions += security_results["secrets_found"] * 20  # High penalty for secrets
+          score_deductions += len(security_results["findings"]["file_structure"]) * 10
+
+          security_results["security_score"] = max(0, 100 - score_deductions)
+
+          # Display results
+          print(f"📊 Security & Compliance Results:")
+          print(f"   Files scanned: {security_results['files_scanned']}")
+          print(f"   Security score: {security_results['security_score']}/100")
+          print(f"   Secrets found: {security_results['secrets_found']}")
+          print(f"   Compliance flags: {security_results['compliance_flags']}")
+
+          if security_results["secrets_found"] > 0:
+              print(f"\n🚨 SECURITY ALERT: Potential secrets found!")
+              for secret in security_results["findings"]["secrets"][:3]:  # Show first 3
+                  print(f"   📄 {secret['file']}:{secret['line']}")
+                  print(f"      Type: {secret['type']}")
+
+          if security_results["compliance_flags"] > 0:
+              print(f"\n⚖️ Compliance areas detected:")
+              compliance_areas = set(item["compliance_area"] for item in security_results["findings"]["compliance"])
+              for area in compliance_areas:
+                  print(f"   • {area}")
+
+          if security_results["security_score"] == 100:
+              print("✅ No security issues detected!")
+
+          # Save results
+          with open('security_compliance_report.json', 'w') as f:
+              json.dump(security_results, f, indent=2)
+
+          EOF
+
+          # Auto-Remediation Logic
+          if [ "${{ env.AUTO_REMEDIATE_SECRETS }}" = "true" ] && [ "$SECRETS_FOUND" -gt "0" ]; then
+            echo "🔧 Starting auto-remediation of detected secrets..."
+
+            python << 'REMEDIATION_EOF'
+          import json
+          import re
+          import os
+          from pathlib import Path
+
+          def auto_remediate_secrets(security_report):
+              """Auto-remediate detected secrets by replacing with placeholders"""
+
+              remediation_map = {
+                  "api_key": "[REDACTED_API_KEY_AUTO_REPLACED]",
+                  "password": "[REDACTED_PASSWORD_AUTO_REPLACED]",
+                  "token": "[REDACTED_TOKEN_AUTO_REPLACED]",
+                  "secret": "[REDACTED_SECRET_AUTO_REPLACED]",
+                  "connection_string": "[REDACTED_CONNECTION_STRING_AUTO_REPLACED]",
+                  "aws_key": "[REDACTED_AWS_KEY_AUTO_REPLACED]",
+                  "github_token": "[REDACTED_GITHUB_TOKEN_AUTO_REPLACED]"
+              }
+
+              remediated_files = {}
+              remediation_log = []
+
+              for secret_finding in security_report["findings"]["secrets"]:
+                  file_path = secret_finding["file"]
+                  secret_type = secret_finding["type"]
+                  placeholder = remediation_map.get(secret_type, "[REDACTED_SECRET_AUTO_REPLACED]")
+
+                  # Read file content
+                  try:
+                      with open(file_path, 'r', encoding='utf-8') as f:
+                          content = f.read()
+
+                      # Create pattern based on secret type
+                      patterns = {
+                          "api_key": r'api[_-]?key["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                          "password": r'password["\']?\s*[:=]\s*["\']?([^"\'\s]{6,})',
+                          "token": r'token["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                          "secret": r'secret["\']?\s*[:=]\s*["\']?([a-zA-Z0-9_-]{20,})',
+                          "connection_string": r'(mongodb://|postgres://|mysql://|redis://)[^\s"\']+',
+                          "aws_key": r'AKIA[0-9A-Z]{16}',
+                          "github_token": r'ghp_[a-zA-Z0-9]{36}'
+                      }
+
+                      pattern = patterns.get(secret_type, r'[a-zA-Z0-9_-]{20,}')
+
+                      # Track original content for comparison
+                      original_content = content
+
+                      # Replace secrets with placeholders
+                      if secret_type == "connection_string":
+                          content = re.sub(pattern, placeholder, content, flags=re.IGNORECASE)
+                      else:
+                          content = re.sub(pattern, lambda m: m.group(0).replace(m.group(1), placeholder), content, flags=re.IGNORECASE)
+
+                      # Only write if content changed
+                      if content != original_content:
+                          with open(file_path, 'w', encoding='utf-8') as f:
+                              f.write(content)
+
+                          remediated_files[file_path] = remediated_files.get(file_path, 0) + 1
+
+                          remediation_log.append({
+                              "file": file_path,
+                              "type": secret_type,
+                              "placeholder": placeholder,
+                              "line": secret_finding.get("line", "unknown"),
+                              "status": "remediated"
+                          })
+
+                          print(f"✅ Remediated {secret_type} in {file_path}")
+
+                  except Exception as e:
+                      remediation_log.append({
+                          "file": file_path,
+                          "type": secret_type,
+                          "error": str(e),
+                          "status": "failed"
+                      })
+                      print(f"❌ Failed to remediate {file_path}: {e}")
+
+              return remediated_files, remediation_log
+
+          # Load security report
+          with open('security_compliance_report.json', 'r') as f:
+              security_data = json.load(f)
+
+          # Perform auto-remediation
+          remediated_files, remediation_log = auto_remediate_secrets(security_data)
+
+          # Update security report with remediation data
+          security_data["auto_remediation"] = {
+              "enabled": True,
+              "files_remediated": len(remediated_files),
+              "total_replacements": sum(remediated_files.values()),
+              "remediation_log": remediation_log,
+              "mode": os.environ.get("REMEDIATION_MODE", "auto_replace")
+          }
+
+          # Save updated report
+          with open('security_compliance_report.json', 'w') as f:
+              json.dump(security_data, f, indent=2)
+
+          print(f"🔧 Auto-remediation completed:")
+          print(f"   Files modified: {len(remediated_files)}")
+          print(f"   Total replacements: {sum(remediated_files.values())}")
+
+          for file_path, count in remediated_files.items():
+              print(f"   📄 {file_path}: {count} secrets replaced")
+
+          REMEDIATION_EOF
+
+          # Re-extract metrics after remediation
+          REMEDIATED_FILES=$(python -c "
+          import json
+          with open('security_compliance_report.json', 'r') as f:
+              data = json.load(f)
+          remediation = data.get('auto_remediation', {})
+          print(remediation.get('files_remediated', 0))
+          ")
+
+          TOTAL_REPLACEMENTS=$(python -c "
+          import json
+          with open('security_compliance_report.json', 'r') as f:
+              data = json.load(f)
+          remediation = data.get('auto_remediation', {})
+          print(remediation.get('total_replacements', 0))
+          ")
+
+          echo "remediated_files=$REMEDIATED_FILES" >> $GITHUB_OUTPUT
+          echo "total_replacements=$TOTAL_REPLACEMENTS" >> $GITHUB_OUTPUT
+
+          # Commit changes if in auto_replace_and_commit mode
+          if [ "${{ env.REMEDIATION_MODE }}" = "auto_replace_and_commit" ] && [ "$REMEDIATED_FILES" -gt "0" ]; then
+            echo "💾 Committing auto-remediated files..."
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action Auto-Remediation"
+            git add -A
+            git commit -m "🔧 Auto-remediation: Replace $TOTAL_REPLACEMENTS secrets in $REMEDIATED_FILES files [auto-remediation-mode: ${{ env.REMEDIATION_MODE }}]" || echo "No changes to commit"
+          fi
+
+          # Extract final security metrics
+          SECURITY_SCORE=$(python -c "
+          import json
+          with open('security_compliance_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['security_score'])
+          ")
+
+          SECRETS_FOUND=$(python -c "
+          import json
+          with open('security_compliance_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['secrets_found'])
+          ")
+
+          echo "security_score=$SECURITY_SCORE" >> $GITHUB_OUTPUT
+          echo "secrets_found=$SECRETS_FOUND" >> $GITHUB_OUTPUT
+
+          # Enhanced Security Assessment with Auto-Remediation Support
+          if [ "${{ env.AUTO_REMEDIATE_SECRETS }}" = "true" ] && [ "${REMEDIATED_FILES:-0}" -gt "0" ]; then
+            echo "🔧 SECURITY AUTO-REMEDIATED: $TOTAL_REPLACEMENTS secrets replaced in $REMEDIATED_FILES files"
+            echo "security_status=remediated" >> $GITHUB_OUTPUT
+            # Continue workflow after successful remediation
+          elif [ "$SECRETS_FOUND" -gt "0" ]; then
+            echo "🚨 SECURITY FAILURE: Secrets detected in repository!"
+            echo "security_status=failed" >> $GITHUB_OUTPUT
+            exit 1
+          elif [ "$SECURITY_SCORE" -lt "80" ]; then
+            echo "⚠️ Security score below acceptable threshold"
+            echo "security_status=warning" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Security validation passed"
+            echo "security_status=passed" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📋 Generate Integrated Validation Report
+        if: always()
+        run: |
+          echo "📋 Generating comprehensive validation report..."
+
+          python << 'EOF'
+          import json
+          from datetime import datetime
+
+          # Combine all validation results
+          integrated_report = {
+              "timestamp": datetime.now().isoformat(),
+              "validation_type": "integrated_security_compliance",
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "trigger": "${{ github.event_name }}",
+              "validation_results": {}
+          }
+
+          # Load individual reports
+          reports = {
+              "link_validation": "link_validation_report.json",
+              "ai_verification": "ai_verification_report.json",
+              "security_compliance": "security_compliance_report.json"
+          }
+
+          for report_name, file_name in reports.items():
+              try:
+                  with open(file_name, 'r') as f:
+                      integrated_report["validation_results"][report_name] = json.load(f)
+              except FileNotFoundError:
+                  integrated_report["validation_results"][report_name] = {"status": "not_executed"}
+
+          # Calculate overall status
+          overall_status = "passed"
+          critical_issues = []
+
+          # Check for critical failures
+          if "${{ steps.security_check.outputs.secrets_found }}" != "0":
+              overall_status = "failed"
+              critical_issues.append("Security secrets detected")
+
+          if "${{ steps.link_validation.outputs.validation_passed }}" == "false":
+              overall_status = "warning" if overall_status != "failed" else "failed"
+              critical_issues.append("Broken links found")
+
+          integrated_report["overall_status"] = overall_status
+          integrated_report["critical_issues"] = critical_issues
+          integrated_report["summary"] = {
+              "security_score": "${{ steps.security_check.outputs.security_score }}",
+              "quality_score": "${{ steps.ai_verification.outputs.quality_score }}",
+              "broken_links": "${{ steps.link_validation.outputs.broken_count }}",
+              "secrets_found": "${{ steps.security_check.outputs.secrets_found }}",
+              "files_needing_improvement": "${{ steps.ai_verification.outputs.needs_improvement }}"
+          }
+
+          # Save integrated report
+          with open('integrated_validation_report.json', 'w') as f:
+              json.dump(integrated_report, f, indent=2)
+
+          # Display summary
+          print("=" * 60)
+          print("🎯 INTEGRATED VALIDATION SUMMARY")
+          print("=" * 60)
+          print(f"Overall Status: {overall_status.upper()}")
+          print(f"Security Score: {integrated_report['summary']['security_score']}/100")
+          print(f"Quality Score: {integrated_report['summary']['quality_score']}/100")
+          print(f"Broken Links: {integrated_report['summary']['broken_links']}")
+          print(f"Secrets Found: {integrated_report['summary']['secrets_found']}")
+          print(f"Files Needing Improvement: {integrated_report['summary']['files_needing_improvement']}")
+
+          if critical_issues:
+              print(f"\n🚨 Critical Issues:")
+              for issue in critical_issues:
+                  print(f"   • {issue}")
+          else:
+              print(f"\n✅ No critical issues detected")
+
+          print("\n📄 Detailed reports saved:")
+          print("   • integrated_validation_report.json")
+          print("   • link_validation_report.json")
+          print("   • ai_verification_report.json")
+          print("   • security_compliance_report.json")
+          EOF
+
+      - name: 📊 Upload Validation Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: validation-reports
+          path: |
+            integrated_validation_report.json
+            link_validation_report.json
+            ai_verification_report.json
+            security_compliance_report.json
+          retention-days: 30
+
+      - name: 💬 Comment on PR (PR only)
+        if: github.event_name == 'pull_request' && always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let summary = '# 🛡️ Integrated Validation Report\n\n';
+            summary += `**Overall Status**: ${{ job.status }}\n\n`;
+
+            summary += '## Security & Compliance\n';
+            summary += `- **Security Score**: ${{ steps.security_check.outputs.security_score }}/100\n`;
+            summary += `- **Secrets Found**: ${{ steps.security_check.outputs.secrets_found }}\n`;
+            summary += `- **Status**: ${{ steps.security_check.outputs.security_status }}\n`;
+
+            // Add auto-remediation details if enabled
+            if ('${{ env.AUTO_REMEDIATE_SECRETS }}' === 'true') {
+              summary += `- **Auto-Remediation**: Enabled (${{ env.REMEDIATION_MODE }})\n`;
+              const remediatedFiles = '${{ steps.security_check.outputs.remediated_files || "0" }}';
+              const totalReplacements = '${{ steps.security_check.outputs.total_replacements || "0" }}';
+              if (remediatedFiles !== '0') {
+                summary += `- **Files Auto-Remediated**: ${remediatedFiles}\n`;
+                summary += `- **Secrets Replaced**: ${totalReplacements}\n`;
+                summary += `- **🔧 Auto-remediation successfully applied**\n`;
+              }
+            }
+            summary += '\n';
+
+            summary += '## Content Quality\n';
+            summary += `- **Quality Score**: ${{ steps.ai_verification.outputs.quality_score }}/100\n`;
+            summary += `- **Files Needing Improvement**: ${{ steps.ai_verification.outputs.needs_improvement }}\n`;
+            summary += `- **Status**: ${{ steps.ai_verification.outputs.quality_status }}\n\n`;
+
+            summary += '## Link Validation\n';
+            summary += `- **Broken Links**: ${{ steps.link_validation.outputs.broken_count }}\n`;
+            summary += `- **Status**: ${{ steps.link_validation.outputs.validation_passed }}\n\n`;
+
+            summary += '## Integration Benefits\n';
+            summary += '- ✅ **No external script dependencies**\n';
+            summary += '- ✅ **Security enforced automatically**\n';
+            summary += '- ✅ **Auto-remediation of secrets available**\n';
+            summary += '- ✅ **Compliance checked on every change**\n';
+            summary += '- ✅ **Consistent execution environment**\n';
+            summary += '- ✅ **Comprehensive reporting**\n\n';
+
+            // Dynamic security alerts based on auto-remediation status
+            if ('${{ steps.security_check.outputs.security_status }}' === 'remediated') {
+              summary += '## 🔧 AUTO-REMEDIATION APPLIED\n';
+              summary += 'Detected secrets have been automatically replaced with safe placeholders. ';
+              summary += 'The workflow continued successfully after remediation.\n\n';
+              const remediatedFiles = '${{ steps.security_check.outputs.remediated_files || "0" }}';
+              const totalReplacements = '${{ steps.security_check.outputs.total_replacements || "0" }}';
+              summary += `**Remediation Summary:**\n`;
+              summary += `- Files modified: ${remediatedFiles}\n`;
+              summary += `- Secrets replaced: ${totalReplacements}\n`;
+              summary += `- Mode: ${{ env.REMEDIATION_MODE }}\n\n`;
+            } else if ('${{ steps.security_check.outputs.secrets_found }}' !== '0') {
+              summary += '## 🚨 SECURITY ALERT\n';
+              summary += 'Potential secrets detected in the repository. ';
+              if ('${{ env.AUTO_REMEDIATE_SECRETS }}' === 'false') {
+                summary += 'Enable auto-remediation in workflow dispatch to automatically replace secrets with placeholders.\n\n';
+              } else {
+                summary += 'Please review the security report and remove any sensitive information.\n\n';
+              }
+            }
+
+            summary += '---\n*This validation is performed automatically on every push and PR. No external scripts required.*';
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary
+            });

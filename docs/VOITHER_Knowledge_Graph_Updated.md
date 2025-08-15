@@ -2,7 +2,7 @@
 title: "VOITHER Knowledge Graph - Complete System Overview"
 description: "Comprehensive knowledge graph covering all VOITHER components, relationships, and capabilities with ontological analysis"
 version: "4.0"
-last_updated: "2025-01-11"
+last_updated: "2025-08-15"
 audience: ["all", "researchers", "developers", "clinicians"]
 priority: "essential"
 reading_time: "30 minutes"
