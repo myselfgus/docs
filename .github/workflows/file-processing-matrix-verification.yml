@@ -152,8 +152,6 @@ jobs:
               "file-processing-matrix-verification.yml": "Matrix compliance verification",
               "github-models-documentation-enhancer.yml": "GitHub Models AI enhancement"
           }
-              "copilot-documentation-agent.yml": "Copilot agent workflow"
-          }
 
           for workflow_name, description in documented_workflows.items():
               workflow_path = workflows_dir / workflow_name
