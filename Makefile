@@ -125,3 +125,16 @@ word-count:
 	else \
 		wc -w "$(FILE)"; \
 	fi
+
+# Test backup workflow
+test-backup:
+	@echo "🧪 Testing backup workflow components..."
+	python3 scripts/test-backup-workflow.py
+
+# Validate workflow files
+validate-workflows:
+	@echo "🔍 Validating GitHub Actions workflows..."
+	@for workflow in .github/workflows/*.yml; do \
+		echo "Validating $$workflow..."; \
+		python3 -c "import yaml; yaml.safe_load(open('$$workflow'))" && echo "✅ $$workflow valid" || echo "❌ $$workflow invalid"; \
+	done

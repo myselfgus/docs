@@ -1,0 +1,693 @@
+---
+name: 🔄 Repository Backup & Mirror Automation
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      backup_type:
+        description: 'Type of backup to perform'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+        - full
+        - incremental
+        - validation_only
+      force_drive_backup:
+        description: 'Force Google Drive backup even if rclone not configured'
+        required: false
+        default: false
+        type: boolean
+      cleanup_old_versions:
+        description: 'Clean up old backup versions (keep last 10)'
+        required: false
+        default: true
+        type: boolean
+
+env:
+  GCS_BUCKET: voither-code-mirror
+  DRIVE_REMOTE: 'VAULT'
+  DRIVE_PATH: 'artefatos/versions'
+  MAX_RETRY_ATTEMPTS: 3
+  BACKUP_RETENTION_DAYS: 90
+  COMPRESSION_LEVEL: 6
+
+jobs:
+  backup-and-mirror:
+    name: 🔄 Repository Backup & Mirror
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      actions: 'write'
+      security-events: 'write'
+
+    steps:
+      - name: 🔍 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for comprehensive backup
+
+      - name: 🐍 Setup Python Environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyyaml python-frontmatter requests
+
+      - name: 🛡️ Pre-Backup Security Validation
+        id: security_check
+        run: |
+          echo "🛡️ Performing pre-backup security validation..."
+          
+          # Check for any obvious secrets that shouldn't be backed up
+          python << 'EOF'
+          import os
+          import re
+          import json
+          from datetime import datetime
+          
+          def scan_for_critical_secrets(content, file_path):
+              """Scan for critical secrets that should not be backed up"""
+              critical_patterns = {
+                  "private_key": r'-----BEGIN\s+(RSA\s+)?PRIVATE\s+KEY-----',
+                  "aws_secret": r'AKIA[0-9A-Z]{16}',
+                  "github_token": r'ghp_[a-zA-Z0-9]{36}',
+                  "google_key": r'"private_key":\s*"-----BEGIN\s+PRIVATE\s+KEY-----',
+                  "connection_string": r'(mongodb://|postgres://|mysql://)[^\s"\']+:[^\s"\']+@',
+                  "api_secret": r'(secret|password|token)["\']?\s*[:=]\s*["\']?[a-zA-Z0-9_-]{32,}'
+              }
+              
+              findings = []
+              for pattern_name, pattern in critical_patterns.items():
+                  matches = re.finditer(pattern, content, re.IGNORECASE | re.MULTILINE)
+                  for match in matches:
+                      findings.append({
+                          "type": pattern_name,
+                          "file": str(file_path),
+                          "line": content[:match.start()].count('\n') + 1,
+                          "severity": "critical"
+                      })
+              
+              return findings
+          
+          # Quick scan of sensitive file types
+          critical_findings = []
+          sensitive_extensions = ['.key', '.pem', '.p12', '.env', '.credentials']
+          
+          for root, dirs, files in os.walk('.'):
+              # Skip .git and node_modules
+              dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['node_modules', 'build', 'dist']]
+              
+              for file in files:
+                  file_path = os.path.join(root, file)
+                  
+                  # Check for sensitive file extensions
+                  if any(file.endswith(ext) for ext in sensitive_extensions):
+                      critical_findings.append({
+                          "type": "sensitive_file",
+                          "file": file_path,
+                          "severity": "warning",
+                          "reason": "Sensitive file extension detected"
+                      })
+                  
+                  # Quick content scan for common files
+                  if file.endswith(('.py', '.js', '.ts', '.json', '.yml', '.yaml', '.md', '.txt')) and os.path.getsize(file_path) < 1024 * 1024:  # Skip large files
+                      try:
+                          with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                              content = f.read()
+                          
+                          secret_findings = scan_for_critical_secrets(content, file_path)
+                          critical_findings.extend(secret_findings)
+                          
+                      except Exception:
+                          continue  # Skip files that can't be read
+          
+          # Generate security report
+          security_report = {
+              "timestamp": datetime.now().isoformat(),
+              "total_findings": len(critical_findings),
+              "critical_count": len([f for f in critical_findings if f.get("severity") == "critical"]),
+              "warning_count": len([f for f in critical_findings if f.get("severity") == "warning"]),
+              "findings": critical_findings,
+              "backup_recommendation": "proceed" if len([f for f in critical_findings if f.get("severity") == "critical"]) == 0 else "review_required"
+          }
+          
+          # Save report
+          with open('pre_backup_security_report.json', 'w') as f:
+              json.dump(security_report, f, indent=2)
+          
+          # Display results
+          print(f"🛡️ Pre-Backup Security Scan Results:")
+          print(f"   Total findings: {security_report['total_findings']}")
+          print(f"   Critical issues: {security_report['critical_count']}")
+          print(f"   Warnings: {security_report['warning_count']}")
+          print(f"   Recommendation: {security_report['backup_recommendation']}")
+          
+          if security_report['critical_count'] > 0:
+              print(f"\n🚨 Critical security issues found:")
+              for finding in [f for f in critical_findings if f.get("severity") == "critical"][:3]:
+                  print(f"   ❌ {finding['type']} in {finding['file']}")
+          
+          # Set outputs
+          print(f"security_status={security_report['backup_recommendation']}")
+          print(f"critical_count={security_report['critical_count']}")
+          print(f"warning_count={security_report['warning_count']}")
+          EOF
+          
+          SECURITY_STATUS=$(python -c "
+          import json
+          with open('pre_backup_security_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['backup_recommendation'])
+          ")
+          
+          CRITICAL_COUNT=$(python -c "
+          import json
+          with open('pre_backup_security_report.json', 'r') as f:
+              data = json.load(f)
+          print(data['critical_count'])
+          ")
+          
+          echo "security_status=$SECURITY_STATUS" >> $GITHUB_OUTPUT
+          echo "critical_count=$CRITICAL_COUNT" >> $GITHUB_OUTPUT
+          
+          # Decision logic
+          if [ "$SECURITY_STATUS" = "review_required" ]; then
+            echo "⚠️ Security review required - found $CRITICAL_COUNT critical issues"
+            echo "🔄 Backup will continue with security report attached"
+            echo "security_proceed=warning" >> $GITHUB_OUTPUT
+          else
+            echo "✅ Security validation passed - safe to proceed"
+            echo "security_proceed=approved" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🔐 Authenticate to Google Cloud
+        id: gcp_auth
+        uses: 'google-github-actions/auth@v2'
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WIF_PROVIDER }}
+          service_account: ${{ secrets.GCP_SA_EMAIL }}
+
+      - name: ☁️ Setup Google Cloud SDK
+        uses: 'google-github-actions/setup-gcloud@v2'
+        with:
+          version: 'latest'
+
+      - name: 🗜️ Create Optimized Repository Archive
+        id: create_archive
+        run: |
+          echo "🗜️ Creating optimized repository archive..."
+          
+          # Generate unique filename with collision protection
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H%M%SZ")
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          RANDOM_ID=$(openssl rand -hex 4)
+          FILENAME="${{ github.event.repository.name }}-${TIMESTAMP}_${SHORT_SHA}_${RANDOM_ID}.tar.gz"
+          
+          # Create smart exclusion file
+          cat > /tmp/backup_exclusions.txt << 'EOF'
+          # Temporary and build artifacts
+          *.tmp
+          *.temp
+          *.bak
+          *.swp
+          *.swo
+          *~
+          .DS_Store
+          Thumbs.db
+          
+          # Build outputs that can be regenerated
+          node_modules/
+          __pycache__/
+          *.pyc
+          dist/
+          build/
+          .coverage
+          htmlcov/
+          .pytest_cache/
+          
+          # Editor and IDE files
+          .vscode/settings.json
+          .idea/workspace.xml
+          *.sublime-workspace
+          
+          # Large generated files
+          *.log
+          logs/
+          
+          # Git metadata (we have full history)
+          .git/hooks/
+          .git/logs/
+          .git/refs/remotes/
+          
+          # Keep documentation and essential configs
+          # (This ensures docs, scripts, configs are preserved)
+          EOF
+          
+          echo "📦 Creating archive with smart exclusions..."
+          echo "Filename: $FILENAME"
+          
+          # Create archive with optimal compression and progress
+          tar --exclude-from=/tmp/backup_exclusions.txt \
+              --exclude='.git/hooks' \
+              --exclude='.git/logs' \
+              --exclude='node_modules' \
+              --exclude='__pycache__' \
+              --exclude='*.tmp' \
+              --exclude='*.log' \
+              -czf "$FILENAME" . \
+              && echo "✅ Archive created successfully" \
+              || { echo "❌ Archive creation failed"; exit 1; }
+          
+          # Verify archive integrity
+          echo "🔍 Verifying archive integrity..."
+          if tar -tzf "$FILENAME" > /dev/null 2>&1; then
+              echo "✅ Archive integrity verified"
+          else
+              echo "❌ Archive integrity check failed"
+              exit 1
+          fi
+          
+          # Calculate metadata
+          ARCHIVE_SIZE=$(stat -f%z "$FILENAME" 2>/dev/null || stat -c%s "$FILENAME")
+          ARCHIVE_SIZE_MB=$((ARCHIVE_SIZE / 1024 / 1024))
+          FILE_COUNT=$(tar -tzf "$FILENAME" | wc -l)
+          CHECKSUM=$(sha256sum "$FILENAME" | cut -d' ' -f1)
+          
+          echo "📊 Archive Statistics:"
+          echo "   Size: ${ARCHIVE_SIZE_MB} MB (${ARCHIVE_SIZE} bytes)"
+          echo "   Files: ${FILE_COUNT}"
+          echo "   SHA256: ${CHECKSUM}"
+          
+          # Set outputs
+          echo "filename=$FILENAME" >> $GITHUB_OUTPUT
+          echo "size_bytes=$ARCHIVE_SIZE" >> $GITHUB_OUTPUT
+          echo "size_mb=$ARCHIVE_SIZE_MB" >> $GITHUB_OUTPUT
+          echo "file_count=$FILE_COUNT" >> $GITHUB_OUTPUT
+          echo "checksum=$CHECKSUM" >> $GITHUB_OUTPUT
+
+      - name: ☁️ Upload Latest Version to GCS
+        id: upload_latest
+        run: |
+          echo "☁️ Uploading latest version to Google Cloud Storage..."
+          
+          RETRY_COUNT=0
+          MAX_RETRIES=${{ env.MAX_RETRY_ATTEMPTS }}
+          
+          upload_latest_with_retry() {
+              local attempt=$1
+              echo "📤 Attempt $attempt: Uploading latest version..."
+              
+              # Use gsutil with resumable upload for reliability
+              if gsutil -m cp -r . "gs://${{ env.GCS_BUCKET }}/${{ github.event.repository.name }}/latest/"; then
+                  echo "✅ Latest version upload successful"
+                  return 0
+              else
+                  echo "❌ Latest version upload failed (attempt $attempt)"
+                  return 1
+              fi
+          }
+          
+          # Retry logic with exponential backoff
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              
+              if upload_latest_with_retry $RETRY_COUNT; then
+                  echo "latest_upload_status=success" >> $GITHUB_OUTPUT
+                  echo "latest_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  break
+              else
+                  if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                      WAIT_TIME=$((2 ** RETRY_COUNT * 5))  # Exponential backoff: 10s, 20s, 40s
+                      echo "⏳ Waiting ${WAIT_TIME}s before retry..."
+                      sleep $WAIT_TIME
+                  else
+                      echo "💥 Latest version upload failed after $MAX_RETRIES attempts"
+                      echo "latest_upload_status=failed" >> $GITHUB_OUTPUT
+                      echo "latest_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  fi
+              fi
+          done
+
+      - name: 📦 Upload Versioned Archive to GCS
+        id: upload_archive
+        run: |
+          echo "📦 Uploading versioned archive to Google Cloud Storage..."
+          
+          FILENAME="${{ steps.create_archive.outputs.filename }}"
+          RETRY_COUNT=0
+          MAX_RETRIES=${{ env.MAX_RETRY_ATTEMPTS }}
+          
+          upload_archive_with_retry() {
+              local attempt=$1
+              echo "📤 Attempt $attempt: Uploading archive $FILENAME..."
+              
+              # Use gsutil with parallel upload and verification
+              if gsutil -o "GSUtil:parallel_composite_upload_threshold=150M" \
+                     cp "$FILENAME" "gs://${{ env.GCS_BUCKET }}/${{ github.event.repository.name }}/versions/"; then
+                  echo "✅ Archive upload successful"
+                  
+                  # Verify upload by checking file exists and size
+                  REMOTE_SIZE=$(gsutil stat "gs://${{ env.GCS_BUCKET }}/${{ github.event.repository.name }}/versions/$FILENAME" | grep "Content-Length" | awk '{print $2}')
+                  LOCAL_SIZE="${{ steps.create_archive.outputs.size_bytes }}"
+                  
+                  if [ "$REMOTE_SIZE" = "$LOCAL_SIZE" ]; then
+                      echo "✅ Upload verification successful (size match: $LOCAL_SIZE bytes)"
+                      return 0
+                  else
+                      echo "❌ Upload verification failed (size mismatch: local=$LOCAL_SIZE, remote=$REMOTE_SIZE)"
+                      return 1
+                  fi
+              else
+                  echo "❌ Archive upload failed (attempt $attempt)"
+                  return 1
+              fi
+          }
+          
+          # Retry logic with exponential backoff
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              
+              if upload_archive_with_retry $RETRY_COUNT; then
+                  echo "archive_upload_status=success" >> $GITHUB_OUTPUT
+                  echo "archive_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  break
+              else
+                  if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                      WAIT_TIME=$((2 ** RETRY_COUNT * 5))
+                      echo "⏳ Waiting ${WAIT_TIME}s before retry..."
+                      sleep $WAIT_TIME
+                  else
+                      echo "💥 Archive upload failed after $MAX_RETRIES attempts"
+                      echo "archive_upload_status=failed" >> $GITHUB_OUTPUT
+                      echo "archive_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  fi
+              fi
+          done
+
+      - name: 🔧 Setup Rclone for Google Drive
+        id: setup_rclone
+        if: ${{ secrets.RCLONE_CONF != '' || github.event.inputs.force_drive_backup == 'true' }}
+        run: |
+          echo "🔧 Setting up Rclone for Google Drive backup..."
+          
+          # Install rclone if not present
+          if ! command -v rclone &> /dev/null; then
+              echo "📦 Installing rclone..."
+              sudo apt-get update && sudo apt-get install -y rclone
+          fi
+          
+          # Setup rclone configuration
+          mkdir -p ~/.config/rclone
+          
+          if [ "${{ secrets.RCLONE_CONF }}" != "" ]; then
+              echo "🔑 Configuring rclone from secrets..."
+              echo "${{ secrets.RCLONE_CONF }}" | base64 -d > ~/.config/rclone/rclone.conf
+              
+              # Verify configuration
+              if rclone listremotes | grep -q "${{ env.DRIVE_REMOTE }}"; then
+                  echo "✅ Rclone configuration verified"
+                  echo "rclone_status=configured" >> $GITHUB_OUTPUT
+              else
+                  echo "❌ Rclone configuration invalid - remote not found"
+                  echo "rclone_status=config_error" >> $GITHUB_OUTPUT
+              fi
+          else
+              echo "⚠️ No rclone configuration provided"
+              echo "rclone_status=not_configured" >> $GITHUB_OUTPUT
+          fi
+
+      - name: ☁️ Upload Archive to Google Drive
+        id: upload_drive
+        if: steps.setup_rclone.outputs.rclone_status == 'configured'
+        run: |
+          echo "☁️ Uploading archive to Google Drive..."
+          
+          FILENAME="${{ steps.create_archive.outputs.filename }}"
+          RETRY_COUNT=0
+          MAX_RETRIES=${{ env.MAX_RETRY_ATTEMPTS }}
+          
+          upload_drive_with_retry() {
+              local attempt=$1
+              echo "📤 Attempt $attempt: Uploading to Google Drive..."
+              
+              # Use rclone with progress and verification
+              if rclone copy --progress --stats 30s \
+                     "$FILENAME" \
+                     "${{ env.DRIVE_REMOTE }}:${{ github.event.repository.name }}/${{ env.DRIVE_PATH }}/"; then
+                  echo "✅ Drive upload successful"
+                  
+                  # Verify upload by checking file exists
+                  if rclone ls "${{ env.DRIVE_REMOTE }}:${{ github.event.repository.name }}/${{ env.DRIVE_PATH }}/$FILENAME" > /dev/null 2>&1; then
+                      echo "✅ Drive upload verification successful"
+                      return 0
+                  else
+                      echo "❌ Drive upload verification failed"
+                      return 1
+                  fi
+              else
+                  echo "❌ Drive upload failed (attempt $attempt)"
+                  return 1
+              fi
+          }
+          
+          # Retry logic with exponential backoff
+          while [ $RETRY_COUNT -lt $MAX_RETRIES ]; do
+              RETRY_COUNT=$((RETRY_COUNT + 1))
+              
+              if upload_drive_with_retry $RETRY_COUNT; then
+                  echo "drive_upload_status=success" >> $GITHUB_OUTPUT
+                  echo "drive_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  break
+              else
+                  if [ $RETRY_COUNT -lt $MAX_RETRIES ]; then
+                      WAIT_TIME=$((2 ** RETRY_COUNT * 10))  # Longer backoff for Drive
+                      echo "⏳ Waiting ${WAIT_TIME}s before retry..."
+                      sleep $WAIT_TIME
+                  else
+                      echo "💥 Drive upload failed after $MAX_RETRIES attempts"
+                      echo "drive_upload_status=failed" >> $GITHUB_OUTPUT
+                      echo "drive_upload_attempts=$RETRY_COUNT" >> $GITHUB_OUTPUT
+                  fi
+              fi
+          done
+
+      - name: 🧹 Cleanup Old Versions
+        if: github.event.inputs.cleanup_old_versions != 'false'
+        run: |
+          echo "🧹 Cleaning up old backup versions..."
+          
+          # Clean up old versions in GCS (keep last 10)
+          echo "🗂️ Cleaning up old GCS versions..."
+          gsutil ls "gs://${{ env.GCS_BUCKET }}/${{ github.event.repository.name }}/versions/" | \
+              grep -E '\.tar\.gz$' | \
+              sort -r | \
+              tail -n +11 | \
+              while read file; do
+                  echo "🗑️ Removing old version: $file"
+                  gsutil rm "$file" || echo "⚠️ Failed to remove $file"
+              done
+          
+          # Clean up old versions in Drive (if configured)
+          if [ "${{ steps.setup_rclone.outputs.rclone_status }}" = "configured" ]; then
+              echo "🗂️ Cleaning up old Drive versions..."
+              rclone ls "${{ env.DRIVE_REMOTE }}:${{ github.event.repository.name }}/${{ env.DRIVE_PATH }}/" | \
+                  grep -E '\.tar\.gz$' | \
+                  sort -k2 -r | \
+                  tail -n +11 | \
+                  while read size filename; do
+                      echo "🗑️ Removing old Drive version: $filename"
+                      rclone delete "${{ env.DRIVE_REMOTE }}:${{ github.event.repository.name }}/${{ env.DRIVE_PATH }}/$filename" || echo "⚠️ Failed to remove $filename"
+                  done
+          fi
+
+      - name: 📋 Generate Comprehensive Backup Report
+        if: always()
+        run: |
+          echo "📋 Generating comprehensive backup report..."
+          
+          python << 'EOF'
+          import json
+          import os
+          from datetime import datetime
+          
+          # Collect all backup information
+          backup_report = {
+              "timestamp": datetime.now().isoformat(),
+              "repository": "${{ github.repository }}",
+              "branch": "${{ github.ref_name }}",
+              "commit_sha": "${{ github.sha }}",
+              "trigger": "${{ github.event_name }}",
+              "backup_type": "${{ github.event.inputs.backup_type || 'full' }}",
+              "archive": {
+                  "filename": "${{ steps.create_archive.outputs.filename }}",
+                  "size_bytes": "${{ steps.create_archive.outputs.size_bytes }}",
+                  "size_mb": "${{ steps.create_archive.outputs.size_mb }}",
+                  "file_count": "${{ steps.create_archive.outputs.file_count }}",
+                  "checksum": "${{ steps.create_archive.outputs.checksum }}"
+              },
+              "security": {
+                  "status": "${{ steps.security_check.outputs.security_status }}",
+                  "critical_issues": "${{ steps.security_check.outputs.critical_count }}",
+                  "proceed_status": "${{ steps.security_check.outputs.security_proceed }}"
+              },
+              "uploads": {
+                  "gcs_latest": {
+                      "status": "${{ steps.upload_latest.outputs.latest_upload_status }}",
+                      "attempts": "${{ steps.upload_latest.outputs.latest_upload_attempts }}"
+                  },
+                  "gcs_archive": {
+                      "status": "${{ steps.upload_archive.outputs.archive_upload_status }}",
+                      "attempts": "${{ steps.upload_archive.outputs.archive_upload_attempts }}"
+                  },
+                  "drive": {
+                      "rclone_status": "${{ steps.setup_rclone.outputs.rclone_status }}",
+                      "upload_status": "${{ steps.upload_drive.outputs.drive_upload_status }}",
+                      "attempts": "${{ steps.upload_drive.outputs.drive_upload_attempts }}"
+                  }
+              },
+              "destinations": {
+                  "gcs_bucket": "${{ env.GCS_BUCKET }}",
+                  "drive_remote": "${{ env.DRIVE_REMOTE }}",
+                  "drive_path": "${{ env.DRIVE_PATH }}"
+              }
+          }
+          
+          # Calculate overall success
+          gcs_success = backup_report["uploads"]["gcs_latest"]["status"] == "success" and \
+                       backup_report["uploads"]["gcs_archive"]["status"] == "success"
+          
+          drive_success = backup_report["uploads"]["drive"]["upload_status"] == "success" or \
+                         backup_report["uploads"]["drive"]["rclone_status"] != "configured"
+          
+          backup_report["overall_success"] = gcs_success and drive_success
+          backup_report["partial_success"] = gcs_success or drive_success
+          
+          # Load security report if it exists
+          try:
+              with open('pre_backup_security_report.json', 'r') as f:
+                  security_data = json.load(f)
+              backup_report["security_details"] = security_data
+          except FileNotFoundError:
+              backup_report["security_details"] = {"status": "not_available"}
+          
+          # Save comprehensive report
+          with open('backup_report.json', 'w') as f:
+              json.dump(backup_report, f, indent=2)
+          
+          # Display summary
+          print("=" * 60)
+          print("🔄 BACKUP & MIRROR SUMMARY")
+          print("=" * 60)
+          print(f"Repository: {backup_report['repository']}")
+          print(f"Archive: {backup_report['archive']['filename']}")
+          print(f"Size: {backup_report['archive']['size_mb']} MB ({backup_report['archive']['file_count']} files)")
+          print(f"Security Status: {backup_report['security']['status']}")
+          print(f"GCS Latest: {backup_report['uploads']['gcs_latest']['status']}")
+          print(f"GCS Archive: {backup_report['uploads']['gcs_archive']['status']}")
+          print(f"Drive: {backup_report['uploads']['drive']['upload_status'] or 'not_configured'}")
+          print(f"Overall Success: {backup_report['overall_success']}")
+          
+          if not backup_report['overall_success']:
+              print(f"\n⚠️ Backup Issues Detected:")
+              if backup_report["uploads"]["gcs_latest"]["status"] != "success":
+                  print(f"   ❌ GCS Latest upload failed")
+              if backup_report["uploads"]["gcs_archive"]["status"] != "success":
+                  print(f"   ❌ GCS Archive upload failed")
+              if backup_report["uploads"]["drive"]["upload_status"] == "failed":
+                  print(f"   ❌ Drive upload failed")
+          else:
+              print(f"\n✅ All backup operations completed successfully!")
+          
+          print(f"\n📄 Detailed report saved to backup_report.json")
+          EOF
+
+      - name: 🧹 Cleanup Temporary Files
+        if: always()
+        run: |
+          echo "🧹 Cleaning up temporary files..."
+          
+          # Remove local archive file
+          if [ -f "${{ steps.create_archive.outputs.filename }}" ]; then
+              echo "🗑️ Removing local archive: ${{ steps.create_archive.outputs.filename }}"
+              rm -f "${{ steps.create_archive.outputs.filename }}"
+          fi
+          
+          # Remove temporary exclusion file
+          rm -f /tmp/backup_exclusions.txt
+          
+          # Remove any other temporary files
+          find . -name "*.tmp" -type f -delete 2>/dev/null || true
+          
+          echo "✅ Cleanup completed"
+
+      - name: 📊 Upload Backup Artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: backup-reports
+          path: |
+            backup_report.json
+            pre_backup_security_report.json
+          retention-days: 30
+
+      - name: 🔔 Notification and Status Report
+        if: always()
+        run: |
+          echo "🔔 Generating final status report..."
+          
+          # Extract key metrics for notification
+          OVERALL_SUCCESS=$(python -c "
+          import json
+          try:
+              with open('backup_report.json', 'r') as f:
+                  data = json.load(f)
+              print('true' if data['overall_success'] else 'false')
+          except:
+              print('false')
+          ")
+          
+          ARCHIVE_SIZE=$(python -c "
+          import json
+          try:
+              with open('backup_report.json', 'r') as f:
+                  data = json.load(f)
+              print(data['archive']['size_mb'])
+          except:
+              print('unknown')
+          ")
+          
+          FILE_COUNT=$(python -c "
+          import json
+          try:
+              with open('backup_report.json', 'r') as f:
+                  data = json.load(f)
+              print(data['archive']['file_count'])
+          except:
+              print('unknown')
+          ")
+          
+          echo "📊 FINAL BACKUP STATUS"
+          echo "====================="
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Archive Size: ${ARCHIVE_SIZE} MB"
+          echo "File Count: ${FILE_COUNT}"
+          echo "Overall Success: ${OVERALL_SUCCESS}"
+          echo "Timestamp: $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+          
+          if [ "$OVERALL_SUCCESS" = "true" ]; then
+              echo "✅ Backup and mirroring completed successfully!"
+              exit 0
+          else
+              echo "⚠️ Backup completed with some issues - check reports for details"
+              exit 0  # Non-blocking - issues are documented in reports
+          fi
