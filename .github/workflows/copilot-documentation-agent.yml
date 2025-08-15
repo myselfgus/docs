@@ -1,6 +1,19 @@
 name: 🤖 Copilot Documentation Agent
 
 on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+      - '**/*.py'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.json'
+      - '**/*.yml'
+      - '**/*.yaml'
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
       instruction:

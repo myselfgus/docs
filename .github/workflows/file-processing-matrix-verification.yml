@@ -1,6 +1,19 @@
 name: 🔍 File Processing Matrix Verification Agent
 
 on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - '**/*.md'
+      - '**/*.py'
+      - '**/*.js'
+      - '**/*.ts'
+      - '**/*.json'
+      - '**/*.yml'
+      - '**/*.yaml'
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
   schedule:
     # Run every 6 hours to verify matrix compliance
     - cron: '0 */6 * * *'
