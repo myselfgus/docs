@@ -220,11 +220,12 @@ jobs:
           print(f"📊 Final Compliance Score: {compliance_score:.1%}")
           print(f"🔧 Recommendations: {len(verification_results['recommendations'])}")
 
-          # Set outputs
-          print(f"compliance_score={compliance_score:.2f}" >> "$GITHUB_OUTPUT")
-          print(f"missing_count={missing_count}" >> "$GITHUB_OUTPUT")
-          print(f"compliant_workflows={compliant_workflows}" >> "$GITHUB_OUTPUT")
-          print(f"total_workflows={total_workflows}" >> "$GITHUB_OUTPUT")
+          # Set outputs using proper GitHub Actions syntax
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as f:
+              f.write(f"compliance_score={compliance_score:.2f}\n")
+              f.write(f"missing_count={missing_count}\n")
+              f.write(f"compliant_workflows={compliant_workflows}\n")
+              f.write(f"total_workflows={total_workflows}\n")
           EOF
 
       - name: 📋 Generate Compliance Report

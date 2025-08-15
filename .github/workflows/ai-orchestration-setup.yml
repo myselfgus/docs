@@ -165,9 +165,9 @@ jobs:
                   }
 
                   print(f"✅ AI Orchestration completed!")
-                  print(f"📊 Project: {result['project_name']}")
-                  print(f"🤖 Phases: {len(result['phases_completed'])}")
-                  print(f"📋 Deliverables: {len(result['deliverables'])}")
+                  print(f"📊 Project: {orchestration_result['project_name']}")
+                  print(f"🤖 Phases: {len(orchestration_result['phases_completed'])}")
+                  print(f"📋 Deliverables: {len(orchestration_result['deliverables'])}")
 
                   return orchestration_result
 
